@@ -1,6 +1,5 @@
 // http://ionicframework.com/docs/theming/
 
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,3 +13,37 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.main-fon {
+  background: -moz-linear-gradient(90deg, rgba(173, 173, 173, 1) 0%, rgba(54, 54, 54, 1) 100%); /* ff3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(54, 54, 54, 1)), color-stop(100%, rgba(173, 173, 173, 1))); /* safari4+,chrome */
+  background: -webkit-linear-gradient(90deg, rgba(173, 173, 173, 1) 0%, rgba(54, 54, 54, 1) 100%); /* safari5.1+,chrome10+ */
+  background: -o-linear-gradient(90deg, rgba(173, 173, 173, 1) 0%, rgba(54, 54, 54, 1) 100%); /* opera 11.10+ */
+  background: -ms-linear-gradient(90deg, rgba(173, 173, 173, 1) 0%, rgba(54, 54, 54, 1) 100%); /* ie10+ */
+  background: linear-gradient(0deg, rgba(173, 173, 173, 1) 0%, rgba(54, 54, 54, 1) 100%); /* w3c */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#363636', endColorstr='#ADADAD', GradientType=0); /* ie6-9 */
+}
+
+.main-menu {
+  background-color: #343434;
+  color: #fafafa;
+}
+
+#menu-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: auto;
+  opacity: 0.6;
+}
+
+// пвысота разделителя в меню
+ion-item-divider{
+  margin-top: 0px;
+  min-height: 40px!important;
+}
+.item-inner{
+min-height: 1px !important;
+}
+
+
