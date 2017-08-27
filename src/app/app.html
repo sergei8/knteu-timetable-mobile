@@ -5,15 +5,39 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
+  <ion-content   scroll="fasle" class="main-menu">
+    <div>
+      <img id="menu-image" src="assets/img/mobile-menu.jpg" />
+    </div>
+    <ion-list >
+      <button ion-item no-lines detail-push class="main-menu">
+        <ion-icon name="people" item-left></ion-icon>
+        Студенту
+      </button>
+      <button ion-item no-lines detail-push menuClose="" class="main-menu">
+        <ion-icon name="person" item-left></ion-icon>
+        Викладачу
+      </button>
+      <ion-item-divider no-lines class='main-menu'></ion-item-divider>
+      <button ion-item no-lines detail-none menuClose="" class="main-menu">
+        <ion-icon name="cog" item-left></ion-icon>
+        Налаштування
+      </button>
+      <button ion-item no-lines detail-none menuClose="" class="main-menu">
+        <ion-icon name="information-circle" item-left></ion-icon>
+        Інструкція
+      </button>
+      <ion-item-divider no-lines class='main-menu'></ion-item-divider>
+      <button ion-item detail-none no-lines menuClose="" class="main-menu">
+        <ion-icon name="log-out" item-left></ion-icon>
+        Вихід
       </button>
     </ion-list>
+    <ion-footer text-center style="color: #8c8c8c">&copy; Avas-2017</ion-footer>
   </ion-content>
 
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-nav [root]="rootPage" #content></ion-nav>
+<!--<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>-->
