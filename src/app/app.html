@@ -10,25 +10,25 @@
       <img id="menu-image" src="assets/img/mobile-menu.jpg" />
     </div>
     <ion-list >
-      <button ion-item no-lines detail-push class="main-menu">
+      <button ion-item no-lines detail-push menuClose (click)="openStudent()" class="main-menu">
         <ion-icon name="people" item-left></ion-icon>
         Студенту
       </button>
-      <button ion-item no-lines detail-push menuClose="" class="main-menu">
+      <button ion-item no-lines detail-push menuClose (click)="openTeacher()" class="main-menu">
         <ion-icon name="person" item-left></ion-icon>
         Викладачу
       </button>
       <ion-item-divider no-lines class='main-menu'></ion-item-divider>
-      <button ion-item no-lines detail-none menuClose="" class="main-menu">
+      <button ion-item no-lines detail-none menuClose class="main-menu" disabled>
         <ion-icon name="cog" item-left></ion-icon>
         Налаштування
       </button>
-      <button ion-item no-lines detail-none menuClose="" class="main-menu">
+      <button ion-item no-lines detail-none menuClose class="main-menu" >
         <ion-icon name="information-circle" item-left></ion-icon>
         Інструкція
       </button>
       <ion-item-divider no-lines class='main-menu'></ion-item-divider>
-      <button ion-item detail-none no-lines menuClose="" class="main-menu">
+      <button ion-item detail-none no-lines menuClose class="main-menu">
         <ion-icon name="log-out" item-left></ion-icon>
         Вихід
       </button>
@@ -40,4 +40,4 @@
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav [root]="rootPage" #content></ion-nav>
-<!--<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>-->
+<!--<ion-nav [root]="root" #content swipeBackEnabled="false"></ion-nav>-->
