@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 /**
  * Generated class for the TeacherComponent component.
@@ -12,11 +12,15 @@ import { Component } from '@angular/core';
 })
 export class StudentComponent {
 
-  text: string;
+  facNameList: string[] = [];
+  courseList: string[] = [];
+  groupList: string[] = [];
 
   constructor() {
-    console.log('Hello student Component');
-    this.text = 'Hello World';
+    this.facNameList = ['ФОАІС', 'ФЕМП', 'ФМТП'];
+    this.courseList = ['1', '2', '3'];
+    this.groupList = ['11', '12', '13'];
+
   }
 
 }

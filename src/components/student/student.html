@@ -3,12 +3,42 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Розклад викладача</ion-title>
+    <ion-title>Розклад студента</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding class="page-home main-fon">
-
-  Экран студента
-
+  <ion-list>
+    <ion-list-header text-center>
+      Знайти розклад групи
+    </ion-list-header>
+    <ion-item no-lines>
+      <ion-label>Факультет</ion-label>
+      <ion-select okText="Ok" cancelText="Відмова">
+        <ion-option *ngFor="let facName of facNameList">{{facName}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item-divider no-lines class="divider-transparent"></ion-item-divider>
+    <ion-item no-lines>
+      <ion-label>Курс</ion-label>
+      <ion-select okText="Ok" cancelText="Відмова">
+        <ion-option *ngFor="let course of courseList">{{course}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item-divider no-lines class="divider-transparent"></ion-item-divider>
+    <ion-item no-lines>
+      <ion-label>Група</ion-label>
+      <ion-select okText="Ok" cancelText="Відмова">
+        <ion-option *ngFor="let group of groupList">{{group}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item-divider no-lines class="divider-transparent"></ion-item-divider>
+    <ion-item-divider no-lines class="divider-transparent"></ion-item-divider>
+  </ion-list>
+  <ion-row>
+    <ion-col text-center>
+      <button ion-button round outline large center class="menuShowButton">Дивитись</button>
+    </ion-col>
+  </ion-row>
 </ion-content>
+
