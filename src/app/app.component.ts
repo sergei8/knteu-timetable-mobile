@@ -7,6 +7,8 @@ import {HomeComponent} from '../components/home/home';
 import {TeacherComponent} from '../components/teacher/teacher';
 import {StudentComponent} from '../components/student/student';
 
+import {DataProvider} from '../providers/data/data';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -15,12 +17,17 @@ export class MyApp {
 
   rootPage: any = HomeComponent;
 
+  timeTable = {};
+
   // pages: Array<{ title: string, component: any }>;
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
-              public splashScreen: SplashScreen) {
+              public splashScreen: SplashScreen,
+              private dataProvider: DataProvider) {
     this.initializeApp();
+    this.readTimeTable();
+
   }
 
   initializeApp() {
@@ -36,8 +43,22 @@ export class MyApp {
     console.log('student open');
     this.nav.setRoot(StudentComponent);
   }
+
   openTeacher() {
     console.log('teacher open');
     this.nav.setRoot(TeacherComponent);
   }
+
+  // подписаться на получение файла time-table.json
+  readTimeTable() {
+    this.dataProvider.getTimeTable()
+      .subscribe(response => {
+        this.timeTable = response;
+        // console.log(this.timeTable);
+      })
+
+
+  }
+
 }
+
