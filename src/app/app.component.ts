@@ -18,6 +18,8 @@ export class MyApp {
   rootPage: any = HomeComponent;
 
   timeTable = {};
+  appConfig = {};
+  timeTableUrl: string;
 
   // pages: Array<{ title: string, component: any }>;
 
@@ -26,6 +28,7 @@ export class MyApp {
               public splashScreen: SplashScreen,
               private dataProvider: DataProvider) {
     this.initializeApp();
+    this.readConfig();
     this.readTimeTable();
 
   }
@@ -51,14 +54,19 @@ export class MyApp {
 
   // подписаться на получение файла time-table.json
   readTimeTable() {
-    this.dataProvider.getTimeTable()
+    this.dataProvider.getFile(this.timeTableUrl)
       .subscribe(response => {
         this.timeTable = response;
-        // console.log(this.timeTable);
-      })
+        console.log(this.timeTable);
+      });
+  }
 
-
+  readConfig() {
+    this.dataProvider.getFile('https://drive.google.com/file/d/0B2RnzkYQbVwTT191LVVaYVdBN0U/view?usp=sharing')
+      .subscribe(response => {
+        this.timeTableUrl = response;
+        console.log(this.timeTableUrl);
+      });
   }
 
 }
-

@@ -15,9 +15,16 @@ export class DataProvider {
     console.log('@@@@@@  Hello DataProvider Provider');
   }
 
-  getTimeTable() {
-    return this.http.get('https://raw.githubusercontent.com/sergei8/TT-site/master/assets/db/time-table.json')
+  getFile(url) {
+    return this.http.get(url)
       .map(response => response.json());
   }
+
+  /*
+   getTimeTable() {
+   return this.http.get('https://raw.githubusercontent.com/sergei8/TT-site/master/assets/db/time-table.json')
+   .map(response => response.json());
+   }
+   */
 
 }
