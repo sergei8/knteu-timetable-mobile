@@ -8,6 +8,7 @@ import {TeacherComponent} from '../components/teacher/teacher';
 import {StudentComponent} from '../components/student/student';
 
 import {DataProvider} from '../providers/data/data';
+import {errorHandler} from "@angular/platform-browser/src/browser";
 
 @Component({
   templateUrl: 'app.html'
@@ -20,6 +21,7 @@ export class MyApp {
   timeTable = {};
   appConfig = {};
   timeTableUrl: string;
+  configUrl = 'https://raw.githubusercontent.com/sergei8/tt-mobile/student-menu/app-config.json';
 
   // pages: Array<{ title: string, component: any }>;
 
@@ -29,7 +31,7 @@ export class MyApp {
               private dataProvider: DataProvider) {
     this.initializeApp();
     this.readConfig();
-    this.readTimeTable();
+    // this.readTimeTable();
 
   }
 
@@ -55,18 +57,31 @@ export class MyApp {
   // подписаться на получение файла time-table.json
   readTimeTable() {
     this.dataProvider.getFile(this.timeTableUrl)
-      .subscribe(response => {
-        this.timeTable = response;
-        console.log(this.timeTable);
-      });
+      .subscribe(
+        response => {
+          console.log('@@@@@@@@@@@@@@@@@');
+          this.timeTable = response;
+          console.log(this.timeTable);
+        },
+        error => console.log('ERROR time-table!'));
   }
 
   readConfig() {
-    this.dataProvider.getFile('https://drive.google.com/file/d/0B2RnzkYQbVwTT191LVVaYVdBN0U/view?usp=sharing')
-      .subscribe(response => {
-        this.timeTableUrl = response;
-        console.log(this.timeTableUrl);
-      });
+    this.dataProvider
+      .getFile(this.configUrl)
+      .subscribe(
+        response => {
+          console.log('#############');
+          this.timeTableUrl = response['time-table-url'];
+          console.log(this.timeTableUrl);
+        },
+        error => console.log('Error config'),
+        () => {
+          /* когда app-config прочітан визиваем загрузку time-table.json*/
+          console.log('CONFIG COMPETE!!!');
+          this.readTimeTable();
+        }
+      );
   }
 
 }
