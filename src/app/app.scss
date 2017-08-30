@@ -14,6 +14,10 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+$MAIN_FONT_COLOR :#fafafa;
+$MENU_BACKGROUND: #343434;
+
+
 .main-fon {
   background: -moz-linear-gradient(90deg, rgba(173, 173, 173, 1) 0%, rgba(54, 54, 54, 1) 100%); /* ff3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(54, 54, 54, 1)), color-stop(100%, rgba(173, 173, 173, 1))); /* safari4+,chrome */
@@ -24,9 +28,12 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#363636', endColorstr='#ADADAD', GradientType=0); /* ie6-9 */
 }
 
-.main-menu {
-  background-color: #343434;
-  color: #fafafa;
+.main-menu, .main-menu ion-item-divider {
+  background-color: $MENU_BACKGROUND;
+  color: $MAIN_FONT_COLOR;
+  margin-top: 0px;
+  min-height: 40px !important;
+
 }
 
 #menu-image {
@@ -37,13 +44,30 @@
   opacity: 0.6;
 }
 
-// пвысота разделителя в меню
-ion-item-divider{
-  margin-top: 0px;
-  min-height: 40px!important;
-}
-.item-inner{
-min-height: 1px !important;
+.divider-transparent {
+  background-color: transparent!important;
 }
 
+ion-list-header{
+  background-color: transparent!important;
+  border: transparent!important;
+  color: $MAIN_FONT_COLOR!important;
+}
 
+.menuShowButton{
+  color: $MENU_BACKGROUND;
+  border-color: $MAIN_FONT_COLOR ;
+}
+.menuShowButton:hover{
+    background-color: $MAIN_FONT_COLOR;
+}
+
+.img-centered{
+    position:absolute;
+    left: 0;
+    right: 0;
+    margin:0 auto;
+    top:50%;
+    transform:translateY(-60%);
+  opacity: .8;
+}
