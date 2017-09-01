@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import * as _ from 'lodash';
 import {SharedObjects} from '../../providers/shared-data/shared-data'
+import * as _ from 'lodash';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'student',
@@ -11,17 +12,17 @@ export class StudentComponent {
   facNameList: string[] = [];
   courseList: string[] = [];
   groupList: string[] = [];
-  allTimeTable = {};
+  allTimeTable = {};    //   сюда передается общее расписание
 
   selectedFacName: string;
   selectedCourse: string;
   selectedGruppa: string;
 
+  wdp: object;    // объект куда формируется расписание выбранной группы
 
   constructor(private sharedObjects: SharedObjects) {
 
     this.allTimeTable = this.sharedObjects.allTimeTable;
-
     this.getFacNameList();
 
   }
@@ -99,5 +100,25 @@ export class StudentComponent {
     console.log(this.selectedFacName);
     console.log(this.selectedCourse);
     console.log(this.selectedGruppa);
+
+    this.wdp = $.extend(true, {}, this.sharedObjects.WeekDayPara);    //  очищаем расписание группы
+
+    _.each(this.allTimeTable, (fio, teacherName) =>
+      _.each(fio, (week, weekName) =>
+        _.each(week, (day, dayName) =>
+          _.each(day, (para, paraNumber) => {
+              if (this.selectedFacName === para[0]
+                && this.selectedCourse === para[1]
+                && this.selectedGruppa === para[2]) {
+                this.wdp[weekName][dayName][paraNumber] = [].concat(para[5], para[3], para[4], teacherName);
+              }
+            }
+          )
+        )
+      )
+    );
+    // console.log(this.wdp);
   }
+
 }
+
