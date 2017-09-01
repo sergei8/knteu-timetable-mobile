@@ -69,6 +69,8 @@ export class StudentComponent {
       }
     }
     this.courseList = courseNamberList.sort();
+    this.groupList = [];
+
   }
 
   getGroupList() {
@@ -86,8 +88,6 @@ export class StudentComponent {
               && (courseNumber == this.selectedCourse)
               && !(_.includes(groupNumberList, groupNumber))) {
               groupNumberList.push(groupNumber);
-// console.log(groupNumberList);
-
             }
           }
         }
@@ -100,5 +100,7 @@ export class StudentComponent {
 
   okClicked() {
     console.log(this.selectedFacName);
+    console.log(this.selectedCourse);
+    console.log(this.selectedGruppa);
   }
 }

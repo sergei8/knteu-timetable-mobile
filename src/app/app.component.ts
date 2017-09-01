@@ -20,7 +20,7 @@ export class MyApp {
 
   appConfig = {};
   timeTableUrl: string;
-  configUrl = 'https://raw.githubusercontent.com/sergei8/tt-mobile/student-menu/app-config.json';
+  configUrl = 'https://raw.githubusercontent.com/sergei8/tt-mobile/master/app-config.json';
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
@@ -66,6 +66,7 @@ export class MyApp {
 
   // получіть конфіг-файл
   readConfig() {
+    console.log(this.configUrl);
     this.dataProvider
       .getFile(this.configUrl)
       .subscribe(
