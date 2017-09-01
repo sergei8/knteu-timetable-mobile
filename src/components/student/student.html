@@ -41,7 +41,11 @@
   </ion-list>
   <ion-row>
     <ion-col text-center>
-      <button ion-button round outline large center class="menuShowButton" (click)="okClicked()">Дивитись</button>
+      <button ion-button round outline large center class="menuShowButton"
+              [disabled]="!(selectedFacName && selectedCourse && selectedGruppa)"
+              (click)="okClicked()">
+        Дивитись
+      </button>
     </ion-col>
   </ion-row>
 </ion-content>

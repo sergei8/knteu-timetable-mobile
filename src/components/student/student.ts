@@ -17,14 +17,12 @@ export class StudentComponent {
   selectedCourse: string;
   selectedGruppa: string;
 
+
   constructor(private sharedObjects: SharedObjects) {
 
     this.timeTable = this.sharedObjects.timeTable;
 
     this.getFacNameList();
-    // this.courseList = this.getCourseList();
-    // this.courseList = ['1','2'];
-    // this.groupList = ['11', '12', '13'];
 
   }
 
@@ -49,7 +47,6 @@ export class StudentComponent {
     this.groupList = [];
     this.groupList = [];
   }
-
 
   getCourseList() {
 
