@@ -8,7 +8,7 @@ import {TeacherComponent} from '../components/teacher/teacher';
 import {StudentComponent} from '../components/student/student';
 
 import {DataProvider} from '../providers/data/data';
-import {errorHandler} from "@angular/platform-browser/src/browser";
+import {SharedTimeTable} from '../providers/shared-data/shared-data';
 
 @Component({
   templateUrl: 'app.html'
@@ -18,17 +18,15 @@ export class MyApp {
 
   rootPage: any = HomeComponent;
 
-  timeTable = {};
   appConfig = {};
   timeTableUrl: string;
   configUrl = 'https://raw.githubusercontent.com/sergei8/tt-mobile/student-menu/app-config.json';
 
-  // pages: Array<{ title: string, component: any }>;
-
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
-              private dataProvider: DataProvider) {
+              private dataProvider: DataProvider,
+              private sharedTimeTable: SharedTimeTable) {
     this.initializeApp();
     this.readConfig();
     // this.readTimeTable();
@@ -59,19 +57,19 @@ export class MyApp {
     this.dataProvider.getFile(this.timeTableUrl)
       .subscribe(
         response => {
-          console.log('@@@@@@@@@@@@@@@@@');
-          this.timeTable = response;
-          console.log(this.timeTable);
+          console.log("!!!!!!!!!!!!!!!!!!!!");
+          this.sharedTimeTable.timeTable = response;
+          console.log(this.sharedTimeTable.timeTable);
         },
         error => console.log('ERROR time-table!'));
   }
 
+  // получіть конфіг-файл
   readConfig() {
     this.dataProvider
       .getFile(this.configUrl)
       .subscribe(
         response => {
-          console.log('#############');
           this.timeTableUrl = response['time-table-url'];
           console.log(this.timeTableUrl);
         },

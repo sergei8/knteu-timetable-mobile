@@ -29,3 +29,5 @@ export class DataProvider {
    */
 
 }
+
+export const TimeTable = {};
