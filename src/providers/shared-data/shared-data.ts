@@ -4,9 +4,10 @@ import {Injectable} from '@angular/core';
 @Injectable()
 
 export class SharedObjects {
-  timeTable: object;
+  allTimeTable: object;
+
 
   constructor() {
-    this.timeTable = {};
+    this.allTimeTable = {};
   }
 }

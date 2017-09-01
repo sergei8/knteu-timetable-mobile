@@ -58,8 +58,8 @@ export class MyApp {
       .subscribe(
         response => {
           console.log("!!!!!!!!!!!!!!!!!!!!");
-          this.sharedObjects.timeTable = response;
-          console.log(this.sharedObjects.timeTable);
+          this.sharedObjects.allTimeTable = response;
+          console.log(this.sharedObjects.allTimeTable);
         },
         error => console.log('ERROR time-table!'));
   }
