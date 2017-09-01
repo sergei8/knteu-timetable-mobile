@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import * as _ from 'lodash';
-import {SharedTimeTable, SharedWDP} from '../../providers/shared-data/shared-data'
+import {SharedTimeTable} from '../../providers/shared-data/shared-data'
 
 @Component({
   selector: 'student',
@@ -20,7 +20,11 @@ export class StudentComponent {
   constructor(private sharedTimeTable: SharedTimeTable) {
 
     this.timeTable = this.sharedTimeTable.timeTable;
+
     this.getFacNameList();
+    // this.courseList = this.getCourseList();
+    // this.courseList = ['1','2'];
+    // this.groupList = ['11', '12', '13'];
 
   }
 
@@ -65,8 +69,6 @@ export class StudentComponent {
       }
     }
     this.courseList = courseNamberList.sort();
-    this.groupList = [];
-
   }
 
   getGroupList() {
@@ -84,6 +86,8 @@ export class StudentComponent {
               && (courseNumber == this.selectedCourse)
               && !(_.includes(groupNumberList, groupNumber))) {
               groupNumberList.push(groupNumber);
+// console.log(groupNumberList);
+
             }
           }
         }
@@ -96,7 +100,5 @@ export class StudentComponent {
 
   okClicked() {
     console.log(this.selectedFacName);
-    console.log(this.selectedCourse);
-    console.log(this.selectedGruppa);
   }
 }
