@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import * as _ from 'lodash';
-import {SharedTimeTable} from '../../providers/shared-data/shared-data'
+import {SharedObjects} from '../../providers/shared-data/shared-data'
 
 @Component({
   selector: 'student',
@@ -17,9 +17,9 @@ export class StudentComponent {
   selectedCourse: string;
   selectedGruppa: string;
 
-  constructor(private sharedTimeTable: SharedTimeTable) {
+  constructor(private sharedObjects: SharedObjects) {
 
-    this.timeTable = this.sharedTimeTable.timeTable;
+    this.timeTable = this.sharedObjects.timeTable;
 
     this.getFacNameList();
     // this.courseList = this.getCourseList();

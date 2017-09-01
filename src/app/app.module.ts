@@ -12,7 +12,7 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
 import { DataProvider } from '../providers/data/data';
-import { SharedTimeTable } from '../providers/shared-data/shared-data';
+import { SharedObjects } from '../providers/shared-data/shared-data';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,7 @@ import { SharedTimeTable } from '../providers/shared-data/shared-data';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
-    SharedTimeTable
+    SharedObjects
   ]
 })
 export class AppModule {

@@ -8,7 +8,7 @@ import {TeacherComponent} from '../components/teacher/teacher';
 import {StudentComponent} from '../components/student/student';
 
 import {DataProvider} from '../providers/data/data';
-import {SharedTimeTable} from '../providers/shared-data/shared-data';
+import {SharedObjects} from '../providers/shared-data/shared-data';
 
 @Component({
   templateUrl: 'app.html'
@@ -26,7 +26,7 @@ export class MyApp {
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
               private dataProvider: DataProvider,
-              private sharedTimeTable: SharedTimeTable) {
+              private sharedObjects: SharedObjects) {
     this.initializeApp();
     this.readConfig();
     // this.readTimeTable();
@@ -58,8 +58,8 @@ export class MyApp {
       .subscribe(
         response => {
           console.log("!!!!!!!!!!!!!!!!!!!!");
-          this.sharedTimeTable.timeTable = response;
-          console.log(this.sharedTimeTable.timeTable);
+          this.sharedObjects.timeTable = response;
+          console.log(this.sharedObjects.timeTable);
         },
         error => console.log('ERROR time-table!'));
   }
