@@ -7,6 +7,7 @@ import {MyApp} from './app.component';
 import {HomeComponent} from '../components/home/home';
 import {TeacherComponent} from '../components/teacher/teacher';
 import {StudentComponent} from '../components/student/student';
+import {StudentTtComponent} from '../components/student-tt/student-tt';
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
@@ -19,7 +20,8 @@ import { SharedObjects } from '../providers/shared-data/shared-data';
     MyApp,
     HomeComponent,
     TeacherComponent,
-    StudentComponent
+    StudentComponent,
+    StudentTtComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,8 @@ import { SharedObjects } from '../providers/shared-data/shared-data';
     MyApp,
     HomeComponent,
     TeacherComponent,
-    StudentComponent
+    StudentComponent,
+    StudentTtComponent
   ],
   providers: [
     StatusBar,

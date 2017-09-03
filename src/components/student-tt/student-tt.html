@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{facName}} {{course}} курс {{group}} група</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="page-home main-fon" id="studentMenu">
+  <ng-template ngFor let-week [ngForOf]="weekNames">
+    <ion-list>
+      <ion-list-header (click)="weekClicked(week)" class="weekHeader">
+        {{week}}
+      </ion-list-header>
+      <ng-template ngFor let-day [ngForOf]="dayNamesList">
+        <ion-list [hidden]="weekShowSwitch[week]">
+          <ion-list-header *ngIf="checkForEmptyDay(wdp[week][day])" class="dayHeader">
+            {{day}}
+          </ion-list-header>
+          <ng-template ngFor let-para [ngForOf]="paraNamberList">
+            <ion-item *ngIf="wdp[week][day][para].length > 0">
+              <ion-badge> &nbsp;{{para}}&nbsp;</ion-badge>
+              {{wdp[week][day][para][0]}}
+              {{wdp[week][day][para][2]}}<br/>
+              {{wdp[week][day][para][1]}}<br/>
+              {{wdp[week][day][para][3]}}
+              <span item-end>
+                <ion-icon name="ios-arrow-dropright-outline"></ion-icon>
+              </span>
+            </ion-item>
+          </ng-template>
+        </ion-list>
+      </ng-template>
+    </ion-list>
+  </ng-template>
+
+
+</ion-content>

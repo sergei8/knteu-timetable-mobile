@@ -7,15 +7,15 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="page-home main-fon" id="studentMenu">
-  <ion-list>
+<ion-content padding class="page-home main-fon" >
+  <ion-list id="studentMenu">
     <ion-list-header text-center>
       Знайти розклад групи
     </ion-list-header>
     <ion-item no-lines>
       <ion-label>Факультет</ion-label>
       <ion-select okText="Ok" cancelText="Відмова" [(ngModel)]="selectedFacName"
-                  (ionChange)="getCourseList()">
+                  (ionChange)="getCourseList()" interface="popover">
         <ion-option *ngFor="let facName of facNameList">{{facName}}</ion-option>
       </ion-select>
     </ion-item>
@@ -24,7 +24,7 @@
     <ion-item no-lines>
       <ion-label>Курс</ion-label>
       <ion-select okText="Ok" cancelText="Відмова" [(ngModel)]="selectedCourse"
-                  (ionChange)="getGroupList()">
+                  (ionChange)="getGroupList()" interface="popover">
         <ion-option *ngFor="let course of courseList">{{course}}</ion-option>
       </ion-select>
     </ion-item>
@@ -32,7 +32,7 @@
 
     <ion-item no-lines>
       <ion-label>Група</ion-label>
-      <ion-select okText="Ok" cancelText="Відмова" [(ngModel)]="selectedGruppa">
+      <ion-select okText="Ok" cancelText="Відмова" [(ngModel)]="selectedGruppa" interface="popover">
         <ion-option *ngFor="let group of groupList">{{group}}</ion-option>
       </ion-select>
     </ion-item>
@@ -50,3 +50,4 @@
   </ion-row>
 </ion-content>
 
+<ion-nav ></ion-nav>
