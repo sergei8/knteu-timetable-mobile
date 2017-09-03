@@ -1,22 +1,5 @@
-// http://ionicframework.com/docs/theming/
-
-// App Global Sass
-// --------------------------------------------------
-// Put style rules here that you want to apply globally. These
-// styles are for the entire app and not just one component.
-// Additionally, this file can be also used as an entry point
-// to import other Sass files to be included in the output CSS.
-//
-// Shared Sass variables, which can be used to adjust Ionic's
-// default Sass variables, belong in "theme/variables.scss".
-//
-// To declare rules for a specific mode, create a child rule
-// for the .md, .ios, or .wp mode classes. The mode class is
-// automatically applied to the <body> element in the app.
-
-$MAIN_FONT_COLOR :#fafafa;
+$MAIN_FONT_COLOR: #fafafa;
 $MENU_BACKGROUND: #343434;
-
 
 .main-fon {
   background: -moz-linear-gradient(90deg, rgba(173, 173, 173, 1) 0%, rgba(54, 54, 54, 1) 100%); /* ff3.6+ */
@@ -45,33 +28,44 @@ $MENU_BACKGROUND: #343434;
 }
 
 .divider-transparent {
-  background-color: transparent!important;
+  background-color: transparent !important;
 }
 
-ion-list-header{
-  background-color: transparent!important;
-  border: transparent!important;
-  color: $MAIN_FONT_COLOR!important;
+ion-list-header {
+  background-color: transparent !important;
+  border: transparent !important;
+  color: $MAIN_FONT_COLOR !important;
 }
 
-.menuShowButton{
+.menuShowButton {
   color: $MENU_BACKGROUND;
-  border-color: $MAIN_FONT_COLOR ;
-}
-.menuShowButton:hover{
-    background-color: $MAIN_FONT_COLOR;
+  border-color: $MAIN_FONT_COLOR;
 }
 
-.img-centered{
-    position:absolute;
-    left: 0;
-    right: 0;
-    margin:0 auto;
-    top:50%;
-    transform:translateY(-60%);
+.menuShowButton:hover {
+  background-color: $MAIN_FONT_COLOR;
+}
+
+.img-centered {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-60%);
   opacity: .8;
 }
 
-#studentMenu ion-item{
+#studentMenu > ion-item {
   border-radius: 10px;
+}
+
+.dayHeader {
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  background-color: #8c8c8c !important;
+}
+
+.weekHeader {
+  background-color: $MENU_BACKGROUND !important;
 }

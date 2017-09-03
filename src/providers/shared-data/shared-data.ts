@@ -6,6 +6,9 @@ import {Injectable} from '@angular/core';
 export class SharedObjects {
   allTimeTable: object;
   WeekDayPara: object;
+  weekNames = [];
+  dayNamesList = [];
+  paraNamberList = [];
 
   constructor() {
     this.allTimeTable = {};
@@ -28,6 +31,8 @@ export class SharedObjects {
         'Субота': {'1': [], '2': [], '3': [], '4': [], '5': [], '6': [], '7': []}
       }
     };
-
+    this.weekNames = ['Перший тиждень', 'Другий тиждень'];
+    this.dayNamesList = ['Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П\'ятниця'];
+    this.paraNamberList = ['1', '2', '3', '4', '5', '6', '7'];
   }
 }

@@ -1,5 +1,8 @@
-import {Component} from '@angular/core';
-import {SharedObjects} from '../../providers/shared-data/shared-data'
+import {Component, ViewChild} from '@angular/core';
+import {SharedObjects} from '../../providers/shared-data/shared-data';
+import {StudentTtComponent} from '../../components/student-tt/student-tt';
+import {Nav} from 'ionic-angular';
+
 import * as _ from 'lodash';
 import * as $ from 'jquery';
 
@@ -8,6 +11,9 @@ import * as $ from 'jquery';
   templateUrl: 'student.html'
 })
 export class StudentComponent {
+  // @ViewChild(Nav) nav: Nav;
+
+  //timeTablePage = StudentTtComponent;
 
   facNameList: string[] = [];
   courseList: string[] = [];
@@ -20,7 +26,7 @@ export class StudentComponent {
 
   wdp: object;    // объект куда формируется расписание выбранной группы
 
-  constructor(private sharedObjects: SharedObjects) {
+  constructor(public nav: Nav, private sharedObjects: SharedObjects) {
 
     this.allTimeTable = this.sharedObjects.allTimeTable;
     this.getFacNameList();
@@ -118,6 +124,15 @@ export class StudentComponent {
       )
     );
     // console.log(this.wdp);
+
+    this.nav.push(StudentTtComponent,
+      {
+        wdp: this.wdp,
+        facName: this.selectedFacName,
+        course: this.selectedCourse,
+        group: this.selectedGruppa
+      });
+
   }
 
 }

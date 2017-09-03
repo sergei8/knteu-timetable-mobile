@@ -44,12 +44,12 @@ export class MyApp {
 
   openStudent() {
     console.log('student open');
-    this.nav.setRoot(StudentComponent);
+    this.nav.push(StudentComponent);
   }
 
   openTeacher() {
     console.log('teacher open');
-    this.nav.setRoot(TeacherComponent);
+    this.nav.push(TeacherComponent);
   }
 
   // подписаться на получение файла time-table.json
