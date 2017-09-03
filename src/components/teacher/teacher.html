@@ -9,6 +9,18 @@
 
 <ion-content padding class="page-home main-fon">
 
-  Экран преподавателя
+  <ion-list>
+
+    <ion-item>
+      <ion-input type="text" placeholder="Почніть вводити прізвище"
+                 [(ngModel)]="selectedTeacher"
+                 [typeahead]="getFullTeacherList()"
+                 <!--(typeaheadOnSelect)="teacherSelected($event)">-->
+
+      </ion-input>
+    </ion-item>
+
+
+  </ion-list>
 
 </ion-content>

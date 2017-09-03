@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
 import {StudentTtComponent} from '../../components/student-tt/student-tt';
 import {Nav} from 'ionic-angular';
@@ -11,9 +11,6 @@ import * as $ from 'jquery';
   templateUrl: 'student.html'
 })
 export class StudentComponent {
-  // @ViewChild(Nav) nav: Nav;
-
-  //timeTablePage = StudentTtComponent;
 
   facNameList: string[] = [];
   courseList: string[] = [];

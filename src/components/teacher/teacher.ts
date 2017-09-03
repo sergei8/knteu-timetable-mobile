@@ -1,22 +1,25 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {SharedObjects} from '../../providers/shared-data/shared-data';
+import {Nav} from 'ionic-angular';
 
-/**
- * Generated class for the TeacherComponent component.
- *
- * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
- * for more info on Angular Components.
- */
 @Component({
   selector: 'teacher',
   templateUrl: 'teacher.html'
 })
 export class TeacherComponent {
 
-  text: string;
+  allTimeTable = {};    //   сюда передается общее расписание
+  wdp: object;          // объект куда формируется расписание преподавателя
+  selectedTeacher: string;
 
-  constructor() {
-    console.log('Hello TeacherComponent Component');
-    this.text = 'Hello World';
+  constructor(public nav: Nav, private sharedObjects: SharedObjects) {
+
+    this.allTimeTable = this.sharedObjects.allTimeTable;
+    // console.log((this.getFullTeacherList()))
+  }
+
+  getFullTeacherList() {
+    return Object.keys(this.allTimeTable).sort();
   }
 
 }
