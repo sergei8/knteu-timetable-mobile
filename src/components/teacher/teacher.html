@@ -9,17 +9,13 @@
 
 <ion-content padding class="page-home main-fon">
 
-  <ion-list>
-
-    <ion-item>
-      <ion-input type="text" placeholder="Почніть вводити прізвище"
-                 [(ngModel)]="selectedTeacher"
-                 [typeahead]="getFullTeacherList()"
-                 <!--(typeaheadOnSelect)="teacherSelected($event)">-->
-
-      </ion-input>
-    </ion-item>
-
+  <ion-searchbar (ionInput)="getTeacher($event)"
+                 [placeholder]="placeholder">
+  </ion-searchbar>
+  <ion-list padding>
+    <button ion-item *ngFor="let teacher  of teachers" (click)="selectedTeacher(teacher)">
+      {{ teacher }}
+    </button>
 
   </ion-list>
 
