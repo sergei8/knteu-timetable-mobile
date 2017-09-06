@@ -48,14 +48,15 @@ export class TeacherComponent {
         _.each(week, (day, dayName) =>
           _.each(day, (para, paraNumber) => {
               if (teacherName === teacher) {
-                this.wdp[weekName][dayName][paraNumber] = [].concat(para[5], para[3], para[4]);
+                this.wdp[weekName][dayName][paraNumber] = [].concat(para[5], para[3], para[4],
+                para[0], para[1], para[2],);
               }
             }
           )
         )
       )
     );
-    // console.log(this.wdp);
+    console.log(this.wdp);
 
     this.nav.push(TeacherTtComponent,
       {

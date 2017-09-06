@@ -7,7 +7,7 @@ import {Observable} from "rxjs/Observable";
 export class DataProvider {
 
   constructor(public http: Http) {
-    console.log('@@@@@@  Hello DataProvider Provider');
+    // console.log('@@@@@@  Hello DataProvider Provider');
   }
 
   getFile(url): Observable<Object> {

@@ -21,10 +21,13 @@
           <ng-template ngFor let-para [ngForOf]="paraNamberList">
             <ion-item *ngIf="wdp[week][day][para].length > 0">
               <ion-badge> &nbsp;{{para}}&nbsp;</ion-badge>
-              {{wdp[week][day][para][0]}}
-              {{wdp[week][day][para][2]}}<br/>
-              {{wdp[week][day][para][1]}}<br/>
+              {{wdp[week][day][para][0]}}  <!-- вид занятия-->
+              {{wdp[week][day][para][2]}}   <!-- аудитория -->
               {{wdp[week][day][para][3]}}
+              {{wdp[week][day][para][4]}}   <!-- группа -->
+              {{wdp[week][day][para][5]}}
+              <br/>
+              {{wdp[week][day][para][1]}}<br/>
               <span item-end>
                 <ion-icon name="ios-arrow-dropright-outline"></ion-icon>
               </span>
