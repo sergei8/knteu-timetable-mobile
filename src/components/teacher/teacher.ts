@@ -32,11 +32,15 @@ export class TeacherComponent {
 
     let teacher = ev.target.value;
 
-    if (teacher && teacher.trim() != '') {
+    if (teacher.trim().length >= 2) {
       this.teachers = this.teachers.filter((item) => {
         return (item.toLowerCase().indexOf(teacher.toLowerCase()) > -1);
       })
     }
+    else {
+      return this.teachers = [];
+    }
+
   }
 
   selectedTeacher(teacher) {
@@ -49,7 +53,7 @@ export class TeacherComponent {
           _.each(day, (para, paraNumber) => {
               if (teacherName === teacher) {
                 this.wdp[weekName][dayName][paraNumber] = [].concat(para[5], para[3], para[4],
-                para[0], para[1], para[2],);
+                  para[0], para[1], para[2],);
               }
             }
           )
