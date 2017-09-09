@@ -28,9 +28,11 @@ export class MyApp {
               public splashScreen: SplashScreen,
               private dataProvider: DataProvider,
               private sharedObjects: SharedObjects) {
-    this.initializeApp();
+
+    this.splashScreen.show();
     this.readConfig();
-    // this.readTimeTable();
+    this.initializeApp();
+    this.splashScreen.hide();
 
   }
 
@@ -39,7 +41,7 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      // this.splashScreen.hide();
     });
   }
 
@@ -49,12 +51,10 @@ export class MyApp {
   }
 
   openTeacher() {
-    console.log('teacher open');
     this.nav.push(TeacherComponent);
   }
 
   openAbout() {
-    console.log('about open');
     this.nav.push(AboutComponent);
   }
 
@@ -63,7 +63,6 @@ export class MyApp {
     this.dataProvider.getFile(this.timeTableUrl)
       .subscribe(
         response => {
-          console.log("!!!!!!!!!!!!!!!!!!!!");
           this.sharedObjects.allTimeTable = response;
           console.log(this.sharedObjects.allTimeTable);
         },
@@ -83,7 +82,7 @@ export class MyApp {
         error => console.log('Error config'),
         () => {
           /* когда app-config прочітан визиваем загрузку time-table.json*/
-          console.log('CONFIG COMPETE!!!');
+          // console.log('CONFIG COMPETE!!!');
           this.readTimeTable();
         }
       );
