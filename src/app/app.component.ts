@@ -44,17 +44,14 @@ export class MyApp {
   }
 
   openStudent() {
-    console.log('student open');
     this.nav.push(StudentComponent);
   }
 
   openTeacher() {
-    console.log('teacher open');
     this.nav.push(TeacherComponent);
   }
 
   openAbout() {
-    console.log('about open');
     this.nav.push(AboutComponent);
   }
 
@@ -63,9 +60,7 @@ export class MyApp {
     this.dataProvider.getFile(this.timeTableUrl)
       .subscribe(
         response => {
-          console.log("!!!!!!!!!!!!!!!!!!!!");
           this.sharedObjects.allTimeTable = response;
-          console.log(this.sharedObjects.allTimeTable);
         },
         error => console.log('ERROR time-table!'));
   }
@@ -78,12 +73,10 @@ export class MyApp {
       .subscribe(
         response => {
           this.timeTableUrl = response['time-table-url'];
-          console.log(this.timeTableUrl);
         },
         error => console.log('Error config'),
         () => {
           /* когда app-config прочітан визиваем загрузку time-table.json*/
-          console.log('CONFIG COMPETE!!!');
           this.readTimeTable();
         }
       );
