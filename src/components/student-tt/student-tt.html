@@ -8,10 +8,12 @@
 </ion-header>
 
 <ion-content padding class="page-home main-fon" id="studentMenu">
-  <ng-template ngFor let-week [ngForOf]="weekNames">
+  <ng-template ngFor let-week [ngForOf]="weekNames" let-i="index">
     <ion-list>
-      <ion-list-header (click)="weekClicked(week)" class="weekHeader">
+      <ion-list-header (click)="weekClicked(week,i)" class="weekHeader">
         {{week}}
+        <ion-icon name="eye-off" item-end *ngIf="eyeOffSwitch[i]"></ion-icon>
+        <ion-icon name="eye" item-end *ngIf="eyeOnSwitch[i]"></ion-icon>
       </ion-list-header>
       <ng-template ngFor let-day [ngForOf]="dayNamesList">
         <ion-list [hidden]="weekShowSwitch[week]">
@@ -28,11 +30,11 @@
               {{wdp[week][day][para][5]}}
               <br/>
               {{wdp[week][day][para][1]}}<br/>
-<!--
-              <span item-end>
-                <ion-icon name="ios-arrow-dropright-outline"></ion-icon>
-              </span>
--->
+              <!--
+                            <span item-end>
+                              <ion-icon name="ios-arrow-dropright-outline"></ion-icon>
+                            </span>
+              -->
             </ion-item>
           </ng-template>
         </ion-list>

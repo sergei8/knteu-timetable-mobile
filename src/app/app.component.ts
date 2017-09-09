@@ -79,10 +79,6 @@ export class MyApp {
         error => console.log('Error config'),
         () => {
           /* когда app-config прочітан визиваем загрузку time-table.json*/
-<<<<<<< HEAD
-=======
-          // console.log('CONFIG COMPETE!!!');
->>>>>>> splash-screen
           this.readTimeTable();
         }
       );

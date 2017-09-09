@@ -16,6 +16,8 @@ export class TeacherTtComponent {
   weekNames: string[];
   dayNamesList: string[];
   paraNamberList: string[];
+  eyeOffSwitch: boolean[];
+  eyeOnSwitch: boolean[];
 
   constructor(public navParams: NavParams, private sharedObjects: SharedObjects) {
     console.log('Hello TeacherTtComponent Component');
@@ -24,6 +26,8 @@ export class TeacherTtComponent {
     this.weekNames = this.sharedObjects.weekNames;
     this.dayNamesList = this.sharedObjects.dayNamesList;
     this.paraNamberList = this.sharedObjects.paraNamberList;
+    this.eyeOffSwitch = [true, true];
+    this.eyeOnSwitch = [false, false];
 
     // заполним переключатели видимости недель
     for (let i in this.weekNames) {
@@ -38,7 +42,9 @@ export class TeacherTtComponent {
   }
 
   // видеть/скрыть дни недели `weekName`
-  weekClicked(weekName) {
+  weekClicked(weekName, index) {
+    this.eyeOffSwitch[index] = !this.eyeOffSwitch[index];
+    this.eyeOnSwitch[index] = !this.eyeOnSwitch[index];
     this.weekShowSwitch[weekName] = !this.weekShowSwitch[weekName];
   }
 

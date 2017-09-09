@@ -16,6 +16,10 @@ export class StudentTtComponent {
   weekNames: string[];
   dayNamesList: string[];
   paraNamberList: string[];
+  eyeOffSwitch: boolean[];
+  eyeOnSwitch: boolean[];
+
+  eyeIconSwitch = {};
 
   weekShowSwitch = {};   // скрывают/открывают дни недели
 
@@ -28,8 +32,11 @@ export class StudentTtComponent {
     this.dayNamesList = this.sharedObjects.dayNamesList;
     this.paraNamberList = this.sharedObjects.paraNamberList;
 
+    this.eyeOffSwitch = [true,true];
+    this.eyeOnSwitch = [false,false];
+
     // заполним переключатели видимости недель
-    for (let i in this.weekNames ){
+    for (let i in this.weekNames) {
       this.weekShowSwitch[this.weekNames[i]] = true;
     }
     // console.log(this.weekShowSwitch);
@@ -42,7 +49,10 @@ export class StudentTtComponent {
   }
 
   // видеть/скрыть дни недели `weekName`
-  weekClicked(weekName) {
+  weekClicked(weekName, index) {
+    // console.log(weekName, index)
+    this.eyeOffSwitch[index] = !this.eyeOffSwitch[index];
+    this.eyeOnSwitch[index] = !this.eyeOnSwitch[index];
     this.weekShowSwitch[weekName] = !this.weekShowSwitch[weekName];
   }
 
