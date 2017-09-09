@@ -31,10 +31,11 @@ export class TeacherComponent {
     this.getFullTeacherList();
 
     let teacher = ev.target.value;
+    if (!teacher) return [];
 
-    if (teacher.trim().length >= 2) {
+    if (teacher.trim().length >= 2 ) {
       this.teachers = this.teachers.filter((item) => {
-        return (item.toLowerCase().indexOf(teacher.toLowerCase()) > -1);
+         return (item.toLowerCase().indexOf(teacher.toLowerCase()) > -1);
       })
     }
     else {
