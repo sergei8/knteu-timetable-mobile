@@ -14,8 +14,8 @@ import {AboutComponent} from '../components/about/about';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
-import { DataProvider } from '../providers/data/data';
-import { SharedObjects } from '../providers/shared-data/shared-data';
+import {DataProvider} from '../providers/data/data';
+import {SharedObjects} from '../providers/shared-data/shared-data';
 
 @NgModule({
   declarations: [

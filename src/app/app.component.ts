@@ -11,6 +11,10 @@ import {AboutComponent} from '../components/about/about';
 import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
 
+declare var require: any;
+const localforage: LocalForage = require("localforage");
+
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -32,14 +36,12 @@ export class MyApp {
     this.splashScreen.show();
     this.readConfig();
     this.initializeApp();
-
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-
     });
   }
 
