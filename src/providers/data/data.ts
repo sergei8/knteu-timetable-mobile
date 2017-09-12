@@ -10,8 +10,6 @@ const localforage: LocalForage = require("localforage");
 @Injectable()
 export class DataProvider {
 
-  askForSaveSwitch: boolean;
-
   constructor(public http: Http, private alert: AlertController) {
   }
 
@@ -20,14 +18,9 @@ export class DataProvider {
       .map(response => response.json());
   }
 
-  saveTimeTable(type, wdp) {
-    console.log(type, wdp);
-    this.askForSaveSwitch = false;
-    this.askForSave();
+  // сохраняет распісаніе студента или препода локально
+  saveTimeTable(rozklad) {
 
-  }
-
-  askForSave() {
     let confirm = this.alert.create({
       title: 'Збереження розкладу',
       message: 'Ви бажаєте зберегти цей розклад у локальне сховище Вашого пристрою?',
@@ -35,14 +28,17 @@ export class DataProvider {
         {
           text: 'Ні',
           handler: () => {
-            this.askForSaveSwitch = false;
           }
         },
         {
           text: 'Так',
           handler: () => {
-            this.askForSaveSwitch = true;
-            this.saveOk();
+            if (rozklad.id === 'student') {
+              this.saveStudentRozklad(rozklad);
+            }
+            else {
+              this.savePrepodRozklad();
+            }
           }
         }
       ]
@@ -50,10 +46,41 @@ export class DataProvider {
     confirm.present();
   }
 
-  saveOk() {
-    console.log(this.askForSaveSwitch);
+  saveStudentRozklad(rozklad) {
+    // console.log(rozklad);
+    localforage.setItem("student", rozklad);
+  }
+
+  savePrepodRozklad() {
+  }
+
+  readStudentRozklad() {
+    const rozklad = {
+      facName: '',
+      course: '',
+      group: '',
+      wdp: {}
+    };
+    return localforage.getItem('student')
+      .then((result) => {
+          if (result) {
+            rozklad['facName'] = result['facName'];
+            rozklad['course'] = result['course'];
+            rozklad['group'] = result['group'];
+            rozklad['wdp'] = result['wdp'];
+            return rozklad;
+          }
+          else {
+            return {}
+          }
+        },
+        (error) => {
+          return {}
+        })
 
   }
 
+
 }
+
 

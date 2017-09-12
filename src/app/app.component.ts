@@ -2,10 +2,12 @@ import {Component, ViewChild} from '@angular/core';
 import {Nav, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
+import {AlertController} from 'ionic-angular';
 
 import {HomeComponent} from '../components/home/home';
 import {TeacherComponent} from '../components/teacher/teacher';
 import {StudentComponent} from '../components/student/student';
+import {StudentTtComponent} from '../components/student-tt/student-tt';
 import {AboutComponent} from '../components/about/about';
 
 import {DataProvider} from '../providers/data/data';
@@ -31,9 +33,11 @@ export class MyApp {
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
               private dataProvider: DataProvider,
-              private sharedObjects: SharedObjects) {
+              private sharedObjects: SharedObjects,
+              private  alert: AlertController) {
 
     this.splashScreen.show();
+
     this.readConfig();
     this.initializeApp();
   }
@@ -46,7 +50,37 @@ export class MyApp {
   }
 
   openStudent() {
-    this.nav.push(StudentComponent);
+    this.dataProvider.readStudentRozklad()
+      .then((studentRozklad) => {
+        // console.log(studentRozklad);
+        let confirm = this.alert.create({
+          // title: 'Збереження розкладу',
+          message: 'У Вас є збережений розклад ' + studentRozklad['facName'] + ' ' +
+          studentRozklad['course'] + ' курса ' + studentRozklad['group'] + ' групи. ' +
+          'бажаєте відкрити цей розклад?',
+          buttons: [
+            {
+              text: 'Ні',
+              handler: () => {
+                this.nav.push(StudentComponent);
+              }
+            },
+            {
+              text: 'Так',
+              handler: () => {
+                this.nav.push(StudentTtComponent,
+                  {
+                    wdp: studentRozklad['wdp'],
+                    facName: studentRozklad['facName'],
+                    course: studentRozklad['course'],
+                    group: studentRozklad['group']
+                  });
+              }
+            }
+          ]
+        });
+        confirm.present();
+      });
   }
 
   openTeacher() {

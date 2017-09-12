@@ -27,10 +27,12 @@ export class StudentTtComponent {
 
   constructor(public navParams: NavParams, private sharedObjects: SharedObjects,
               public data: DataProvider) {
+
     this.wdp = navParams.get('wdp');
     this.facName = navParams.get('facName');
     this.course = navParams.get('course');
     this.group = navParams.get('group');
+
     this.weekNames = this.sharedObjects.weekNames;
     this.dayNamesList = this.sharedObjects.dayNamesList;
     this.paraNamberList = this.sharedObjects.paraNamberList;
@@ -60,9 +62,15 @@ export class StudentTtComponent {
   }
 
   saveTimeTable() {
-    // console.log(this.wdp);
-    const type = {id: 'student', facName: this.facName, course: this.course, group: this.group}
-    this.data.saveTimeTable(type, this.wdp);
+    const rozklad = {
+      id: 'student',
+      facName: this.facName,
+      course: this.course,
+      group: this.group,
+      wdp: this.wdp
+    };
+
+    this.data.saveTimeTable(rozklad);
   }
 
 }
