@@ -64,6 +64,7 @@ export class MyApp {
         response => {
           this.sharedObjects.allTimeTable = response;
         },
+//todo сделать алерт с оія к сетітсутствіем подключен
         error => console.log('ERROR time-table!'));
   }
 

@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {NavParams} from 'ionic-angular';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
+import {DataProvider} from  '../../providers/data/data';
+
 import * as _ from 'lodash';
 
 @Component({
@@ -23,7 +25,8 @@ export class StudentTtComponent {
 
   weekShowSwitch = {};   // скрывают/открывают дни недели
 
-  constructor(public navParams: NavParams, private sharedObjects: SharedObjects) {
+  constructor(public navParams: NavParams, private sharedObjects: SharedObjects,
+              public data: DataProvider) {
     this.wdp = navParams.get('wdp');
     this.facName = navParams.get('facName');
     this.course = navParams.get('course');
@@ -32,8 +35,8 @@ export class StudentTtComponent {
     this.dayNamesList = this.sharedObjects.dayNamesList;
     this.paraNamberList = this.sharedObjects.paraNamberList;
 
-    this.eyeOffSwitch = [true,true];
-    this.eyeOnSwitch = [false,false];
+    this.eyeOffSwitch = [true, true];
+    this.eyeOnSwitch = [false, false];
 
     // заполним переключатели видимости недель
     for (let i in this.weekNames) {
@@ -56,6 +59,11 @@ export class StudentTtComponent {
     this.weekShowSwitch[weekName] = !this.weekShowSwitch[weekName];
   }
 
+  saveTimeTable() {
+    // console.log(this.wdp);
+    const type = {id: 'student', facName: this.facName, course: this.course, group: this.group}
+    this.data.saveTimeTable(type, this.wdp);
+  }
 
 }
 
