@@ -20,6 +20,7 @@ export class StudentTtComponent {
   paraNamberList: string[];
   eyeOffSwitch: boolean[];
   eyeOnSwitch: boolean[];
+  showAddButton: boolean;
 
   eyeIconSwitch = {};
 
@@ -39,6 +40,8 @@ export class StudentTtComponent {
 
     this.eyeOffSwitch = [true, true];
     this.eyeOnSwitch = [false, false];
+
+    this.showAddButton = this.sharedObjects.globalParams['saveRozklad'];
 
     // заполним переключатели видимости недель
     for (let i in this.weekNames) {

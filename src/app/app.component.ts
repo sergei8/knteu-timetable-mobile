@@ -3,6 +3,7 @@ import {Nav, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {AlertController} from 'ionic-angular';
+import {SetupComponent} from '../components/setup/setup';
 
 import {HomeComponent} from '../components/home/home';
 import {TeacherComponent} from '../components/teacher/teacher';
@@ -12,9 +13,6 @@ import {AboutComponent} from '../components/about/about';
 
 import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
-
-declare var require: any;
-const localforage: LocalForage = require("localforage");
 
 
 @Component({
@@ -29,6 +27,8 @@ export class MyApp {
   timeTableUrl: string;
   configUrl = 'https://raw.githubusercontent.com/sergei8/tt-mobile/master/app-config.json';
 
+  askForSavedRozklad: boolean;
+
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
@@ -37,6 +37,7 @@ export class MyApp {
               private  alert: AlertController) {
 
     this.splashScreen.show();
+
 
     this.readConfig();
     this.initializeApp();
@@ -50,41 +51,57 @@ export class MyApp {
   }
 
   openStudent() {
-    this.dataProvider.readStudentRozklad()
-      .then((studentRozklad) => {
-        // console.log(studentRozklad);
-        let confirm = this.alert.create({
-          // title: 'Збереження розкладу',
-          message: 'У Вас є збережений розклад ' + studentRozklad['facName'] + ' ' +
-          studentRozklad['course'] + ' курса ' + studentRozklad['group'] + ' групи. ' +
-          'бажаєте відкрити цей розклад?',
-          buttons: [
-            {
-              text: 'Ні',
-              handler: () => {
-                this.nav.push(StudentComponent);
-              }
-            },
-            {
-              text: 'Так',
-              handler: () => {
-                this.nav.push(StudentTtComponent,
+
+    this.dataProvider.readSetup()
+      .then(() => {
+        this.askForSavedRozklad = this.sharedObjects.globalParams['saveRozklad'];
+        console.log(this.askForSavedRozklad);
+
+        if (this.askForSavedRozklad) {  // если включен режим сохранения расписания
+          this.dataProvider.readStudentRozklad()
+            .then((studentRozklad) => {
+              let confirm = this.alert.create({
+                // title: 'Збереження розкладу',
+                message: 'У Вас є збережений розклад ' + studentRozklad['facName'] + ' ' +
+                studentRozklad['course'] + ' курса ' + studentRozklad['group'] + ' групи. ' +
+                'бажаєте відкрити цей розклад?',
+                buttons: [
                   {
-                    wdp: studentRozklad['wdp'],
-                    facName: studentRozklad['facName'],
-                    course: studentRozklad['course'],
-                    group: studentRozklad['group']
-                  });
-              }
-            }
-          ]
-        });
-        confirm.present();
+                    text: 'Ні',
+                    handler: () => {
+                      this.nav.push(StudentComponent);
+                    }
+                  },
+                  {
+                    text: 'Так',
+                    handler: () => {
+                      this.nav.push(StudentTtComponent,
+                        {
+                          wdp: studentRozklad['wdp'],
+                          facName: studentRozklad['facName'],
+                          course: studentRozklad['course'],
+                          group: studentRozklad['group']
+                        });
+                    }
+                  }
+                ]
+              });
+              confirm.present();
+            });
+        } else {
+          this.nav.push(StudentComponent);
+        }
+
       });
+
   }
 
   openTeacher() {
     this.nav.push(TeacherComponent);
+  }
+
+  openSetup() {
+    this.nav.push(SetupComponent);
   }
 
   openAbout() {

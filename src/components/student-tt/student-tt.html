@@ -44,7 +44,7 @@
 
 </ion-content>
 
-<ion-fab bottom right padding>
+<ion-fab bottom right padding *ngIf="showAddButton">
   <button ion-fab (click)="saveTimeTable()">
     <ion-icon name="add"></ion-icon>
   </button>

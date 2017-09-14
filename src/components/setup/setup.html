@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Налаштування параметрів</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="page-home main-fon" padding>
+  <ion-card>
+    <ion-card-header no-padding text-center style="background-color: #8c8c8c">
+      <ion-card-title>
+        Зберігання розгаду
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content padding-top>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-8>
+            дозволіти зберігати розклад
+          </ion-col>
+          <ion-col offset-3>
+            <ion-checkbox [(ngModel)]="isSaveRozklad" role="button"
+                          (ionChange)="saveRozkladClicked()">
+            </ion-checkbox>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

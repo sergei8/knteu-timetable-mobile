@@ -10,6 +10,7 @@ import {StudentComponent} from '../components/student/student';
 import {StudentTtComponent} from '../components/student-tt/student-tt';
 import {TeacherTtComponent} from '../components/teacher-tt/teacher-tt';
 import {AboutComponent} from '../components/about/about';
+import {SetupComponent} from '../components/setup/setup';
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
@@ -25,7 +26,8 @@ import {SharedObjects} from '../providers/shared-data/shared-data';
     StudentComponent,
     StudentTtComponent,
     TeacherTtComponent,
-    AboutComponent
+    AboutComponent,
+    SetupComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ import {SharedObjects} from '../providers/shared-data/shared-data';
     StudentComponent,
     StudentTtComponent,
     TeacherTtComponent,
-    AboutComponent
+    AboutComponent,
+    SetupComponent
   ],
   providers: [
     StatusBar,

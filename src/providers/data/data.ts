@@ -3,6 +3,7 @@ import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs/Observable";
 import {AlertController} from 'ionic-angular';
+import {SharedObjects} from '../../providers/shared-data/shared-data';
 
 declare const require: any;
 const localforage: LocalForage = require("localforage");
@@ -10,7 +11,8 @@ const localforage: LocalForage = require("localforage");
 @Injectable()
 export class DataProvider {
 
-  constructor(public http: Http, private alert: AlertController) {
+  constructor(public http: Http, private alert: AlertController,
+              private sharedData: SharedObjects) {
   }
 
   getFile(url): Observable<Object> {
@@ -80,6 +82,16 @@ export class DataProvider {
 
   }
 
+  readSetup() {
+    return localforage.getItem('setup')
+      .then(result => {
+          if (result || result == {}) {
+            this.sharedData.globalParams = result;
+            console.log('read ****', this.sharedData.globalParams);
+          }
+        },
+        (error) => console.log(error))
+  }
 
 }
 

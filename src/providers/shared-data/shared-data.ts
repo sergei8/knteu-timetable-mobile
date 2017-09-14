@@ -9,8 +9,10 @@ export class SharedObjects {
   weekNames = [];
   dayNamesList = [];
   paraNamberList = [];
+  globalParams: object;
 
   constructor() {
+    this.globalParams = {};
     this.allTimeTable = {};
 
     this.WeekDayPara = {
@@ -35,4 +37,5 @@ export class SharedObjects {
     this.dayNamesList = ['Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П\'ятниця'];
     this.paraNamberList = ['1', '2', '3', '4', '5', '6', '7'];
   }
+
 }
