@@ -13,6 +13,7 @@ import {AboutComponent} from '../components/about/about';
 
 import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
+import {TeacherTtComponent} from "../components/teacher-tt/teacher-tt";
 
 
 @Component({
@@ -97,7 +98,46 @@ export class MyApp {
   }
 
   openTeacher() {
-    this.nav.push(TeacherComponent);
+    this.dataProvider.readSetup()
+      .then(() => {
+        this.askForSavedRozklad = this.sharedObjects.globalParams['saveRozklad'];
+        console.log(this.askForSavedRozklad);
+
+        if (this.askForSavedRozklad) {  // если включен режим сохранения расписания
+          this.dataProvider.readPrepodRozklad()
+            .then((prepodRozklad) => {
+              if (prepodRozklad) {
+                let confirm = this.alert.create({
+                  // title: 'Збереження розкладу',
+                  message: 'У Вас є збережений розклад ' + prepodRozklad['teacher'] + ' ' +
+                  'бажаєте відкрити цей розклад?',
+                  buttons: [
+                    {
+                      text: 'Ні',
+                      handler: () => {
+                        this.nav.push(TeacherComponent);
+                      }
+                    },
+                    {
+                      text: 'Так',
+                      handler: () => {
+                        this.nav.push(TeacherTtComponent,
+                          {
+                            wdp: prepodRozklad['wdp'],
+                            teacher: prepodRozklad['teacher']
+                          });
+                      }
+                    }
+                  ]
+                });
+                confirm.present();
+              }
+            });
+        } else {
+          this.nav.push(TeacherComponent);
+        }
+
+      });
   }
 
   openSetup() {
