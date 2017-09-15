@@ -39,7 +39,7 @@ export class DataProvider {
               this.saveStudentRozklad(rozklad);
             }
             else {
-              this.savePrepodRozklad();
+              this.savePrepodRozklad(rozklad);
             }
           }
         }
@@ -48,13 +48,7 @@ export class DataProvider {
     confirm.present();
   }
 
-  saveStudentRozklad(rozklad) {
-    // console.log(rozklad);
-    localforage.setItem("student", rozklad);
-  }
 
-  savePrepodRozklad() {
-  }
 
   readStudentRozklad() {
     const rozklad = {
@@ -82,12 +76,44 @@ export class DataProvider {
 
   }
 
+  saveStudentRozklad(rozklad) {
+    // console.log(rozklad);
+    localforage.setItem("student", rozklad);
+  }
+
+  readPrepodRozklad() {
+    const rozklad = {
+      teacher: '',
+      wdp: {}
+    };
+    return localforage.getItem('teacher')
+      .then((result) => {
+          if (result) {
+            rozklad['teacher'] = result['teacher'];
+            rozklad['wdp'] = result['wdp'];
+            return rozklad;
+          }
+          else {
+            return {}
+          }
+        },
+        (error) => {
+          return {}
+        })
+
+  }
+
+  savePrepodRozklad(rozklad) {
+    localforage.setItem("teacher", rozklad);
+  }
+
+
   readSetup() {
     return localforage.getItem('setup')
       .then(result => {
           if (result || result == {}) {
             this.sharedData.globalParams = result;
-            console.log('read ****', this.sharedData.globalParams);
+            // console.log('read ****', this.sharedData.globalParams);
           }
         },
         (error) => console.log(error))

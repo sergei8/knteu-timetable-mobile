@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {NavParams} from 'ionic-angular';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
+import {DataProvider} from  '../../providers/data/data';
 
 import * as _ from 'lodash';
 
@@ -19,15 +20,21 @@ export class TeacherTtComponent {
   eyeOffSwitch: boolean[];
   eyeOnSwitch: boolean[];
 
-  constructor(public navParams: NavParams, private sharedObjects: SharedObjects) {
-    console.log('Hello TeacherTtComponent Component');
+  showAddButton: boolean;
+
+  constructor(public navParams: NavParams, private sharedObjects: SharedObjects,
+              public data: DataProvider) {
+
     this.teacher = navParams.get('teacher');
     this.wdp = navParams.get('wdp');
     this.weekNames = this.sharedObjects.weekNames;
     this.dayNamesList = this.sharedObjects.dayNamesList;
     this.paraNamberList = this.sharedObjects.paraNamberList;
+
     this.eyeOffSwitch = [true, true];
     this.eyeOnSwitch = [false, false];
+
+    this.showAddButton = this.sharedObjects.globalParams['saveRozklad'];
 
     // заполним переключатели видимости недель
     for (let i in this.weekNames) {
@@ -46,6 +53,15 @@ export class TeacherTtComponent {
     this.eyeOffSwitch[index] = !this.eyeOffSwitch[index];
     this.eyeOnSwitch[index] = !this.eyeOnSwitch[index];
     this.weekShowSwitch[weekName] = !this.weekShowSwitch[weekName];
+  }
+
+  saveTimeTable() {
+    const rozklad = {
+      id: 'teacher',
+      teacher: this.teacher,
+      wdp: this.wdp
+    };
+    this.data.saveTimeTable(rozklad);
   }
 
 }

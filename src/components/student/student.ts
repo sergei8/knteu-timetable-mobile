@@ -121,7 +121,6 @@ export class StudentComponent {
         )
       )
     );
-    // console.log(this.wdp);
 
     this.nav.push(StudentTtComponent,
       {

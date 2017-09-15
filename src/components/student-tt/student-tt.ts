@@ -47,7 +47,6 @@ export class StudentTtComponent {
     for (let i in this.weekNames) {
       this.weekShowSwitch[this.weekNames[i]] = true;
     }
-    // console.log(this.weekShowSwitch);
   }
 
   // если пар нет - сигнализирует не выводить этот день
@@ -58,7 +57,6 @@ export class StudentTtComponent {
 
   // видеть/скрыть дни недели `weekName`
   weekClicked(weekName, index) {
-    // console.log(weekName, index)
     this.eyeOffSwitch[index] = !this.eyeOffSwitch[index];
     this.eyeOnSwitch[index] = !this.eyeOnSwitch[index];
     this.weekShowSwitch[weekName] = !this.weekShowSwitch[weekName];
