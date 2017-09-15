@@ -61,7 +61,7 @@ export class TeacherComponent {
         )
       )
     );
-    console.log(this.wdp);
+    // console.log(this.wdp);
 
     this.nav.push(TeacherTtComponent,
       {

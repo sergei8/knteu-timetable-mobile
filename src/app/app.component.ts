@@ -56,7 +56,7 @@ export class MyApp {
     this.dataProvider.readSetup()
       .then(() => {
         this.askForSavedRozklad = this.sharedObjects.globalParams['saveRozklad'];
-        console.log(this.askForSavedRozklad);
+        // console.log(this.askForSavedRozklad);
 
         if (this.askForSavedRozklad) {  // если включен режим сохранения расписания
           this.dataProvider.readStudentRozklad()
@@ -101,7 +101,7 @@ export class MyApp {
     this.dataProvider.readSetup()
       .then(() => {
         this.askForSavedRozklad = this.sharedObjects.globalParams['saveRozklad'];
-        console.log(this.askForSavedRozklad);
+        // console.log(this.askForSavedRozklad);
 
         if (this.askForSavedRozklad) {  // если включен режим сохранения расписания
           this.dataProvider.readPrepodRozklad()
@@ -161,7 +161,7 @@ export class MyApp {
 
   // получіть конфіг-файл
   readConfig() {
-    console.log(this.configUrl);
+    // console.log(this.configUrl);
     this.dataProvider
       .getFile(this.configUrl)
       .subscribe(

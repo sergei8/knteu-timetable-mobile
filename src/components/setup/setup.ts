@@ -17,7 +17,7 @@ export class SetupComponent {
 
     data.readSetup()
       .then(result => {
-        console.log('after readSetup---', this.sharedData.globalParams);
+        // console.log('after readSetup---', this.sharedData.globalParams);
         this.isSaveRozklad = this.sharedData.globalParams['saveRozklad'];
 
       })
@@ -26,7 +26,7 @@ export class SetupComponent {
 
   saveRozkladClicked() {
     this.sharedData.globalParams['saveRozklad'] = this.isSaveRozklad;
-    console.log('write ****', this.sharedData.globalParams);
+    // console.log('write ****', this.sharedData.globalParams);
     // localforage.setItem('setup', {});
     localforage.setItem('setup', this.sharedData.globalParams);
   }

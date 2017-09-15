@@ -99,11 +99,6 @@ export class StudentComponent {
 
 
   okClicked() {
-    /*
-     console.log(this.selectedFacName);
-     console.log(this.selectedCourse);
-     console.log(this.selectedGruppa);
-     */
 
     this.wdp = $.extend(true, {}, this.sharedObjects.WeekDayPara);    //  очищаем расписание группы
 
