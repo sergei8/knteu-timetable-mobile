@@ -82,33 +82,37 @@ $button-md-outline-box-shadow: #343434;
 
 $list-md-header-font-size: 1.2em;
 $list-ios-header-font-size: 1.1em;
-$list-ios-header-margin-bottom	: 0px;
+$list-ios-header-margin-bottom: 0px;
 
-$toast-ios-title-font-size:0.7rem;
+$toast-ios-title-font-size: 0.7rem;
 
 $badge-md-background-color: #343434;
 $badge-font-size: 2rem;
 
 //$badge-md-border-radius:45%;
-$popover-md-width:80%;
-$popover-ios-width:80%;
+$popover-md-width: 80%;
+$popover-ios-width: 80%;
 
-$card-md-margin-left:3px;
-$card-md-margin-right:3px;
-$card-md-padding-top:0px;
-$card-md-padding-start:10px;
-$card-md-padding-bottom:5px;
+$card-md-margin-left: 3px;
+$card-md-margin-right: 3px;
+$card-md-padding-top: 0px;
+$card-md-padding-start: 10px;
+$card-md-padding-bottom: 5px;
 
 //$card-md-title-margin-bottom:3px;
-$card-md-title-padding-bottom:3px;
-$card-md-title-padding-start:10px;
+$card-md-title-padding-bottom: 3px;
+$card-md-title-padding-start: 10px;
 $card-md-title-font-size: 1.4em;
 
-$alert-md-button-font-weight:1.2rem;
+$alert-md-button-font-weight: 1.2rem;
 $alert-md-button-background-color: #343434;
-
+//$alert-ios-button-group-flex-wrap;
+$alert-md-message-text-color: #343434;
+$alert-md-button-group-flex-wrap: wrap;
+/*
 $toggle-md-handle-background-color-on:green;
 $toggle-md-handle-background-color-off:gray;
+*/
 /*
 $toggle-md-track-background-color-on: red;
 $toggle-md-track-background-color-off: yellow;

@@ -24,7 +24,7 @@ export class DataProvider {
   saveTimeTable(rozklad) {
 
     let confirm = this.alert.create({
-      title: 'Збереження розкладу',
+      // subTitle: 'Збереження розкладу',
       message: 'Ви бажаєте зберегти цей розклад у локальне сховище Вашого пристрою?',
       buttons: [
         {
