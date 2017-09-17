@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {NavParams} from 'ionic-angular';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
+import {DataProvider} from  '../../providers/data/data';
+
 import * as _ from 'lodash';
 
 @Component({
@@ -18,28 +20,33 @@ export class StudentTtComponent {
   paraNamberList: string[];
   eyeOffSwitch: boolean[];
   eyeOnSwitch: boolean[];
+  showAddButton: boolean;
 
   eyeIconSwitch = {};
 
   weekShowSwitch = {};   // скрывают/открывают дни недели
 
-  constructor(public navParams: NavParams, private sharedObjects: SharedObjects) {
+  constructor(public navParams: NavParams, private sharedObjects: SharedObjects,
+              public data: DataProvider) {
+
     this.wdp = navParams.get('wdp');
     this.facName = navParams.get('facName');
     this.course = navParams.get('course');
     this.group = navParams.get('group');
+
     this.weekNames = this.sharedObjects.weekNames;
     this.dayNamesList = this.sharedObjects.dayNamesList;
     this.paraNamberList = this.sharedObjects.paraNamberList;
 
-    this.eyeOffSwitch = [true,true];
-    this.eyeOnSwitch = [false,false];
+    this.eyeOffSwitch = [true, true];
+    this.eyeOnSwitch = [false, false];
+
+    this.showAddButton = this.sharedObjects.globalParams['saveRozklad'];
 
     // заполним переключатели видимости недель
     for (let i in this.weekNames) {
       this.weekShowSwitch[this.weekNames[i]] = true;
     }
-    // console.log(this.weekShowSwitch);
   }
 
   // если пар нет - сигнализирует не выводить этот день
@@ -50,12 +57,22 @@ export class StudentTtComponent {
 
   // видеть/скрыть дни недели `weekName`
   weekClicked(weekName, index) {
-    // console.log(weekName, index)
     this.eyeOffSwitch[index] = !this.eyeOffSwitch[index];
     this.eyeOnSwitch[index] = !this.eyeOnSwitch[index];
     this.weekShowSwitch[weekName] = !this.weekShowSwitch[weekName];
   }
 
+  saveTimeTable() {
+    const rozklad = {
+      id: 'student',
+      facName: this.facName,
+      course: this.course,
+      group: this.group,
+      wdp: this.wdp
+    };
+
+    this.data.saveTimeTable(rozklad);
+  }
 
 }
 

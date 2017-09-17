@@ -1,5 +1,6 @@
 $MAIN_FONT_COLOR: #fafafa;
 $MENU_BACKGROUND: #343434;
+$HEADER_COLOR: #8c8c8c;
 
 .main-fon {
   background: -moz-linear-gradient(90deg, rgba(173, 173, 173, 1) 0%, rgba(54, 54, 54, 1) 100%); /* ff3.6+ */
@@ -18,13 +19,12 @@ $MENU_BACKGROUND: #343434;
   min-height: 40px !important;
 
 }
-
 #menu-image {
   display: block;
   width: 100%;
   height: auto;
   margin: auto;
-  opacity: 0.6;
+  opacity: 0.9;
 }
 
 .divider-transparent {
@@ -63,9 +63,23 @@ ion-list-header {
 .dayHeader {
   margin-top: 0px !important;
   margin-bottom: 0px !important;
-  background-color: #8c8c8c !important;
+  background-color: $HEADER_COLOR !important;
 }
 
 .weekHeader {
   background-color: $MENU_BACKGROUND !important;
+}
+
+.setupHeader {
+  font-size: 1.2rem !important;
+  padding-top: 0;
+  @extend .dayHeader;
+}
+
+.alertButton {
+  background-color: #007aff !important;
+  color: #fafafa !important;
+  //width: 60px!important;
+  text-align: center !important;
+  border-radius: 4px!important;
 }

@@ -26,7 +26,7 @@
               {{wdp[week][day][para][0]}}  <!-- вид занятия-->
               {{wdp[week][day][para][2]}}   <!-- аудитория -->
               {{wdp[week][day][para][3]}}
-              {{wdp[week][day][para][4]}}   <!-- группа -->
+              {{wdp[week][day][para][4]}}/   <!-- группа -->
               {{wdp[week][day][para][5]}}
               <br/>
               {{wdp[week][day][para][1]}}<br/>
@@ -42,5 +42,10 @@
     </ion-list>
   </ng-template>
 
-
 </ion-content>
+
+<ion-fab mini bottom right padding *ngIf="showAddButton">
+  <button ion-fab (click)="saveTimeTable()">
+    <ion-icon name="add"></ion-icon>
+  </button>
+</ion-fab>

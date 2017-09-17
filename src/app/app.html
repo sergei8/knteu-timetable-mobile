@@ -7,11 +7,11 @@
 
   <ion-content   scroll="fasle" class="main-menu">
     <div>
-      <img id="menu-image" src="assets/img/mobile-menu.jpg" />
+      <img id="menu-image" src="assets/img/knteu.png" />
     </div>
     <ion-list >
       <button ion-item no-lines detail-push menuClose (click)="openStudent()" class="main-menu">
-        <ion-icon name="people" item-left></ion-icon>
+        <ion-icon name="school" item-left></ion-icon>
         Студенту
       </button>
       <button ion-item no-lines detail-push menuClose (click)="openTeacher()" class="main-menu">
@@ -19,12 +19,12 @@
         Викладачу
       </button>
       <ion-item-divider no-lines class='main-menu'></ion-item-divider>
-      <button ion-item no-lines detail-none menuClose class="main-menu" disabled>
+      <button ion-item no-lines detail-none menuClose class="main-menu" (click)="openSetup()">
         <ion-icon name="cog" item-left></ion-icon>
         Налаштування
       </button>
       <button ion-item no-lines detail-none menuClose (click)="openAbout()" class="main-menu" >
-        <ion-icon name="information-circle" item-left></ion-icon>
+        <ion-icon name="help-circle" item-left></ion-icon>
         Про додаток
       </button>
       <ion-item-divider no-lines class='main-menu'></ion-item-divider>

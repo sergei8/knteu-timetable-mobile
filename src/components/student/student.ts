@@ -21,13 +21,12 @@ export class StudentComponent {
   selectedCourse: string;
   selectedGruppa: string;
 
+
   wdp: object;    // объект куда формируется расписание выбранной группы
 
   constructor(public nav: Nav, private sharedObjects: SharedObjects) {
-
     this.allTimeTable = this.sharedObjects.allTimeTable;
     this.getFacNameList();
-
   }
 
   getFacNameList() {
@@ -100,11 +99,6 @@ export class StudentComponent {
 
 
   okClicked() {
-/*
-    console.log(this.selectedFacName);
-    console.log(this.selectedCourse);
-    console.log(this.selectedGruppa);
-*/
 
     this.wdp = $.extend(true, {}, this.sharedObjects.WeekDayPara);    //  очищаем расписание группы
 
@@ -122,7 +116,6 @@ export class StudentComponent {
         )
       )
     );
-    // console.log(this.wdp);
 
     this.nav.push(StudentTtComponent,
       {
