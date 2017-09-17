@@ -15,7 +15,7 @@ import {HoursComponent} from '../components/hours/hours';
 import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
 import {TeacherTtComponent} from "../components/teacher-tt/teacher-tt";
-import {elementAt} from "rxjs/operator/elementAt";
+// import {elementAt} from "rxjs/operator/elementAt";
 
 
 @Component({
