@@ -31,4 +31,9 @@ export class SetupComponent {
     localforage.setItem('setup', this.sharedData.globalParams);
   }
 
+  clearRozklad() {
+    localforage.removeItem('student');
+    localforage.removeItem('teacher');
+  }
+
 }

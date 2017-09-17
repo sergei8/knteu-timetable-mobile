@@ -29,11 +29,13 @@ export class DataProvider {
       buttons: [
         {
           text: 'Ні',
+          cssClass: 'alertButton',
           handler: () => {
           }
         },
         {
           text: 'Так',
+          cssClass: 'alertButton',
           handler: () => {
             if (rozklad.id === 'student') {
               this.saveStudentRozklad(rozklad);
@@ -47,7 +49,6 @@ export class DataProvider {
     });
     confirm.present();
   }
-
 
 
   readStudentRozklad() {
@@ -113,7 +114,6 @@ export class DataProvider {
       .then(result => {
           if (result || result == {}) {
             this.sharedData.globalParams = result;
-            // console.log('read ****', this.sharedData.globalParams);
           }
         },
         (error) => console.log(error))
