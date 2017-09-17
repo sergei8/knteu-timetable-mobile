@@ -10,6 +10,7 @@ import {TeacherComponent} from '../components/teacher/teacher';
 import {StudentComponent} from '../components/student/student';
 import {StudentTtComponent} from '../components/student-tt/student-tt';
 import {AboutComponent} from '../components/about/about';
+import {HoursComponent} from '../components/hours/hours';
 
 import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
@@ -160,6 +161,10 @@ export class MyApp {
     this.nav.push(AboutComponent);
   }
 
+  openHours() {
+    this.nav.push(HoursComponent);
+  }
+
   // подписаться на получение файла time-table.json
   readTimeTable() {
     this.dataProvider.getFile(this.timeTableUrl)
@@ -187,5 +192,6 @@ export class MyApp {
         }
       );
   }
+
 
 }

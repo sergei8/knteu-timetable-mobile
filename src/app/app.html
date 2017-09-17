@@ -5,7 +5,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content   scroll="fasle" class="main-menu">
+  <ion-content   scroll="false" class="main-menu">
     <div>
       <img id="menu-image" src="assets/img/knteu.png" />
     </div>
@@ -18,6 +18,10 @@
         <ion-icon name="person" item-left></ion-icon>
         Викладачу
       </button>
+      <button ion-item no-lines detail-push menuClose class="main-menu" (click)="openHours()">
+        <ion-icon name="alarm" item-left></ion-icon>
+        Розклад дзвінків
+      </button>
       <ion-item-divider no-lines class='main-menu'></ion-item-divider>
       <button ion-item no-lines detail-none menuClose class="main-menu" (click)="openSetup()">
         <ion-icon name="cog" item-left></ion-icon>
@@ -27,11 +31,13 @@
         <ion-icon name="help-circle" item-left></ion-icon>
         Про додаток
       </button>
-      <ion-item-divider no-lines class='main-menu'></ion-item-divider>
-      <button ion-item detail-none no-lines menuClose class="main-menu">
+      <!--<ion-item-divider no-lines class='main-menu'></ion-item-divider>-->
+<!--
+      <button ion-item detail-none no-lines menuClose class="main-menu" (click)="exitApp()">
         <ion-icon name="log-out" item-left></ion-icon>
         Вихід
       </button>
+-->
     </ion-list>
     <ion-footer text-center style="color: #8c8c8c">&copy; Avas-2017</ion-footer>
   </ion-content>
