@@ -46,6 +46,8 @@ export class DataProvider {
             else {
               this.savePrepodRozklad(rozklad);
             }
+            this.showToastMessage('Розклад збережено', 'bottom',
+              'infoToast', false, 3000);
           }
         }
       ]
