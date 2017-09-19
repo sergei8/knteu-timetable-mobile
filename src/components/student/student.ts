@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
+import {DataProvider} from '../../providers/data/data';
 import {StudentTtComponent} from '../../components/student-tt/student-tt';
 import {Nav} from 'ionic-angular';
 
@@ -24,8 +25,14 @@ export class StudentComponent {
 
   wdp: object;    // объект куда формируется расписание выбранной группы
 
-  constructor(public nav: Nav, private sharedObjects: SharedObjects) {
+  constructor(public nav: Nav, private sharedObjects: SharedObjects,
+              private data: DataProvider) {
     this.allTimeTable = this.sharedObjects.allTimeTable;
+    if (!this.sharedObjects.isConnected) {
+      this.data.showToastMessage('У Вас відсутнє підключення до Мережі!', 'bottom',
+        'warningToast', true, 0);
+      // console.log("нет подключения к Сети ");
+    }
     this.getFacNameList();
   }
 
