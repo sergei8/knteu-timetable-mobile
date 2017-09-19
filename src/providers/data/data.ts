@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import {Observable} from "rxjs/Observable";
 import {AlertController} from 'ionic-angular';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
+import {ToastController} from 'ionic-angular';
 
 declare const require: any;
 const localforage: LocalForage = require("localforage");
@@ -11,8 +12,10 @@ const localforage: LocalForage = require("localforage");
 @Injectable()
 export class DataProvider {
 
-  constructor(public http: Http, private alert: AlertController,
-              private sharedData: SharedObjects) {
+  constructor(public http: Http,
+              private alert: AlertController,
+              private sharedData: SharedObjects,
+              private toast: ToastController) {
   }
 
   getFile(url): Observable<Object> {
@@ -49,7 +52,6 @@ export class DataProvider {
     });
     confirm.present();
   }
-
 
   readStudentRozklad() {
     const rozklad = {
@@ -118,6 +120,20 @@ export class DataProvider {
         },
         (error) => console.log(error))
   }
+
+
+  showToastMessage(message, position, cssClass, showCloseButton, duration) {
+    const toast = this.toast.create({
+      message: message,
+      showCloseButton: showCloseButton,
+      closeButtonText: 'Ok',
+      duration: duration,
+      cssClass: cssClass,
+      position: position
+    });
+    toast.present();
+  }
+
 
 }
 

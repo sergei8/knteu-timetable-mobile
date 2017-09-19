@@ -15,7 +15,6 @@ import {HoursComponent} from '../components/hours/hours';
 import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
 import {TeacherTtComponent} from "../components/teacher-tt/teacher-tt";
-// import {elementAt} from "rxjs/operator/elementAt";
 
 
 @Component({
@@ -37,11 +36,9 @@ export class MyApp {
               public splashScreen: SplashScreen,
               private dataProvider: DataProvider,
               private sharedObjects: SharedObjects,
-              private  alert: AlertController) {
+              private alert: AlertController) {
 
     this.splashScreen.show();
-
-
     this.readConfig();
     this.initializeApp();
   }
@@ -172,20 +169,25 @@ export class MyApp {
         response => {
           this.sharedObjects.allTimeTable = response;
         },
-//todo сделать алерт с оія к сетітсутствіем подключен
-        error => console.log('ERROR time-table!'));
+        error => {
+          this.sharedObjects.isConnected = false;
+          console.log('ERROR time-table!')
+        }
+      );
   }
 
   // получіть конфіг-файл
   readConfig() {
     // console.log(this.configUrl);
-    this.dataProvider
-      .getFile(this.configUrl)
+    this.dataProvider.getFile(this.configUrl)
       .subscribe(
         response => {
           this.timeTableUrl = response['time-table-url'];
         },
-        error => console.log('Error config'),
+        error => {
+          console.log(error, 'Error config');
+          this.sharedObjects.isConnected = false;
+        },
         () => {
           /* когда app-config прочітан визиваем загрузку time-table.json*/
           this.readTimeTable();

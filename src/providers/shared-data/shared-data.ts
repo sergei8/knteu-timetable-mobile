@@ -11,6 +11,8 @@ export class SharedObjects {
   paraNamberList = [];
   globalParams: object;
 
+  isConnected = true;  // наличие интернета
+
   constructor() {
     this.globalParams = {};
     this.allTimeTable = {};

@@ -32,8 +32,12 @@ export class SetupComponent {
   }
 
   clearRozklad() {
-    localforage.removeItem('student');
-    localforage.removeItem('teacher');
+    localforage.removeItem('student')
+      .then(() => {
+        this.data.showToastMessage('Ви видалили збережений локально розклад', 'top',
+          'infoToast', false, 3000);
+        localforage.removeItem('teacher');
+      });
   }
 
 }

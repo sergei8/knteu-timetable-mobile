@@ -8,13 +8,20 @@
 </ion-header>
 
 <ion-content padding class="page-home main-fon">
-  <table>
-    <thead>
-    <tr>
-      <td>Пара</td>
-      <td>Час</td>
-      <td>Перерва</td>
-    </tr>
-    </thead>
-  </table>
+  <ion-card padding>
+    <ion-grid>
+      <ion-row class= "hoursTitle">
+        <ion-col col-2 >Пара</ion-col>
+        <ion-col offset-2>Час</ion-col>
+        <ion-col offset-2>Перерва(хв.)</ion-col>
+      </ion-row>
+      <ion-row *ngFor="let para of paraByHours">
+        <ion-col col-2>
+          <ion-badge>{{para.number}}</ion-badge>
+        </ion-col>
+        <ion-col offset-2>{{para.hours}}</ion-col>
+        <ion-col offset-2>{{para.break}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 </ion-content>

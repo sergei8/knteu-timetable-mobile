@@ -22,7 +22,8 @@
           </ion-col>
           <ion-col offset-2>
             <ion-checkbox [(ngModel)]="isSaveRozklad" role="button"
-                          (ionChange)="saveRozkladClicked()" class="setupHeader">
+                          (ionChange)="saveRozkladClicked()" class="setupHeader"
+                          style="margin-top: 15px!important;">
             </ion-checkbox>
           </ion-col>
         </ion-row>
@@ -30,7 +31,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card padding-bottom>
     <ion-card-header no-padding text-center class='setupHeader'>
       <ion-card-title>
         Чистка локального сховища

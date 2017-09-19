@@ -19,6 +19,7 @@ $HEADER_COLOR: #8c8c8c;
   min-height: 40px !important;
 
 }
+
 #menu-image {
   display: block;
   width: 100%;
@@ -81,5 +82,24 @@ ion-list-header {
   color: #fafafa !important;
   //width: 60px!important;
   text-align: center !important;
-  border-radius: 4px!important;
+  border-radius: 4px !important;
+}
+
+.hoursTitle {
+  background-color: $HEADER_COLOR;
+  color: $MAIN_FONT_COLOR;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.warningToast {
+  > div {
+    background-color: red !important;
+  }
+}
+
+.infoToast {
+  > div {
+    background-color: $MENU_BACKGROUND;
+  }
 }

@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
+import {DataProvider} from '../../providers/data/data';
 import {Nav} from 'ionic-angular';
 import {TeacherTtComponent} from '../../components/teacher-tt/teacher-tt';
 
@@ -15,11 +16,19 @@ export class TeacherComponent {
   allTimeTable = {};    //   сюда передается общее расписание
   wdp: object;          // объект куда формируется расписание преподавателя
   teachers: string[];
-  placeholder = 'Введіть прзвище';
+  placeholder = 'Введіть прізвище';
 
-  constructor(public nav: Nav, private sharedObjects: SharedObjects) {
+  constructor(public nav: Nav,
+              private sharedObjects: SharedObjects,
+              private data: DataProvider) {
 
     this.allTimeTable = this.sharedObjects.allTimeTable;
+    if (!this.sharedObjects.isConnected) {
+      this.data.showToastMessage('У Вас відсутнє підключення до Мережі!', 'bottom',
+        'warningToast', true, 3000);
+    }
+  // showToastMessage(message, position, cssClass, showCloseButton, duration) {
+
   }
 
   getFullTeacherList() {
@@ -33,9 +42,9 @@ export class TeacherComponent {
     let teacher = ev.target.value;
     if (!teacher) return [];
 
-    if (teacher.trim().length >= 2 ) {
+    if (teacher.trim().length >= 2) {
       this.teachers = this.teachers.filter((item) => {
-         return (item.toLowerCase().indexOf(teacher.toLowerCase()) > -1);
+        return (item.toLowerCase().indexOf(teacher.toLowerCase()) > -1);
       })
     }
     else {
