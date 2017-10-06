@@ -3,6 +3,10 @@ import {ErrorHandler, NgModule} from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {HttpModule} from '@angular/http';
 
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
+import {AppRate} from '@ionic-native/app-rate';
+
 import {MyApp} from './app.component';
 import {HomeComponent} from '../components/home/home';
 import {TeacherComponent} from '../components/teacher/teacher';
@@ -12,9 +16,6 @@ import {TeacherTtComponent} from '../components/teacher-tt/teacher-tt';
 import {AboutComponent} from '../components/about/about';
 import {SetupComponent} from '../components/setup/setup';
 import {HoursComponent} from '../components/hours/hours';
-
-import {StatusBar} from '@ionic-native/status-bar';
-import {SplashScreen} from '@ionic-native/splash-screen';
 
 import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
@@ -53,6 +54,7 @@ import {SharedObjects} from '../providers/shared-data/shared-data';
   providers: [
     StatusBar,
     SplashScreen,
+    AppRate,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
     SharedObjects

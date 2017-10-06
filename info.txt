@@ -1,3 +1,9 @@
+Node version: v7.10.0
+
+Cordova version: 7.0.1
+
+Config.xml file: 
+
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="ek.knteu.timetable" version="1.0.8" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>KNTEU timetable</name>
@@ -87,3 +93,14 @@
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="cordova-plugin-globalization" spec="~1.0.7" />
 </widget>
+
+
+Plugins: 
+
+cordova-plugin-apprate,cordova-plugin-console,cordova-plugin-device,cordova-plugin-dialogs,cordova-plugin-globalization,cordova-plugin-splashscreen,cordova-plugin-statusbar,cordova-plugin-whitelist,ionic-plugin-keyboard
+
+Error retrieving Android platform information: 
+Android SDK is not set up properly. Make sure that the Android SDK 'tools' and 'platform-tools' directories are in the PATH variable. 
+
+Error: android: Command failed with exit code ENOENT
+
