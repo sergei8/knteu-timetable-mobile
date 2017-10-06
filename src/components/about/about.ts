@@ -16,5 +16,7 @@ export class AboutComponent {
     window.location.href = 'https://goo.gl/EhAU9z';
   }
 
+  goToPlayMarket() {
+  }
 }
 

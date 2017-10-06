@@ -62,6 +62,11 @@ export class StudentTtComponent {
     this.weekShowSwitch[weekName] = !this.weekShowSwitch[weekName];
   }
 
+  // возвражает количество преподавателей на пару (м.б. 1 или 2)
+  getPrepodsCount(week, day, para) {
+    return _.range(this.wdp[week][day][para].length);
+  }
+
   saveTimeTable() {
     const rozklad = {
       id: 'student',
