@@ -89,7 +89,8 @@ export class StudentComponent {
           for (let para in this.allTimeTable[fio][week][day]) {
             let facName = _.values(this.allTimeTable[fio][week][day][para])[0];
             let courseNumber = _.values(this.allTimeTable[fio][week][day][para])[1];
-            let groupNumber = _.values(this.allTimeTable[fio][week][day][para])[2];
+            // let groupNumber = _.values(this.allTimeTable[fio][week][day][para])[2];
+            let groupNumber = this.extractGroupNumber(_.values(this.allTimeTable[fio][week][day][para])[2]);
             // push fac. group i number into array if it is not present yet
             if ((facName == this.selectedFacName)
               && (courseNumber == this.selectedCourse)
@@ -100,8 +101,13 @@ export class StudentComponent {
         }
       }
     }
-    // groupNumberList.sort();
     this.groupList = groupNumberList.sort();
+  }
+
+  // извлекает из параметра первую группу, если на лекции их несколько
+   // '1,2,3,4' - выберет 1-ю группу
+  extractGroupNumber(groupsString){
+    return groupsString.split(',')[0];
   }
 
 

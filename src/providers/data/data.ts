@@ -112,7 +112,6 @@ export class DataProvider {
     localforage.setItem("teacher", rozklad);
   }
 
-
   readSetup() {
     return localforage.getItem('setup')
       .then(result => {
@@ -122,7 +121,6 @@ export class DataProvider {
         },
         (error) => console.log(error))
   }
-
 
   showToastMessage(message, position, cssClass, showCloseButton, duration) {
     const toast = this.toast.create({
