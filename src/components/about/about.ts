@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {AppRate} from '@ionic-native/app-rate'
 
 @Component({
   selector: 'about',
@@ -8,7 +9,13 @@ export class AboutComponent {
 
   text: string;
 
-  constructor() {
+  constructor(private appRate: AppRate) {
+
+    this.appRate.preferences.storeAppURL = {
+      android: 'market://details?id=ek.knteu.timetable'
+    };
+
+    this.appRate.preferences.useLanguage = 'uk-UK'
   }
 
 
@@ -17,6 +24,7 @@ export class AboutComponent {
   }
 
   goToPlayMarket() {
+    this.appRate.promptForRating(true);
   }
 }
 
