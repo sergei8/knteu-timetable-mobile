@@ -15,8 +15,8 @@ export class AboutComponent {
   goToWeb() {
     window.location.href = 'https://goo.gl/EhAU9z';
   }
-goToPlayMarket(){
-    
-}
+
+  goToPlayMarket() {
+  }
 }
 
