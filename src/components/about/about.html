@@ -44,25 +44,17 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
-    <ion-card-content>
-      Підтримайте рейтинг програми на Google Play<br/>
-      <button ion-button round center class="button-block">
-        Оцінити програму
-      </button>
-    </ion-card-content>
-  </ion-card>
-<br/>
-<!--
-  <ion-card>
-    <ion-card-content>
--->
-      <button ion-button round center class="button-block" (click)="goToWeb()">
-        Веб-версія прогами
-      </button>
-<!--
-    </ion-card-content>
-  </ion-card>
--->
+    <ion-card>
+      <ion-card-content>
+        Підтримайте рейтинг програми на Google Play<br/>
+        <button ion-button round center class="button-block" (click)="goToPlayMarket()">
+          Оцінити програму
+        </button>
+      </ion-card-content>
+    </ion-card>
+  <br/>
+  <button ion-button round center class="button-block" (click)="goToWeb()">
+    Веб-версія прогами
+  </button>
 
 </ion-content>

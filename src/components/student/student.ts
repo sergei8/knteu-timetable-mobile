@@ -105,8 +105,8 @@ export class StudentComponent {
   }
 
   // извлекает из параметра первую группу, если на лекции их несколько
-   // '1,2,3,4' - выберет 1-ю группу
-  extractGroupNumber(groupsString){
+  // '1,2,3,4' - выберет 1-ю группу
+  extractGroupNumber(groupsString) {
     return groupsString.split(',')[0];
   }
 
@@ -121,8 +121,14 @@ export class StudentComponent {
           _.each(day, (para, paraNumber) => {
               if (this.selectedFacName === para[0]
                 && this.selectedCourse === para[1]
-                && this.selectedGruppa === para[2]) {
-                this.wdp[weekName][dayName][paraNumber] = [].concat(para[5], para[3], para[4], teacherName);
+                && para[2].split(',').indexOf(this.selectedGruppa) !== -1) {
+
+                if (this.wdp[weekName][dayName][paraNumber].length !== 0) {
+                  this.wdp[weekName][dayName][paraNumber] = this.wdp[weekName][dayName][paraNumber]
+                    .concat([[para[5], para[3], para[4], teacherName]]);
+                } else {
+                  this.wdp[weekName][dayName][paraNumber] = [[].concat(para[5], para[3], para[4], teacherName)];
+                }
               }
             }
           )

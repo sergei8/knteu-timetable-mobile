@@ -23,18 +23,15 @@
           <ng-template ngFor let-para [ngForOf]="paraNamberList">
             <ion-item *ngIf="wdp[week][day][para].length > 0">
               <ion-badge item-start> &nbsp;{{para}}&nbsp;</ion-badge>
-              {{wdp[week][day][para][0]}}  <!-- вид занятия-->
-              {{wdp[week][day][para][2]}}   <!-- аудитория -->
-              {{wdp[week][day][para][3]}}
-              {{wdp[week][day][para][4]}}/   <!-- группа -->
-              {{wdp[week][day][para][5]}}
-              <br/>
-              {{wdp[week][day][para][1]}}<br/>
-              <!--
-                            <span item-end>
-                              <ion-icon name="ios-arrow-dropright-outline"></ion-icon>
-                            </span>
-              -->
+              <template ngFor let-prep [ngForOf]=getPrepodsCount(week,day,para)>
+                <b>{{wdp[week][day][para][prep][0]}}</b>  <!-- вид занятия-->
+                {{wdp[week][day][para][prep][2]}}   <!-- аудитория -->
+                {{wdp[week][day][para][prep][3]}}
+                {{wdp[week][day][para][prep][4]}}/   <!-- группа -->
+                {{wdp[week][day][para][prep][5]}}
+                <br/>
+                {{wdp[week][day][para][prep][1]}}<br/>
+              </template>
             </ion-item>
           </ng-template>
         </ion-list>
