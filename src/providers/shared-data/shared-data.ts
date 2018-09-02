@@ -1,14 +1,12 @@
 import {Injectable} from '@angular/core';
 
-
 @Injectable()
-
 export class SharedObjects {
   allTimeTable: object;
   WeekDayPara: object;
-  weekNames = [];
-  dayNamesList = [];
-  paraNamberList = [];
+  weekNames: string[];
+  dayNamesList: string[];
+  paraNamberList:string[];
   globalParams: object;
 
   isConnected = true;  // наличие интернета
