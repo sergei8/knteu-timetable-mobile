@@ -76,7 +76,6 @@ $item-md-detail-push-show: true;
 $navbar-md-height: 100px;
 
 $label-md-text-color: #343434;
-$label-ios-text-color: #343434;
 
 $button-md-outline-box-shadow: #343434;
 
@@ -84,14 +83,17 @@ $list-md-header-font-size: 1.2em;
 $list-ios-header-font-size: 1.1em;
 $list-ios-header-margin-bottom: 0px;
 
-$toast-ios-title-font-size: 0.7rem;
+$item-md-body-text-font-size: 1.1em;
+//$item-md-font-size: 1.1em;
+$item-md-body-text-line-height: 1.2em;
+$item-md-avatar-size: 50px;
+$item-md-detail-push-show: true;
 
 $badge-md-background-color: #343434;
 $badge-font-size: 2rem;
 
 //$badge-md-border-radius:45%;
 $popover-md-width: 80%;
-$popover-ios-width: 80%;
 
 $card-md-margin-left: 3px;
 $card-md-margin-right: 3px;

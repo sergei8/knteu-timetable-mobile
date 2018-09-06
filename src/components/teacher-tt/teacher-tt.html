@@ -42,8 +42,11 @@
     </ion-list>
   </ng-template>
 
-
+  <p>{{getName()}}
+  </p>
+  <img [src]="getImage()" style=' border-radius: 50%; margin-left: auto;margin-right: auto; display: block'>
 </ion-content>
+
 
 <ion-fab mini bottom right padding *ngIf="showAddButton">
   <button ion-fab (click)="saveTimeTable()">

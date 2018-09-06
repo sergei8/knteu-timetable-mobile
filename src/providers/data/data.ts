@@ -3,8 +3,11 @@ import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs/Observable";
 import {AlertController} from 'ionic-angular';
-import {SharedObjects} from '../../providers/shared-data/shared-data';
+import {SharedObjects} from '../shared-data/shared-data';
 import {ToastController} from 'ionic-angular';
+
+import * as $ from 'jquery';
+import * as _ from 'lodash';
 
 declare const require: any;
 const localforage: LocalForage = require("localforage");
@@ -134,6 +137,43 @@ export class DataProvider {
     toast.present();
   }
 
+  getPrepodImgUrl(name: string): string {
+    let url = '';
+    const dummy_img = 'assets/img/person.png';
+    /* если в allTimeTables нету поля  details (ошибка) то замещаем url заставкой*/
+    try {
+      url = this.sharedData.allTimeTable[name]['details']['img_url'];
+    } catch (e) {
+      url = dummy_img;
+    }
+    // return this.sharedData.allTimeTable[name]['details']['img_url'];
+    // console.log(url);
+
+    // возвращает или реальный урл или заставку
+    return url != null ? url : dummy_img;
+  }
+
+  getTeacherWdp(name: string): any[] {
+    let wdp = $.extend(true, {}, this.sharedData.WeekDayPara);    //  очищаем расписание группы
+    let teacherDetails: object = {};
+
+    _.each(this.sharedData.allTimeTable, (fio, teacherName) =>
+      _.each(this.sharedData.weekNames.map(x => fio[x]), (week, weekIndex) =>
+        _.each(week, (day, dayName) =>
+          _.each(day, (para, paraNumber) => {
+              if (teacherName === name) {
+                teacherDetails = fio.details;
+                const weekName = this.sharedData.weekNames[weekIndex];
+                wdp[weekName][dayName][paraNumber] = [].concat(para[5], para[3], para[4],
+                  para[0], para[1], para[2]);
+              }
+            }
+          )
+        )
+      )
+    );
+    return [wdp, teacherDetails];
+  }
 
 }
 

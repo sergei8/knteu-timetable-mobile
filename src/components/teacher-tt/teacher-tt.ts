@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {NavParams} from 'ionic-angular';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
-import {DataProvider} from  '../../providers/data/data';
+import {DataProvider} from '../../providers/data/data';
 
 import * as _ from 'lodash';
 
@@ -14,6 +14,7 @@ export class TeacherTtComponent {
   teacher: string;
   weekShowSwitch = {};   // скрывают/открывают дни недели
   wdp: object;
+  details: object;
   weekNames: string[];
   dayNamesList: string[];
   paraNamberList: string[];
@@ -27,6 +28,8 @@ export class TeacherTtComponent {
 
     this.teacher = navParams.get('teacher');
     this.wdp = navParams.get('wdp');
+    this.details = navParams.get('details');
+
     this.weekNames = this.sharedObjects.weekNames;
     this.dayNamesList = this.sharedObjects.dayNamesList;
     this.paraNamberList = this.sharedObjects.paraNamberList;
@@ -64,4 +67,25 @@ export class TeacherTtComponent {
     this.data.saveTimeTable(rozklad);
   }
 
+  /**
+   * возвращает url фотки препода
+   * @return {string}
+   */
+  getImage(): string {
+    if (this.details) {
+      // если фотки нету
+      if (this.details['img_url'] == null) {
+        return '';
+      } else {
+        return this.details['img_url'];
+      }
+    } else {
+      // если нету поля `details`
+      return '';
+    }
+  }
+
+  getName(): string {
+    return this.details ? this.details['name'] : '';
+  }
 }

@@ -22,16 +22,25 @@
           </ion-list-header>
           <ng-template ngFor let-para [ngForOf]="paraNamberList">
             <ion-item *ngIf="wdp[week][day][para].length > 0">
-              <ion-badge item-start> &nbsp;{{para}}&nbsp;</ion-badge>
-              <template ngFor let-prep [ngForOf]=getPrepodsCount(week,day,para)>
-                <b>{{wdp[week][day][para][prep][0]}}</b>  <!-- вид занятия-->
-                {{wdp[week][day][para][prep][2]}}   <!-- аудитория -->
-                {{wdp[week][day][para][prep][3]}}
-                {{wdp[week][day][para][prep][4]}}/   <!-- группа -->
-                {{wdp[week][day][para][prep][5]}}
-                <br/>
-                {{wdp[week][day][para][prep][1]}}<br/>
-              </template>
+              <ion-badge item-start>{{para}}</ion-badge>
+              <ng-template ngFor let-prep [ngForOf]=getPrepodsCount(week,day,para)>
+                <button ion-item detail-push no-lines
+                        (click)="openTeacher(wdp[week][day][para][prep][3])">
+<!--
+                  <ion-avatar item-end>
+                    <img [src]="getAvatar(wdp[week][day][para][prep][3])">
+                  </ion-avatar>
+-->
+                  <b>{{wdp[week][day][para][prep][0]}}</b>  <!-- вид занятия-->
+                  {{wdp[week][day][para][prep][2]}}   <!-- аудитория -->
+                  {{wdp[week][day][para][prep][3]}}  <!-- фіо препода-->
+                  <!--{{wdp[week][day][para][prep][4]}}/   &lt;!&ndash; группа &ndash;&gt;-->
+                  <!--{{wdp[week][day][para][prep][5]}}-->
+                  <br/>
+                  {{wdp[week][day][para][prep][1]}}<br/>  <!--назва дисципліни-->
+                  <!--<ion-avatar item-end><img src="{{getAvatar(wdp[week][day][para][prep][3])}}"></ion-avatar>-->
+                </button>
+              </ng-template>
             </ion-item>
           </ng-template>
         </ion-list>

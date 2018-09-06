@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
 import {DataProvider} from '../../providers/data/data';
-import {StudentTtComponent} from '../../components/student-tt/student-tt';
+import {StudentTtComponent} from '../student-tt/student-tt';
 import {Nav} from 'ionic-angular';
 
 import * as _ from 'lodash';
@@ -31,7 +31,6 @@ export class StudentComponent {
     if (!this.sharedObjects.isConnected) {
       this.data.showToastMessage('У Вас відсутнє підключення до Мережі!', 'bottom',
         'warningToast', true, 0);
-      // console.log("нет подключения к Сети ");
     }
     this.getFacNameList();
   }
@@ -39,9 +38,8 @@ export class StudentComponent {
   getFacNameList() {
 
     let facNameList: string[] = [];
-
     _.each(this.allTimeTable, (fio) =>
-      _.each(fio, (week) =>
+      _.forEach(this.sharedObjects.weekNames.map(x => fio[x]), (week) =>
         _.each(week, (day) =>
           _.each(day, (para) => {
               if (!(_.includes(facNameList, para[0]))) {
@@ -55,26 +53,26 @@ export class StudentComponent {
 
     this.facNameList = facNameList.sort();
     this.groupList = [];
-    this.groupList = [];
   }
 
   getCourseList() {
 
     let courseNamberList = [];
-
-    for (let fio in this.allTimeTable) {
-      for (let week in this.allTimeTable[fio]) {
-        for (let day in this.allTimeTable[fio][week]) {
-          for (let para in this.allTimeTable[fio][week][day]) {
-            let facName = _.values(this.allTimeTable[fio][week][day][para])[0];
-            let courseNumber = _.values(this.allTimeTable[fio][week][day][para])[1];
-            if ((facName == this.selectedFacName) && !(_.includes(courseNamberList, courseNumber))) {
-              courseNamberList.push(courseNumber);
+    _.each(this.allTimeTable, (fio) =>
+      _.forEach(this.sharedObjects.weekNames.map(x => fio[x]), (week) =>
+        _.each(week, (day) =>
+          _.each(day, (para) => {
+              let facName = para[0];
+              let courseNumber = para[1];
+              if ((facName == this.selectedFacName) && !(_.includes(courseNamberList, courseNumber))) {
+                courseNamberList.push(courseNumber);
+              }
             }
-          }
-        }
-      }
-    }
+          )
+        )
+      )
+    );
+
     this.courseList = courseNamberList.sort();
     this.groupList = [];
 
@@ -83,24 +81,24 @@ export class StudentComponent {
   getGroupList() {
     let groupNumberList = [];
 
-    for (let fio in this.allTimeTable) {
-      for (let week in this.allTimeTable[fio]) {
-        for (let day in this.allTimeTable[fio][week]) {
-          for (let para in this.allTimeTable[fio][week][day]) {
-            let facName = _.values(this.allTimeTable[fio][week][day][para])[0];
-            let courseNumber = _.values(this.allTimeTable[fio][week][day][para])[1];
-            // let groupNumber = _.values(this.allTimeTable[fio][week][day][para])[2];
-            let groupNumber = this.extractGroupNumber(_.values(this.allTimeTable[fio][week][day][para])[2]);
-            // push fac. group i number into array if it is not present yet
-            if ((facName == this.selectedFacName)
-              && (courseNumber == this.selectedCourse)
-              && !(_.includes(groupNumberList, groupNumber))) {
-              groupNumberList.push(groupNumber);
+    _.each(this.allTimeTable, (fio) =>
+      _.forEach(this.sharedObjects.weekNames.map(x => fio[x]), (week) =>
+        _.each(week, (day) =>
+          _.each(day, (para) => {
+              let facName = para[0];
+              let courseNumber = para[1];
+              let groupNumber = this.extractGroupNumber(para[2]);
+              if ((facName == this.selectedFacName)
+                && (courseNumber == this.selectedCourse)
+                && !(_.includes(groupNumberList, groupNumber))) {
+                groupNumberList.push(groupNumber);
+              }
             }
-          }
-        }
-      }
-    }
+          )
+        )
+      )
+    );
+
     this.groupList = groupNumberList.sort();
   }
 

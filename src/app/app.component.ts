@@ -107,7 +107,6 @@ export class MyApp {
     this.dataProvider.readSetup()
       .then(() => {
         this.askForSavedRozklad = this.sharedObjects.globalParams['saveRozklad'];
-        // console.log(this.askForSavedRozklad);
 
         if (this.askForSavedRozklad) {  // если включен режим сохранения расписания
           this.dataProvider.readPrepodRozklad()
@@ -164,16 +163,21 @@ export class MyApp {
 
   // подписаться на получение файла time-table.json
   readTimeTable() {
+    // todo отладочная вставка - удалить потом assets/db/time-table...
+    this.timeTableUrl = 'http://localhost:8100/assets/db/time-table.json';
+    // ------------------
     this.dataProvider.getFile(this.timeTableUrl)
       .subscribe(
         response => {
           this.sharedObjects.allTimeTable = response;
+          // console.log(response);
         },
         error => {
           this.sharedObjects.isConnected = false;
-          console.log('ERROR time-table!')
+          console.log('ERROR time-table: ', error.message);
         }
       );
+
   }
 
   // получіть конфіг-файл
