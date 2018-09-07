@@ -88,4 +88,14 @@ export class TeacherTtComponent {
   getName(): string {
     return this.details ? this.details['name'] : '';
   }
+
+  getFacultet(): string {
+    return this.details ? this.details['fac'] : '';
+  }
+
+  getDepartment(): string {
+    return this.details ? this.details['dep'] : '';
+  }
+
+
 }

@@ -41,10 +41,12 @@
       </ng-template>
     </ion-list>
   </ng-template>
-
-  <p>{{getName()}}
-  </p>
-  <img [src]="getImage()" style=' border-radius: 50%; margin-left: auto;margin-right: auto; display: block'>
+  <p style="text-align: center;">{{getName()}}</p>
+  <img [src]="getImage()"
+       style='border-radius: 8%; margin-left: auto;margin-right: auto; display: block;
+            width: auto; height: auto; max-width: 50%; max-height: 50%'>
+  <p style="text-align: center">{{getFacultet()}}</p>
+  <p style="text-align: center">{{getDepartment()}}</p>
 </ion-content>
 
 
