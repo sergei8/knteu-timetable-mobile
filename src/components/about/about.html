@@ -1,4 +1,3 @@
-
 <!--todo переписать!-->
 <ion-header>
   <ion-navbar>
@@ -11,54 +10,60 @@
 
 <ion-content padding class="page-home main-fon">
   <ion-card>
-    <ion-card-title>Версія: 1.0.4</ion-card-title>
-    <ion-card-content>
-      <i>Програма розроблена на кафедрі <b>Економічної Кібернетики КНТЕУ</b></i><br/>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <!--
-        <ion-card-title>
-          <ion-icon name="warning" style="color: red"></ion-icon>
-        </ion-card-title>
-    -->
-    <ion-card-content>
-      <ion-icon name="warning" style="color: red"></ion-icon>
-      Інформаційна база - це розклад занятть, який розташовано на саїті КНТЕУ у
-      вигляді excel-файлів. Парсінг цих файлів - важка проблема, коли їх модифікують
-      в ручному режимі
-      <ion-icon name="sad"></ion-icon>
-      .
-      <br/>
-      Тому в програмі можуть зустрічатися 'глюки' та помилки за які розробники
-      <strong>відповідальності не несуть</strong>, але будуть щиро вдячні за їх виявлення.
+    <ion-card-title>Версія: 1.1.0</ion-card-title>
+    <ion-card-content style="text-align: justify">
+      <i>Програма призначена для швидкого доступу до постійного розкладу занять
+        студентів очної форми навчання КНТЕУ</i>
     </ion-card-content>
   </ion-card>
 
-<!--
   <ion-card>
-    <ion-card-content>
-      <ion-icon name="construct"></ion-icon>
-      Програма продовжує вдосконалюватись і Ваші зауваження можуть бути дуже
-      корисними<br/>
-      <button ion-button round center class="button-block">
-        Надіслати пропозицію
+    <ion-card-content style="text-align: justify">
+      <p>
+        Програма використовує дані, що розміщені <b>у вільному доступі</b> на <a href="knteu.kiev.ua"> сайті КНТЕУ</a>
+        та дозволяє отримати розклад по конкретній групі, або дізнатися розклад занять
+        окремого викладача та деякі інші корисні відомості.</p>
+      <ion-icon style="color: orangered; font-size: 1.3em" name="warning"></ion-icon>
+      <small><i>Достовірність, актуальність та повнота даних обумовлена контентом сайту КНТЕУ, тому
+        за ці показники розробник програми відповідальність не несе.
+      </i></small>
+      <!--
+          <ion-card-title>
+            <ion-icon name="warning" style="color: red"></ion-icon>
+          </ion-card-title>
+      -->
+
+      <!--
+        <ion-card>
+          <ion-card-content>
+            <ion-icon name="construct"></ion-icon>
+            Програма продовжує вдосконалюватись і Ваші зауваження можуть бути дуже
+            корисними<br/>
+            <button ion-button round center class="button-block">
+              Надіслати пропозицію
+            </button>
+          </ion-card-content>
+        </ion-card>
+      -->
+
+      <button ion-button round center class="button-block" style="margin-top: 1.3em"
+              (click)="goToPlayMarket()">
+        Оцінити програму та надати зауваження
       </button>
+      <div style="text-align: center; padding-top: 1.5em">
+        <ion-icon class="aboutLogo" name="logo-angular"></ion-icon>
+        <!--<ion-icon class="aboutLogo" name="logo-ionic"></ion-icon>-->
+        <ion-icon class="aboutLogo" name="logo-html5"></ion-icon>
+        <ion-icon class="aboutLogo" name="logo-css3"></ion-icon>
+        <ion-icon class="aboutLogo" name="logo-javascript"></ion-icon>
+        <ion-icon class="aboutLogo" name="logo-python"></ion-icon>
+      </div>
     </ion-card-content>
   </ion-card>
--->
-
-    <ion-card>
-      <ion-card-content>
-        Підтримайте рейтинг програми на Google Play<br/>
-        <button ion-button round center class="button-block" (click)="goToPlayMarket()">
-          Оцінити програму та надаті зауваження
-        </button>
-      </ion-card-content>
-    </ion-card>
-  <br/>
-  <button ion-button round center class="button-block" (click)="goToWeb()">
-    Веб-версія прогами
-  </button>
+  <!--
+    <button ion-button round center class="button-block" (click)="goToWeb()">
+      Веб-версія прогами
+    </button>
+  -->
 
 </ion-content>
