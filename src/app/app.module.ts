@@ -1,8 +1,10 @@
 // TODO: 1. Перенести time-table.json в облако MongoDB
 // TODO: 2. Прикрутить рейтинг преподавателей (mySQL?)
+// todo: 3. Прикрутить Open Web Analitics (OWA)
 
 // FIXME: 1. Поменять картинку в SplashScreen
 // FIXME: 2. Спрятать как-то config.json
+// FIXME: 3. Поправить в конфиге ссылку на time-table.json
 
 
 
