@@ -11,19 +11,14 @@ export class AboutComponent {
 
   constructor(private appRate: AppRate) {
 
-/*
     this.appRate.preferences.storeAppURL = {
       android: 'market://details?id=ek.knteu.timetable'
     };
 
     this.appRate.preferences.useLanguage = 'uk-UK'
-*/
   }
 
 
-  goToWeb() {
-    window.location.href = 'https://goo.gl/EhAU9z';
-  }
 
   goToPlayMarket() {
     this.appRate.promptForRating(true);
