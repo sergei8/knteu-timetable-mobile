@@ -13,9 +13,11 @@ import {TeacherTtComponent} from "../components/teacher-tt/teacher-tt";
 import {AboutComponent} from '../components/about/about';
 import {HoursComponent} from '../components/hours/hours';
 
+
 import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
-
+import {FirestoreLogProvider} from '../providers/firestore-log/firestore-log'
+// import {IHomePageLog} from '../providers/firestore-log/firestore-log'
 
 @Component({
   templateUrl: 'app.html'
@@ -36,8 +38,10 @@ export class MyApp {
               public splashScreen: SplashScreen,
               private dataProvider: DataProvider,
               private sharedObjects: SharedObjects,
-              private alert: AlertController) {
+              private alert: AlertController,
+              private fireStore: FirestoreLogProvider) {
 
+    this.fireStore.setHomePageLog();
     this.splashScreen.show();
     this.readConfig();
     this.initializeApp();

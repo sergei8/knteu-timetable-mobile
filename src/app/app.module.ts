@@ -17,6 +17,10 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {AppRate} from '@ionic-native/app-rate';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { firebaseConfig } from './credentials';
+
 import {MyApp} from './app.component';
 import {HomeComponent} from '../components/home/home';
 import {TeacherComponent} from '../components/teacher/teacher';
@@ -29,6 +33,7 @@ import {HoursComponent} from '../components/hours/hours';
 
 import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
+import { FirestoreLogProvider } from '../providers/firestore-log/firestore-log';
 
 @NgModule({
   declarations: [
@@ -46,7 +51,9 @@ import {SharedObjects} from '../providers/shared-data/shared-data';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -67,7 +74,8 @@ import {SharedObjects} from '../providers/shared-data/shared-data';
     AppRate,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
-    SharedObjects
+    SharedObjects,
+    FirestoreLogProvider
   ]
 })
 export class AppModule {
