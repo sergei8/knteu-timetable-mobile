@@ -3,7 +3,7 @@
     <name>KNTEU timetable</name>
     <description>Розклад КНТЕУ</description>
     <author email="shkliarskiy@gmail.com" href="http://shkliarskiy.moodlecloud.com">Avas</author>
-    <content original-src="index.html" src="http://192.168.1.120:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-intent href="http://*/*" />
@@ -22,6 +22,7 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
+    <preference name="loadUrlTimeoutValue" value="700000" />
     <property file="secure.properties" />
     <platform name="android">
         <allow-intent href="market:*" />
