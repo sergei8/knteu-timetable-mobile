@@ -50,7 +50,7 @@
         "@ionic/lab": "1.0.9",
         "typescript": "2.3.4"
     },
-    "description": "An Ionic project",
+    "description": "Time-table project",
     "cordova": {
         "plugins": {
             "cordova-plugin-console": {},
