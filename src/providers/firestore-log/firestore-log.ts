@@ -1,5 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
+import {Device} from '@ionic-native/device';
 
 import {AngularFirestore} from 'angularfire2/firestore';
 
@@ -8,15 +9,15 @@ import {AngularFirestore} from 'angularfire2/firestore';
 @Injectable()
 export class FirestoreLogProvider {
 
-  constructor(private fireStore: AngularFirestore) {
+  constructor(private fireStore: AngularFirestore,
+              private device: Device) {
   }
 
   setHomePageLog() {
-    const path = 'Home/' + Date.now();
+    const path = `Home/${Date.now()}`;
     let userDoc = this.fireStore.doc<any>(path);
     userDoc.set({
-      name: 'Jorge Vergara',
-      email: 'j@javebratt.com',
+      userDeviceId: this.device.uuid,
     })
   }
 

@@ -16,10 +16,12 @@ import {HttpModule} from '@angular/http';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {AppRate} from '@ionic-native/app-rate';
+import {Device} from '@ionic-native/device';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { firebaseConfig } from './credentials';
+
 
 import {MyApp} from './app.component';
 import {HomeComponent} from '../components/home/home';
@@ -72,6 +74,7 @@ import { FirestoreLogProvider } from '../providers/firestore-log/firestore-log';
     StatusBar,
     SplashScreen,
     AppRate,
+    Device,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
     SharedObjects,
