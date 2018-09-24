@@ -7,6 +7,7 @@ import {NetworkInterface} from '@ionic-native/network-interface';
 @Injectable()
 export class FirestoreLogProvider {
 
+
   constructor(private fireStore: AngularFirestore,
               private device: Device,
               private networkInterface: NetworkInterface) {
@@ -14,8 +15,11 @@ export class FirestoreLogProvider {
 
   async setHomePageLog() {
     const path = `Home/${Date.now()}`;
-    let homeDoc = this.fireStore.doc<any>(path);
-    const userIp = await this.networkInterface.getCarrierIPAddress();
+    const homeDoc = this.fireStore.doc<any>(path);
+    let userIpAddr={};
+    try {
+      userIpAddr = await this.networkInterface.getCarrierIPAddress();
+    } catch (e){const userIpAddr }
     /*
         const location = this.geolocation.getCurrentPosition()
           .then((response) => {
@@ -31,7 +35,7 @@ export class FirestoreLogProvider {
       userDevicePlatform: this.device.platform,
       userOsVersion: this.device.version,
       userDeviceManufacturer: this.device.manufacturer,
-      userIp: userIp,
+      userIp: userIpAddr.ip,
       /*
             userLatitude: location[0],
             userLongitude: location[2],
@@ -40,15 +44,3 @@ export class FirestoreLogProvider {
   }
 
 }
-
-
-/*
-export interface IHomePageLog {
-  dateTime: object,
-  userDeviceId: string,
-  userDeviceModel: string,
-  userIp: string,
-  userOsVersion: string,
-  userGeoPoint: object
-}
-*/
