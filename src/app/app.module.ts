@@ -17,6 +17,8 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {AppRate} from '@ionic-native/app-rate';
 import {Device} from '@ionic-native/device';
+// import {Geolocation}from'@ionic-native/geolocation';
+import {NetworkInterface}from '@ionic-native/network-interface';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -75,6 +77,8 @@ import { FirestoreLogProvider } from '../providers/firestore-log/firestore-log';
     SplashScreen,
     AppRate,
     Device,
+    // Geolocation,
+    NetworkInterface,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
     SharedObjects,
