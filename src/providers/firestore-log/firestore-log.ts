@@ -12,12 +12,10 @@ export class FirestoreLogProvider {
               private networkInterface: NetworkInterface) {
   }
 
-  setHomePageLog() {
+  async setHomePageLog() {
     const path = `Home/${Date.now()}`;
     let homeDoc = this.fireStore.doc<any>(path);
-    const userIp = this.networkInterface.getCarrierIPAddress()
-      .then(addr => {console.log(addr); return addr;})
-      .catch(error => 'error');
+    const userIp = await this.networkInterface.getCarrierIPAddress();
     /*
         const location = this.geolocation.getCurrentPosition()
           .then((response) => {
@@ -33,13 +31,12 @@ export class FirestoreLogProvider {
       userDevicePlatform: this.device.platform,
       userOsVersion: this.device.version,
       userDeviceManufacturer: this.device.manufacturer,
-      userIp: '111',
+      userIp: userIp,
       /*
             userLatitude: location[0],
             userLongitude: location[2],
       */
-    }).then()
-      .catch()
+    });
   }
 
 }

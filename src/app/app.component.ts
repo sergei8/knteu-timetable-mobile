@@ -17,6 +17,7 @@ import {HoursComponent} from '../components/hours/hours';
 import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
 import {FirestoreLogProvider} from '../providers/firestore-log/firestore-log'
+
 // import {IHomePageLog} from '../providers/firestore-log/firestore-log'
 
 @Component({
@@ -41,10 +42,10 @@ export class MyApp {
               private alert: AlertController,
               private fireStore: FirestoreLogProvider) {
 
-    this.fireStore.setHomePageLog();
     this.splashScreen.show();
     this.readConfig();
     this.initializeApp();
+    this.fireStore.setHomePageLog();
   }
 
   initializeApp() {
@@ -186,7 +187,7 @@ export class MyApp {
   }
 
   // получіть конфіг-файл
-  readConfig() {
+  readConfig():void {
     // console.log(this.configUrl);
     this.dataProvider.getFile(this.configUrl)
       .subscribe(

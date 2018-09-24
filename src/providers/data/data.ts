@@ -137,10 +137,11 @@ export class DataProvider {
     toast.present();
   }
 
+/*
   getPrepodImgUrl(name: string): string {
     let url = '';
     const dummy_img = 'assets/img/person.png';
-    /* если в allTimeTables нету поля  details (ошибка) то замещаем url заставкой*/
+    /!* если в allTimeTables нету поля  details (ошибка) то замещаем url заставкой*!/
     try {
       url = this.sharedData.allTimeTable[name]['details']['img_url'];
     } catch (e) {
@@ -152,6 +153,7 @@ export class DataProvider {
     // возвращает или реальный урл или заставку
     return url != null ? url : dummy_img;
   }
+*/
 
   getTeacherWdp(name: string): any[] {
     let wdp = $.extend(true, {}, this.sharedData.WeekDayPara);    //  очищаем расписание группы
