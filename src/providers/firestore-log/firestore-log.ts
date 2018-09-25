@@ -16,10 +16,11 @@ export class FirestoreLogProvider {
   async setHomePageLog() {
     const path = `Home/${Date.now()}`;
     const homeDoc = this.fireStore.doc<any>(path);
-    let userIpAddr={};
+    let userIpAddr = {ip: null};
     try {
       userIpAddr = await this.networkInterface.getCarrierIPAddress();
-    } catch (e){const userIpAddr }
+    } catch (e) {
+    }
     /*
         const location = this.geolocation.getCurrentPosition()
           .then((response) => {
@@ -43,4 +44,28 @@ export class FirestoreLogProvider {
     });
   }
 
+  async setStudentPageLog(faculty: string, course: string, group: string, saved = false) {
+    const path = `Student/${Date.now()}`;
+    const studentDoc = this.fireStore.doc<any>(path);
+
+    studentDoc.set({
+        userDeviceId: this.device.uuid,
+        faculty: faculty,
+        course: course,
+        group: group,
+        saved: saved
+      }
+    ).then().catch()
+  }
+
+  async setTeacherPageLog(teacherName: string, fromDiscipline: string = null, saved = false) {
+    const path = `Teacher/${Date.now()}`;
+    const teacherDoc = this.fireStore.doc<any>(path);
+    teacherDoc.set({
+      userDeviceId: this.device.uuid,
+      name: teacherName,
+      fromDiscipline: fromDiscipline,
+      saved: saved
+    }).then().catch()
+  }
 }

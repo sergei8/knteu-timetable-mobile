@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavParams} from 'ionic-angular';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
 import {DataProvider} from '../../providers/data/data';
+import {FirestoreLogProvider} from '../../providers/firestore-log/firestore-log';
 import {TeacherTtComponent} from "../teacher-tt/teacher-tt";
 import {Nav} from 'ionic-angular';
 
@@ -27,10 +28,9 @@ export class StudentTtComponent {
   weekShowSwitch = {};   // скрывают/открывают дни недели
 
   constructor(public navParams: NavParams, private sharedObjects: SharedObjects,
-              public data: DataProvider, public nav: Nav) {
+              public data: DataProvider, public nav: Nav, private fireStore: FirestoreLogProvider) {
 
     this.wdp = navParams.get('wdp');
-    // console.log(this.wdp);
     this.facName = navParams.get('facName');
     this.course = navParams.get('course');
     this.group = navParams.get('group');
@@ -57,7 +57,7 @@ export class StudentTtComponent {
   }
 
   // видеть/скрыть дни недели `weekName`
-  weekClicked(weekName, index): void {
+  weekClicked(weekName: string, index: number): void {
     this.eyeOffSwitch[index] = !this.eyeOffSwitch[index];
     this.eyeOnSwitch[index] = !this.eyeOnSwitch[index];
     this.weekShowSwitch[weekName] = !this.weekShowSwitch[weekName];
@@ -83,16 +83,12 @@ export class StudentTtComponent {
     this.data.saveTimeTable(rozklad);
   }
 
-  /*
-    getAvatar(name: string): string {
-      return this.data.getPrepodImgUrl(name);
-    }
-  */
-
-  openTeacher(name: string): void {
+  openTeacher(name: string, discipline: string): void {
     const teacheInfo: any[] = this.data.getTeacherWdp(name);
     const wdp = teacheInfo[0];
     const teacherDetails = teacheInfo[1];
+
+    this.fireStore.setTeacherPageLog(name, discipline, true).then().catch();
 
     this.nav.push(TeacherTtComponent,
       {

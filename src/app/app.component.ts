@@ -81,6 +81,10 @@ export class MyApp {
                         text: 'Так',
                         cssClass: 'alertButton',
                         handler: () => {
+                          // пишем лог по экрану студента
+                          this.fireStore.setStudentPageLog(studentRozklad['facName'],
+                            studentRozklad['course'], studentRozklad['group'], true);
+                          // переход на экран студента
                           this.nav.push(StudentTtComponent,
                             {
                               wdp: studentRozklad['wdp'],
@@ -187,7 +191,7 @@ export class MyApp {
   }
 
   // получіть конфіг-файл
-  readConfig():void {
+  readConfig(): void {
     // console.log(this.configUrl);
     this.dataProvider.getFile(this.configUrl)
       .subscribe(
@@ -204,6 +208,5 @@ export class MyApp {
         }
       );
   }
-
 
 }
