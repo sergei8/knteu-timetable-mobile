@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs/Observable";
 import {AlertController} from 'ionic-angular';
@@ -15,7 +15,7 @@ const localforage: LocalForage = require("localforage");
 @Injectable()
 export class DataProvider {
 
-  constructor(public http: Http,
+  constructor(public http: HttpClient,
               private alert: AlertController,
               private sharedData: SharedObjects,
               private toast: ToastController) {
@@ -23,7 +23,7 @@ export class DataProvider {
 
   getFile(url): Observable<Object> {
     return this.http.get(url)
-      .map(response => response.json());
+      // .map(response => response);
   }
 
   // сохраняет распісаніе студента или препода локально
