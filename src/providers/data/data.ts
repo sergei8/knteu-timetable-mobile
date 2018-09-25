@@ -112,7 +112,7 @@ export class DataProvider {
   }
 
   savePrepodRozklad(rozklad) {
-    localforage.setItem("teacher", rozklad);
+    localforage.setItem("teacher", rozklad).then().catch();
   }
 
   readSetup() {
@@ -134,7 +134,7 @@ export class DataProvider {
       cssClass: cssClass,
       position: position
     });
-    toast.present();
+    toast.present().then().catch();
   }
 
 /*

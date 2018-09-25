@@ -95,7 +95,7 @@ export class StudentTtComponent {
         wdp: wdp,
         teacher: name,
         details: teacherDetails
-      });
+      }).then().catch();
 
   }
 

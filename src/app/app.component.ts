@@ -45,7 +45,7 @@ export class MyApp {
     this.splashScreen.show();
     this.readConfig();
     this.initializeApp();
-    this.fireStore.setHomePageLog();
+    this.fireStore.setHomePageLog().then().catch();
   }
 
   initializeApp() {
@@ -74,7 +74,7 @@ export class MyApp {
                         text: 'Ні',
                         cssClass: 'alertButton',
                         handler: () => {
-                          this.nav.push(StudentComponent);
+                          this.nav.push(StudentComponent).then().catch();
                         }
                       },
                       {
@@ -91,23 +91,23 @@ export class MyApp {
                               facName: studentRozklad['facName'],
                               course: studentRozklad['course'],
                               group: studentRozklad['group']
-                            });
+                            }).then().catch();
                         }
                       }
                     ]
                   });
-                  confirm.present();
+                  confirm.present().then().catch();
                 } else {
-                  this.nav.push(StudentComponent);
+                  this.nav.push(StudentComponent).then().catch();
                 }
               }
             );
         } else {
-          this.nav.push(StudentComponent);
+          this.nav.push(StudentComponent).then().catch();
         }
       })
       .catch(() => {
-        this.nav.push(StudentComponent);
+        this.nav.push(StudentComponent).then().catch();
       });
 
   }
@@ -148,26 +148,26 @@ export class MyApp {
                 });
                 confirm.present();
               } else {
-                this.nav.push(TeacherComponent);
+                this.nav.push(TeacherComponent).then().catch();
               }
             });
         } else {
-          this.nav.push(TeacherComponent);
+          this.nav.push(TeacherComponent).then().catch();
         }
 
       });
   }
 
   openSetup() {
-    this.nav.push(SetupComponent);
+    this.nav.push(SetupComponent).then().catch();
   }
 
   openAbout() {
-    this.nav.push(AboutComponent);
+    this.nav.push(AboutComponent).then().catch();
   }
 
   openHours() {
-    this.nav.push(HoursComponent);
+    this.nav.push(HoursComponent).then().catch();
   }
 
   // подписаться на получение файла time-table.json

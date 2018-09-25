@@ -17,6 +17,7 @@ export class FirestoreLogProvider {
     const path = `Home/${Date.now()}`;
     const homeDoc = this.fireStore.doc<any>(path);
     let userIpAddr = {ip: null};
+    // перехват runtime-error при отладке
     try {
       userIpAddr = await this.networkInterface.getCarrierIPAddress();
     } catch (e) {
