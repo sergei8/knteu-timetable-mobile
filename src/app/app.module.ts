@@ -11,11 +11,19 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {ErrorHandler, NgModule} from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
-import {HttpModule} from '@angular/http';
+import {HttpClientModule} from '@angular/common/http';
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {AppRate} from '@ionic-native/app-rate';
+import {Device} from '@ionic-native/device';
+// import {Geolocation}from'@ionic-native/geolocation';
+import {NetworkInterface}from '@ionic-native/network-interface';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { firebaseConfig } from './credentials';
+
 
 import {MyApp} from './app.component';
 import {HomeComponent} from '../components/home/home';
@@ -29,6 +37,7 @@ import {HoursComponent} from '../components/hours/hours';
 
 import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
+import { FirestoreLogProvider } from '../providers/firestore-log/firestore-log';
 
 @NgModule({
   declarations: [
@@ -46,7 +55,9 @@ import {SharedObjects} from '../providers/shared-data/shared-data';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -65,9 +76,13 @@ import {SharedObjects} from '../providers/shared-data/shared-data';
     StatusBar,
     SplashScreen,
     AppRate,
+    Device,
+    // Geolocation,
+    NetworkInterface,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
-    SharedObjects
+    SharedObjects,
+    FirestoreLogProvider
   ]
 })
 export class AppModule {

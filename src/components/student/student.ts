@@ -4,6 +4,8 @@ import {DataProvider} from '../../providers/data/data';
 import {StudentTtComponent} from '../student-tt/student-tt';
 import {Nav} from 'ionic-angular';
 
+import {FirestoreLogProvider} from '../../providers/firestore-log/firestore-log';
+
 import * as _ from 'lodash';
 import * as $ from 'jquery';
 
@@ -26,7 +28,8 @@ export class StudentComponent {
   wdp: object;    // объект куда формируется расписание выбранной группы
 
   constructor(public nav: Nav, private sharedObjects: SharedObjects,
-              private data: DataProvider) {
+              private data: DataProvider,
+              private fireStore: FirestoreLogProvider) {
     this.allTimeTable = this.sharedObjects.allTimeTable;
     if (!this.sharedObjects.isConnected) {
       this.data.showToastMessage('У Вас відсутнє підключення до Мережі!', 'bottom',
@@ -133,6 +136,8 @@ export class StudentComponent {
         )
       )
     );
+
+    this.fireStore.setStudentPageLog(this.selectedFacName, this.selectedCourse, this.selectedGruppa);
 
     this.nav.push(StudentTtComponent,
       {

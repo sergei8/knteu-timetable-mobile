@@ -13,9 +13,12 @@ import {TeacherTtComponent} from "../components/teacher-tt/teacher-tt";
 import {AboutComponent} from '../components/about/about';
 import {HoursComponent} from '../components/hours/hours';
 
+
 import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
+import {FirestoreLogProvider} from '../providers/firestore-log/firestore-log'
 
+// import {IHomePageLog} from '../providers/firestore-log/firestore-log'
 
 @Component({
   templateUrl: 'app.html'
@@ -36,11 +39,13 @@ export class MyApp {
               public splashScreen: SplashScreen,
               private dataProvider: DataProvider,
               private sharedObjects: SharedObjects,
-              private alert: AlertController) {
+              private alert: AlertController,
+              private fireStore: FirestoreLogProvider) {
 
     this.splashScreen.show();
     this.readConfig();
     this.initializeApp();
+    this.fireStore.setHomePageLog();
   }
 
   initializeApp() {
@@ -76,6 +81,10 @@ export class MyApp {
                         text: 'Так',
                         cssClass: 'alertButton',
                         handler: () => {
+                          // пишем лог по экрану студента
+                          this.fireStore.setStudentPageLog(studentRozklad['facName'],
+                            studentRozklad['course'], studentRozklad['group'], true);
+                          // переход на экран студента
                           this.nav.push(StudentTtComponent,
                             {
                               wdp: studentRozklad['wdp'],
@@ -182,7 +191,7 @@ export class MyApp {
   }
 
   // получіть конфіг-файл
-  readConfig() {
+  readConfig(): void {
     // console.log(this.configUrl);
     this.dataProvider.getFile(this.configUrl)
       .subscribe(
@@ -199,6 +208,5 @@ export class MyApp {
         }
       );
   }
-
 
 }

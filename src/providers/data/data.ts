@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs/Observable";
 import {AlertController} from 'ionic-angular';
@@ -15,7 +15,7 @@ const localforage: LocalForage = require("localforage");
 @Injectable()
 export class DataProvider {
 
-  constructor(public http: Http,
+  constructor(public http: HttpClient,
               private alert: AlertController,
               private sharedData: SharedObjects,
               private toast: ToastController) {
@@ -23,7 +23,7 @@ export class DataProvider {
 
   getFile(url): Observable<Object> {
     return this.http.get(url)
-      .map(response => response.json());
+      // .map(response => response);
   }
 
   // сохраняет распісаніе студента или препода локально
@@ -137,10 +137,11 @@ export class DataProvider {
     toast.present();
   }
 
+/*
   getPrepodImgUrl(name: string): string {
     let url = '';
     const dummy_img = 'assets/img/person.png';
-    /* если в allTimeTables нету поля  details (ошибка) то замещаем url заставкой*/
+    /!* если в allTimeTables нету поля  details (ошибка) то замещаем url заставкой*!/
     try {
       url = this.sharedData.allTimeTable[name]['details']['img_url'];
     } catch (e) {
@@ -152,6 +153,7 @@ export class DataProvider {
     // возвращает или реальный урл или заставку
     return url != null ? url : dummy_img;
   }
+*/
 
   getTeacherWdp(name: string): any[] {
     let wdp = $.extend(true, {}, this.sharedData.WeekDayPara);    //  очищаем расписание группы
