@@ -1,3 +1,4 @@
+<!--todo убирать список преподов при нажатии на крестик (х)-->
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
@@ -10,13 +11,44 @@
 <ion-content padding class="page-home main-fon">
 
   <ion-searchbar (ionInput)="getTeacher($event)"
-                 [placeholder]="placeholder">
+                 placeholder="Введіть прізвище">
   </ion-searchbar>
-  <ion-list padding>
+  <!--<ion-list padding *ngIf="!isTeachersListEmpty()">-->
+  <ion-list padding *ngIf="teachers.length > 0">
     <button ion-item *ngFor="let teacher  of teachers" (click)="selectedTeacher(teacher)">
       {{ teacher }}
     </button>
-
   </ion-list>
+
+    <ion-list *ngIf="teachers.length == 0">
+      <ion-list-header>
+        <ion-label>Або виберіть:</ion-label>
+      </ion-list-header>
+      <ion-item no-lines style="border-radius: 10px;">
+        <ion-select [(ngModel)]="selectedFacName" interface="popover" placeholder="Факультет"
+                    style="width:100%!important;max-width: 100%!important;"
+                    (ionChange)="getDepsByFac()" >
+          <ion-option *ngFor="let facName of facNameList" >{{facName}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item-divider no-lines class="divider-transparent"></ion-item-divider>
+      <ion-item no-lines style="border-radius: 10px;">
+        <ion-select [(ngModel)]="selectedDepName" interface="popover" placeholder="Кафедра"
+                    style="width:100%!important;max-width: 100%!important;" >
+          <ion-option *ngFor="let depName of depNameList" >{{depName}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item-divider no-lines class="divider-transparent"></ion-item-divider>
+    </ion-list>
+
+    <ion-row>
+      <ion-col text-center>
+        <button ion-button round outline large center class="menuShowButton"
+                [disabled]="!(selectedFacName || selectedDepName)"
+                (click)="okClicked()" *ngIf="teachers.length == 0">
+          Дивитись
+        </button>
+      </ion-col>
+    </ion-row>
 
 </ion-content>

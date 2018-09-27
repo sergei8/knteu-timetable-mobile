@@ -35,9 +35,12 @@ export class StudentComponent {
       this.data.showToastMessage('У Вас відсутнє підключення до Мережі!', 'bottom',
         'warningToast', true, 0);
     }
-    this.getFacNameList();
+
+    this.facNameList = this.data.getFacNameList();
+    this.groupList = [];
   }
 
+/*
   getFacNameList() {
 
     let facNameList: string[] = [];
@@ -57,6 +60,7 @@ export class StudentComponent {
     this.facNameList = facNameList.sort();
     this.groupList = [];
   }
+*/
 
   getCourseList() {
 

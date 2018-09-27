@@ -14,7 +14,7 @@
     </ion-list-header>
     <ion-item no-lines>
       <ion-label>Факультет</ion-label>
-      <ion-select okText="Ok" cancelText="Відмова" [(ngModel)]="selectedFacName"
+      <ion-select [(ngModel)]="selectedFacName"
                   (ionChange)="getCourseList()" interface="popover">
         <ion-option *ngFor="let facName of facNameList">{{facName}}</ion-option>
       </ion-select>
@@ -23,7 +23,7 @@
 
     <ion-item no-lines>
       <ion-label>Курс</ion-label>
-      <ion-select okText="Ok" cancelText="Відмова" [(ngModel)]="selectedCourse"
+      <ion-select [(ngModel)]="selectedCourse"
                   (ionChange)="getGroupList()" interface="popover">
         <ion-option *ngFor="let course of courseList">{{course}}</ion-option>
       </ion-select>
@@ -32,7 +32,7 @@
 
     <ion-item no-lines>
       <ion-label>Група</ion-label>
-      <ion-select okText="Ok" cancelText="Відмова" [(ngModel)]="selectedGruppa" interface="popover">
+      <ion-select [(ngModel)]="selectedGruppa" interface="popover">
         <ion-option *ngFor="let group of groupList">{{group}}</ion-option>
       </ion-select>
     </ion-item>

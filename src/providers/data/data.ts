@@ -23,7 +23,7 @@ export class DataProvider {
 
   getFile(url): Observable<Object> {
     return this.http.get(url)
-      // .map(response => response);
+    // .map(response => response);
   }
 
   // сохраняет распісаніе студента или препода локально
@@ -137,24 +137,29 @@ export class DataProvider {
     toast.present().then().catch();
   }
 
-/*
-  getPrepodImgUrl(name: string): string {
-    let url = '';
-    const dummy_img = 'assets/img/person.png';
-    /!* если в allTimeTables нету поля  details (ошибка) то замещаем url заставкой*!/
-    try {
-      url = this.sharedData.allTimeTable[name]['details']['img_url'];
-    } catch (e) {
-      url = dummy_img;
+  /*
+    getPrepodImgUrl(name: string): string {
+      let url = '';
+      const dummy_img = 'assets/img/person.png';
+      /!* если в allTimeTables нету поля  details (ошибка) то замещаем url заставкой*!/
+      try {
+        url = this.sharedData.allTimeTable[name]['details']['img_url'];
+      } catch (e) {
+        url = dummy_img;
+      }
+      // return this.sharedData.allTimeTable[name]['details']['img_url'];
+      // console.log(url);
+
+      // возвращает или реальный урл или заставку
+      return url != null ? url : dummy_img;
     }
-    // return this.sharedData.allTimeTable[name]['details']['img_url'];
-    // console.log(url);
+  */
 
-    // возвращает или реальный урл или заставку
-    return url != null ? url : dummy_img;
-  }
-*/
-
+  /**
+   * выбирает расписание преподавателя из TimeRable
+   * @param {string} name - фио препода
+   * @return {any[]} расписание и сведения о преподе (фио, фотка, ...)
+   */
   getTeacherWdp(name: string): any[] {
     let wdp = $.extend(true, {}, this.sharedData.WeekDayPara);    //  очищаем расписание группы
     let teacherDetails: object = {};
@@ -175,6 +180,60 @@ export class DataProvider {
       )
     );
     return [wdp, teacherDetails];
+  }
+
+  /**
+   * строит список факультетов из TimeTable
+   * @return {string[]} - список фак-тов
+   */
+  getFacNameList(): string[] {
+
+    let facNameList: string[] = [];
+    _.each(this.sharedData.allTimeTable, (fio) =>
+      _.forEach(this.sharedData.weekNames.map(x => fio[x]), (week) =>
+        _.each(week, (day) =>
+          _.each(day, (para) => {
+              if (!(_.includes(facNameList, para[0]))) {
+                facNameList.push(para[0]);    // build faculties menu
+              }
+            }
+          )
+        )
+      )
+    );
+    return facNameList.sort();
+  }
+
+  /**
+   * Выбирает из Timetable...details полные названия факультетов и кафедр
+   * @return {object} - {'fac' - список факультетов, 'dep' - список кафедр}
+   */
+  getFacDepNameList(facName: string = null): object {
+
+    let depFacNames = {
+      'fac': <string[]>[],
+      'dep': <string[]>[]
+    };
+    _.each(this.sharedData.allTimeTable, (fio) => {
+        // если свойство `details` присутствует у препода то формируем списки
+        if (fio.details) {
+          if (_.indexOf(depFacNames.fac, fio.details.fac) === -1) {
+            depFacNames.fac.push(fio.details.fac);
+          }
+          // если название фак-та не задано, то выбираем все каф-ры
+          if (!facName) {
+            if (_.indexOf(depFacNames.dep, fio.details.dep) === -1) {
+              depFacNames.dep.push(fio.details.dep);
+            }
+          } else { /* иначе выбираем каф-ры по факультету facName*/
+            if (_.indexOf(depFacNames.dep, fio.details.dep) === -1 && facName === fio.details.fac) {
+              depFacNames.dep.push(fio.details.dep);
+            }
+          }
+        }
+      }
+    );
+    return depFacNames;
   }
 
 }
