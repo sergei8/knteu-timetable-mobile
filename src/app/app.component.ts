@@ -45,7 +45,7 @@ export class MyApp {
     this.splashScreen.show();
     this.readConfig();
     this.initializeApp();
-    this.fireStore.setHomePageLog().then().catch();
+    // this.fireStore.setHomePageLog().then().catch();
   }
 
   initializeApp() {

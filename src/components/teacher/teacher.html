@@ -15,7 +15,7 @@
   </ion-searchbar>
   <!--<ion-list padding *ngIf="!isTeachersListEmpty()">-->
   <ion-list padding *ngIf="teachers.length > 0">
-    <button ion-item *ngFor="let teacher  of teachers" (click)="selectedTeacher(teacher)">
+    <button ion-item *ngFor="let teacher  of teachers.sort()" (click)="selectedTeacher(teacher)">
       {{ teacher }}
     </button>
   </ion-list>

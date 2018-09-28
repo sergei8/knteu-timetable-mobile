@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {FirestoreLogProvider} from '../../providers/firestore-log/firestore-log'
 
 @Component({
   selector: 'home',
@@ -6,7 +7,8 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
-  constructor() {
+  constructor(private fireStore: FirestoreLogProvider) {
+    this.fireStore.setHomePageLog().then().catch()
   }
 
 }
