@@ -45,6 +45,8 @@ export class MyApp {
     this.splashScreen.show();
     this.readConfig();
     this.initializeApp();
+    this.readTimeTable();
+
     // this.fireStore.setHomePageLog().then().catch();
   }
 
@@ -173,7 +175,7 @@ export class MyApp {
   // подписаться на получение файла time-table.json
   readTimeTable() {
     // todo отладочная вставка - удалить потом assets/db/time-table...
-    // this.timeTableUrl = 'http://localhost:8100/assets/db/time-table-new.json';
+    // this.timeTableUrl = 'http://localhost:8100/assets/db/time-table.json';
     this.timeTableUrl = 'https://raw.githubusercontent.com/sergei8/TT-site/master/assets/db/time-table-new.json';
     // ------------------
     this.dataProvider.getFile(this.timeTableUrl)
@@ -204,7 +206,7 @@ export class MyApp {
         },
         () => {
           /* когда app-config прочітан визиваем загрузку time-table.json*/
-          this.readTimeTable();
+          // this.readTimeTable();
         }
       );
   }
