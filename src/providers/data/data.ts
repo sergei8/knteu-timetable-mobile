@@ -137,23 +137,6 @@ export class DataProvider {
     toast.present().then().catch();
   }
 
-  /*
-    getPrepodImgUrl(name: string): string {
-      let url = '';
-      const dummy_img = 'assets/img/person.png';
-      /!* если в allTimeTables нету поля  details (ошибка) то замещаем url заставкой*!/
-      try {
-        url = this.sharedData.allTimeTable[name]['details']['img_url'];
-      } catch (e) {
-        url = dummy_img;
-      }
-      // return this.sharedData.allTimeTable[name]['details']['img_url'];
-      // console.log(url);
-
-      // возвращает или реальный урл или заставку
-      return url != null ? url : dummy_img;
-    }
-  */
 
   /**
    * выбирает расписание преподавателя из TimeRable
