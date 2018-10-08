@@ -18,8 +18,6 @@ import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
 import {FirestoreLogProvider} from '../providers/firestore-log/firestore-log'
 
-// import {IHomePageLog} from '../providers/firestore-log/firestore-log'
-
 @Component({
   templateUrl: 'app.html'
 })
@@ -175,8 +173,8 @@ export class MyApp {
   // подписаться на получение файла time-table.json
   readTimeTable() {
     // todo отладочная вставка - удалить потом assets/db/time-table...
-    this.timeTableUrl = 'http://localhost:8100/assets/db/time-table.json';
-    // this.timeTableUrl = 'https://raw.githubusercontent.com/sergei8/TT-site/master/assets/db/time-table-new.json';
+    // this.timeTableUrl = 'http://localhost:8100/assets/db/time-table.json';
+    this.timeTableUrl = 'https://raw.githubusercontent.com/sergei8/TT-site/master/assets/db/time-table-new.json';
     // ------------------
     this.dataProvider.getFile(this.timeTableUrl)
       .subscribe(
