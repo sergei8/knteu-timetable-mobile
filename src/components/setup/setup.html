@@ -31,6 +31,29 @@
     </ion-card-content>
   </ion-card>
 
+  <ion-card>
+    <ion-card-header no-padding text-center class="setupHeader">
+      <ion-card-title>
+        Рейтинг викладачей
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-8>
+            Увімкнути/вимкнути
+          </ion-col>
+          <ion-col offset-2>
+            <ion-checkbox [(ngModel)]="isAllowRating" role="button"
+                          (ionChange)="allowRating()" class="setupHeader"
+                          style="margin-top: 15px!important;">
+            </ion-checkbox>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
   <ion-card padding-bottom>
     <ion-card-header no-padding text-center class='setupHeader'>
       <ion-card-title>

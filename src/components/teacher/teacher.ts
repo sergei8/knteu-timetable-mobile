@@ -71,9 +71,9 @@ export class TeacherComponent {
 
     // this.wdp = $.extend(true, {}, this.sharedObjects.WeekDayPara);    //  очищаем расписание группы
 
-    const teacheInfo: any[] = this.data.getTeacherWdp(teacher);
-    this.wdp = teacheInfo[0];
-    this.teacherDetails = teacheInfo[1];
+    const teacherInfo: any[] = this.data.getTeacherWdp(teacher);
+    this.wdp = teacherInfo[0];
+    this.teacherDetails = teacherInfo[1];
 
     /*
         _.each(this.allTimeTable, (fio, teacherName) =>
@@ -93,14 +93,17 @@ export class TeacherComponent {
         );
     */
 
-    this.fireStore.setTeacherPageLog(teacher).then().catch();
+    // логировать если разрешено
+    if (!this.sharedObjects.stopLogging) {
+      this.fireStore.setTeacherPageLog(teacher).then().catch();
+    }
 
     this.nav.push(TeacherTtComponent,
       {
         wdp: this.wdp,
         teacher: teacher,
         details: this.teacherDetails
-      });
+      }).then().catch();
 
   }
 

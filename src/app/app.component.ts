@@ -17,6 +17,7 @@ import {HoursComponent} from '../components/hours/hours';
 import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
 import {FirestoreLogProvider} from '../providers/firestore-log/firestore-log'
+import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch';
 
 @Component({
   templateUrl: 'app.html'
@@ -38,12 +39,20 @@ export class MyApp {
               private dataProvider: DataProvider,
               private sharedObjects: SharedObjects,
               private alert: AlertController,
-              private fireStore: FirestoreLogProvider) {
+              private fireStore: FirestoreLogProvider,
+              private mongodbStitchProvider: MongodbStitchProvider) {
 
     this.splashScreen.show();
     this.readConfig();
     this.initializeApp();
     this.readTimeTable();
+
+    // подключение к mongodb через mongo stitch
+    if (this.mongodbStitchProvider.initClient()){
+      console.log("[mongoClient] : done!")
+    }else {
+       console.log("[mongoClient] : error!")
+    }
 
     // this.fireStore.setHomePageLog().then().catch();
   }

@@ -12,6 +12,7 @@ const localforage: LocalForage = require("localforage");
 export class SetupComponent {
 
   isSaveRozklad: boolean;
+  isAllowRating: boolean;
 
   constructor(private sharedData: SharedObjects, private data: DataProvider) {
 
@@ -29,6 +30,12 @@ export class SetupComponent {
     // console.log('write ****', this.sharedData.globalParams);
     // localforage.setItem('setup', {});
     localforage.setItem('setup', this.sharedData.globalParams);
+  }
+
+  allowRating() {
+    this.sharedData.globalParams['allowRating'] = this.isAllowRating;
+    localforage.setItem('setup', this.sharedData.globalParams);
+
   }
 
   clearRozklad() {

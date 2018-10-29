@@ -7,7 +7,6 @@ import {NetworkInterface} from '@ionic-native/network-interface';
 @Injectable()
 export class FirestoreLogProvider {
 
-
   constructor(private fireStore: AngularFirestore,
               private device: Device,
               private networkInterface: NetworkInterface) {

@@ -47,11 +47,18 @@
             width: auto; height: auto; max-width: 50%; max-height: 50%'>
   <p style="text-align: center">{{getFacultet()}}</p>
   <p style="text-align: center">{{getDepartment()}}</p>
+  <p style="text-align: center">{{rating}}</p>
 </ion-content>
 
 
 <ion-fab mini bottom right padding *ngIf="showAddButton">
   <button ion-fab (click)="saveTimeTable()">
+    <ion-icon name="add"></ion-icon>
+  </button>
+</ion-fab>
+
+<ion-fab mini bottom left padding >
+  <button ion-fab (click)="showRating()">
     <ion-icon name="add"></ion-icon>
   </button>
 </ion-fab>
