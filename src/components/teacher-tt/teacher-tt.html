@@ -47,7 +47,10 @@
             width: auto; height: auto; max-width: 50%; max-height: 50%'>
   <p style="text-align: center">{{getFacultet()}}</p>
   <p style="text-align: center">{{getDepartment()}}</p>
-  <p style="text-align: center">{{rating}}</p>
+  <p *ngIf="showVotes" style="text-align: center">
+    <!--<neutron-rating [rating]='4' [starColour]="'#FDD835'" [starSize]="4"></neutron-rating>-->
+    {{rating}}/{{votedUsers}}
+  </p>
 </ion-content>
 
 
@@ -57,7 +60,7 @@
   </button>
 </ion-fab>
 
-<ion-fab mini bottom left padding >
+<ion-fab mini bottom left padding>
   <button ion-fab (click)="showRating()">
     <ion-icon name="add"></ion-icon>
   </button>

@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {NavParams} from 'ionic-angular';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
 import {DataProvider} from '../../providers/data/data';
 import {Nav} from 'ionic-angular';
 import {RatingComponent} from "../rating/rating";
 import {MongodbStitchProvider} from '../../providers/mongodb-stitch/mongodb-stitch';
+// import {NeutronRatingModule} from 'neutron-star-rating';
 
 import * as _ from 'lodash';
 
@@ -23,12 +24,15 @@ export class TeacherTtComponent {
   paraNamberList: string[];
   eyeOffSwitch: boolean[];
   eyeOnSwitch: boolean[];
-  rating: number;
+  rating: number;       // рейтинг
+  votedUsers: number;   // число проголосовавших
+  showVotes: boolean;   // выключается при ошибке доступа к БД что бы не показывать рейты
 
   showAddButton: boolean;
 
   constructor(public navParams: NavParams, private sharedObjects: SharedObjects,
-              public data: DataProvider, public nav: Nav, private mongodbStitchProvider: MongodbStitchProvider) {
+              public data: DataProvider, public nav: Nav,
+              private mongodbStitchProvider: MongodbStitchProvider) {
 
     this.teacher = navParams.get('teacher');
     this.wdp = navParams.get('wdp');
@@ -44,18 +48,15 @@ export class TeacherTtComponent {
     this.showAddButton = this.sharedObjects.globalParams['saveRozklad'];
 
     this.rating = 0;
-    // this.mongodbStitchProvider.initClient().then();
-    this.showTeacherRating();
-
+    this.votedUsers = 0;
+    this.showVotes = true;
+    this.showTeacherRating(this.teacher);
 
     // заполним переключатели видимости недель
     for (let i in this.weekNames) {
       this.weekShowSwitch[this.weekNames[i]] = true;
     }
 
-  }
-
-  ngOnInit() {
   }
 
   /**
@@ -114,18 +115,57 @@ export class TeacherTtComponent {
     return this.details ? this.details['dep'] : '';
   }
 
-  showTeacherRating(): void {
+  /**
+   * извлекает из БД документ с рейтингами препода teacherName
+   * @param teacherName - имя препода
+   */
+  showTeacherRating(teacherName): void {
+    // в ratings накапливаются последние рейтинги выданные пользователями
+    let ratings = [];
     // подключаемся к БД рейтингов
-    /*
-        this.mongodbStitchProvider.initClient().then(() => {
-            this.mongodbStitchProvider.getTeacherRating("препод")
-              .then(rating => this.rating = rating)
+    this.mongodbStitchProvider.getTeacherRatingsList("препод")
+      .then(ratingList => {
+        if (ratingList.length > 0) {
+          // в rateList - все рейтинги, оставленные преподу
+          let rateList = ratingList[0].rateList;
+          // перебираем рейтинги по каждому пользователю;
+          for (let userId in rateList) {
+            if (rateList.hasOwnProperty(userId)) {
+              // в userRatesList - рейтинги, оставленные пользователем для этого препода
+              let userRatesList: object[] = rateList[userId];
+              // выбираем из рейтингов пользователя последний оставленный
+              let lastRate = this.selectLastRate(userRatesList);
+              // let lastRate = userRatesList.reduce((max, o) => Math.max(max, o["date"]), 0);
+              // console.log(userId, rateList[userId], lastRate);
+              ratings.push(lastRate);
+            }
           }
-        );
-    */
-    this.mongodbStitchProvider.getTeacherRating("препод")
-      .then(rating => this.rating = rating);
+        }
+        this.rating = _.round(_.sum(ratings) / ratings.length, 1);
+        this.votedUsers = ratings.length;
+      })
+      // если ошибка доступа к БД, то выключаем показ рейтинга
+      .catch(err => {
+        console.log('ошибка при доступе к БД', err);
+        this.showVotes = false;
+      });
+  }
 
+  /**
+   * находит последний рейт, установленный данным пользователем
+   * @param userRatesList - массив рейтингов [{date:__, rating:__}...]
+   * @return {number} - последний рейтинг
+   */
+  private selectLastRate(userRatesList: object[]): number {
+    let lastRate = 0;
+    let minDate = new Date("01/01/01");
+    userRatesList.forEach((rate) => {
+      if (rate['date'] > minDate) {
+        lastRate = rate['rating'];
+        minDate = rate['date'];
+      }
+    });
+    return lastRate;
   }
 
   async showRating() {
