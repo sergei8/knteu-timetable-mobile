@@ -48,9 +48,12 @@
   <p style="text-align: center">{{getFacultet()}}</p>
   <p style="text-align: center">{{getDepartment()}}</p>
   <p *ngIf="showVotes" style="text-align: center">
-    <!--<neutron-rating [rating]='4' [starColour]="'#FDD835'" [starSize]="4"></neutron-rating>-->
-    {{rating}}/{{votedUsers}}
+    <span *ngFor="let star of starsList">
+      <ion-icon name={{star}} style="color: #FFCC33; font-size: 2em"></ion-icon>
+    </span><br>
+    <span *ngIf="votedUsers > 0">{{rating}}/{{votedUsers}}</span>
   </p>
+
 </ion-content>
 
 

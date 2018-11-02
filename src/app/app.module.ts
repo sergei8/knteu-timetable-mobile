@@ -21,7 +21,7 @@ import {NetworkInterface} from '@ionic-native/network-interface';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {firebaseConfig} from './credentials';
-// import {NeutronRatingModule} from 'neutron-star-rating';
+import {StarRatingModule} from 'ionic3-star-rating';
 
 import {MyApp} from './app.component';
 import {HomeComponent} from '../components/home/home';
@@ -59,7 +59,8 @@ import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch'
     HttpClientModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
-    // NeutronRatingModule
+    StarRatingModule,
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [

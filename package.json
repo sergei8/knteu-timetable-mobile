@@ -45,6 +45,7 @@
     "firebase": "^5.5.1",
     "ionic-angular": ">=3.9.2",
     "ionic-plugin-keyboard": "^2.2.1",
+    "ionic3-star-rating": "^1.1.4",
     "ionicons": "3.0.0",
     "jquery": "^3.2.1",
     "localforage": "^1.5.0",

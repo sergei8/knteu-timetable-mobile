@@ -6,8 +6,12 @@ import {AlertController} from 'ionic-angular';
 import {SharedObjects} from '../shared-data/shared-data';
 import {ToastController} from 'ionic-angular';
 
+import {MongodbStitchProvider} from '../mongodb-stitch/mongodb-stitch';
+
 import * as $ from 'jquery';
 import * as _ from 'lodash';
+import {async} from "rxjs/internal/scheduler/async";
+// import {RatingComponent} from "../../components/rating/rating";
 
 declare const require: any;
 const localforage: LocalForage = require("localforage");
@@ -18,7 +22,8 @@ export class DataProvider {
   constructor(public http: HttpClient,
               private alert: AlertController,
               private sharedData: SharedObjects,
-              private toast: ToastController) {
+              private toast: ToastController,
+              private mongodbStitchProvider: MongodbStitchProvider) {
   }
 
   getFile(url): Observable<Object> {
@@ -137,9 +142,8 @@ export class DataProvider {
     toast.present().then().catch();
   }
 
-
   /**
-   * выбирает расписание преподавателя из TimeRable
+   * выбирает расписание преподавателя из TimeTable
    * @param {string} name - фио препода
    * @return {any[]} расписание и сведения о преподе (фио, фотка, ...)
    */
@@ -218,6 +222,83 @@ export class DataProvider {
     );
     return depFacNames;
   }
+
+
+  /**
+   * извлекает из БД документ с рейтингами препода teacherName
+   * @param teacherName
+   * @return {Promise<Array<any>>} массив: [rating, votedUsers, showRate]
+   */
+  showTeacherRating(teacherName): Promise<Array<any>> {
+    // в ratings накапливаются последние рейтинги выданные пользователями
+    let ratings = [];
+    // инициализируем переменные возврата
+    let rating = 0;
+    let votedUsers = 0;
+    let showVotes = true;
+    return new Promise<any>(resolve => {
+      // подключаемся к БД рейтингов
+      this.mongodbStitchProvider.getTeacherRatingsList("препод111")
+        .then(ratingList => {
+          // console.log(ratingList);
+          if (ratingList.length > 0) {
+            // в rateList - все рейтинги, оставленные преподу
+            let rateList = ratingList[0].rateList;
+            // перебираем рейтинги по каждому пользователю;
+            for (let userId in rateList) {
+              if (rateList.hasOwnProperty(userId)) {
+                // в userRatesList - рейтинги, оставленные пользователем для этого препода
+                let userRatesList: object[] = rateList[userId];
+                // выбираем из рейтингов пользователя последний оставленный
+                let lastRate = this.selectLastRate(userRatesList);
+                // добавляем его в массив актуальных рейтов
+                ratings.push(lastRate);
+              }
+            }
+          }
+          rating = _.round(_.sum(ratings) / ratings.length, 1);
+          votedUsers = ratings.length;
+          resolve([rating, votedUsers, showVotes]);
+        })
+        // если ошибка доступа к БД, то выключаем показ рейтинга
+        .catch(err => {
+          console.log('ошибка при доступе к БД', err);
+          showVotes = false;
+          resolve([0, 0, false]);
+        })
+    })
+  }
+
+  /**
+   * находит последний рейт, установленный данным пользователем
+   * @param userRatesList - массив рейтингов [{date:__, rating:__}...]
+   * @return {number} - последний рейтинг
+   */
+  private selectLastRate(userRatesList: object[]): number {
+    let lastRate = 0;
+    let minDate = new Date("01/01/01");
+    userRatesList.forEach((rate) => {
+      if (rate['date'] > minDate) {
+        lastRate = rate['rating'];
+        minDate = rate['date'];
+      }
+    });
+    return lastRate;
+  }
+
+  createStarsList(rating): string[] {
+    let starsList = new Array(5).fill("star-outline");
+    let numberOfStars = Math.floor(rating);
+    let halfStar: boolean = rating - numberOfStars > 0;
+    for (let i = 0; i < numberOfStars; i++) {
+      starsList[i] = "star"
+    }
+    if (halfStar) {
+      starsList[numberOfStars] = 'star-half';
+    }
+    return starsList;
+  }
+
 
 }
 
