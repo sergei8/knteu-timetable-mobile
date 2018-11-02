@@ -47,7 +47,6 @@ export class MongodbStitchProvider {
           .then(() => this.db.collection('teachers')
             .find({"name": teacherName}).asArray())
           .then(docs => {
-            // console.log(docs);
             resolve(docs);
           })
       }

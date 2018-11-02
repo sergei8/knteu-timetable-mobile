@@ -51,7 +51,7 @@ export class TeacherTtComponent {
     this.votedUsers = 0;
     this.showVotes = true;
 
-    this.data.showTeacherRating(this.teacher)
+    this.data.getTeacherRating(this.teacher)
       .then((result) => {
           [this.rating, this.votedUsers, this.showVotes] = result;
           // console.log('*********', result);
@@ -122,75 +122,6 @@ export class TeacherTtComponent {
   getDepartment(): string {
     return this.details ? this.details['dep'] : '';
   }
-
-  /*
-    /!**
-     * извлекает из БД документ с рейтингами препода teacherName
-     * @param teacherName - имя препода
-     *!/
-    showTeacherRating(teacherName): void {
-      // в ratings накапливаются последние рейтинги выданные пользователями
-      let ratings = [];
-      // подключаемся к БД рейтингов
-      this.mongodbStitchProvider.getTeacherRatingsList("препод111")
-        .then(ratingList => {
-          if (ratingList.length > 0) {
-            // в rateList - все рейтинги, оставленные преподу
-            let rateList = ratingList[0].rateList;
-            // перебираем рейтинги по каждому пользователю;
-            for (let userId in rateList) {
-              if (rateList.hasOwnProperty(userId)) {
-                // в userRatesList - рейтинги, оставленные пользователем для этого препода
-                let userRatesList: object[] = rateList[userId];
-                // выбираем из рейтингов пользователя последний оставленный
-                let lastRate = this.selectLastRate(userRatesList);
-                // добавляем его в массив актуальных рейтов
-                ratings.push(lastRate);
-              }
-            }
-          }
-          this.rating = _.round(_.sum(ratings) / ratings.length, 1);
-          this.votedUsers = ratings.length;
-          this.createStarsList();
-
-        })
-        // если ошибка доступа к БД, то выключаем показ рейтинга
-        .catch(err => {
-          console.log('ошибка при доступе к БД', err);
-          this.showVotes = false;
-        });
-    }
-
-    /!**
-     * находит последний рейт, установленный данным пользователем
-     * @param userRatesList - массив рейтингов [{date:__, rating:__}...]
-     * @return {number} - последний рейтинг
-     *!/
-    private selectLastRate(userRatesList: object[]): number {
-      let lastRate = 0;
-      let minDate = new Date("01/01/01");
-      userRatesList.forEach((rate) => {
-        if (rate['date'] > minDate) {
-          lastRate = rate['rating'];
-          minDate = rate['date'];
-        }
-      });
-      return lastRate;
-    }
-
-    private createStarsList() {
-      this.starsList = ["star-outline", "star-outline", "star-outline", "star-outline", "star-outline"];
-      let numberOfStars = Math.floor(this.rating);
-      let halfStar: boolean = this.rating - numberOfStars > 0;
-      for (let i = 0; i < numberOfStars; i++) {
-        this.starsList[i] = "star"
-      }
-      if (halfStar) {
-        this.starsList[numberOfStars] = 'star-half';
-      }
-
-    }
-  */
 
   async showRating() {
     await this.nav.push(RatingComponent,

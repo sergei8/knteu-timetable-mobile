@@ -10,8 +10,6 @@ import {MongodbStitchProvider} from '../mongodb-stitch/mongodb-stitch';
 
 import * as $ from 'jquery';
 import * as _ from 'lodash';
-import {async} from "rxjs/internal/scheduler/async";
-// import {RatingComponent} from "../../components/rating/rating";
 
 declare const require: any;
 const localforage: LocalForage = require("localforage");
@@ -223,13 +221,12 @@ export class DataProvider {
     return depFacNames;
   }
 
-
   /**
    * извлекает из БД документ с рейтингами препода teacherName
    * @param teacherName
    * @return {Promise<Array<any>>} массив: [rating, votedUsers, showRate]
    */
-  showTeacherRating(teacherName): Promise<Array<any>> {
+  getTeacherRating(teacherName): Promise<Array<any>> {
     // в ratings накапливаются последние рейтинги выданные пользователями
     let ratings = [];
     // инициализируем переменные возврата
@@ -240,7 +237,6 @@ export class DataProvider {
       // подключаемся к БД рейтингов
       this.mongodbStitchProvider.getTeacherRatingsList("препод111")
         .then(ratingList => {
-          // console.log(ratingList);
           if (ratingList.length > 0) {
             // в rateList - все рейтинги, оставленные преподу
             let rateList = ratingList[0].rateList;
@@ -298,7 +294,6 @@ export class DataProvider {
     }
     return starsList;
   }
-
 
 }
 
