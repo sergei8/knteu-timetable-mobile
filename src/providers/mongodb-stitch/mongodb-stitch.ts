@@ -6,6 +6,7 @@ import {
   StitchAppClient,
   RemoteMongoDatabase
 } from 'mongodb-stitch-browser-sdk';
+import {SharedObjects} from '../shared-data/shared-data';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class MongodbStitchProvider {
   appId: string;
   dbName: string;
 
-  constructor() {
+  constructor(private sharedObjects: SharedObjects) {
     this.appId = 'rating-kvicy';
     this.dbName = 'ratings';
   }
@@ -47,6 +48,7 @@ export class MongodbStitchProvider {
           .then(() => this.db.collection('teachers')
             .find({"name": teacherName}).asArray())
           .then(docs => {
+            this.sharedObjects.teacherRate = docs[0];
             resolve(docs);
           })
       }

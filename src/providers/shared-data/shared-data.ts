@@ -10,6 +10,7 @@ export class SharedObjects {
   globalParams: object;
   stopLogging: boolean;
   isConnected = true;  // наличие интернета
+  teacherRate: object;
 
   constructor() {
     this.globalParams = {};
