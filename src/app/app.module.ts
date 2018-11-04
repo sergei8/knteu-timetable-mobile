@@ -1,5 +1,4 @@
 // TODO: 1. Перенести time-table.json в облако MongoDB
-// TODO: 2. Прикрутить рейтинг преподавателей (mySQL?)
 
 // FIXME: 1. Поменять картинку в SplashScreen
 // FIXME: 2. Спрятать как-то config.json

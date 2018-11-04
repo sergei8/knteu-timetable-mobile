@@ -1,3 +1,5 @@
+//TODO: перед установкой неового релиза включить логгироваие
+
 import {Injectable} from '@angular/core';
 
 @Injectable()
@@ -10,7 +12,8 @@ export class SharedObjects {
   globalParams: object;
   stopLogging: boolean;
   isConnected = true;  // наличие интернета
-  teacherRate: object;
+  teacherRate: object;  // рейты текущего препода
+  currentUserDeviceId: string;
 
   constructor() {
     this.globalParams = {};

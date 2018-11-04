@@ -47,7 +47,7 @@
             width: auto; height: auto; max-width: 50%; max-height: 50%'>
   <p style="text-align: center">{{getFacultet()}}</p>
   <p style="text-align: center">{{getDepartment()}}</p>
-  <p *ngIf="showVotes" style="text-align: center">
+  <p *ngIf="showVotes" style="text-align: center; cursor: grab" (click)="showRating()">
     <span *ngFor="let star of starsList">
       <ion-icon name={{star}} style="color: #FFCC33; font-size: 2em"></ion-icon>
     </span><br>
