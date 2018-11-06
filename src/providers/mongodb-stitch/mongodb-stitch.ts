@@ -39,8 +39,9 @@ export class MongodbStitchProvider {
 
   /**
    * Ищет в коллекции `teachers`список рейтиногов для имя препода
+   * если препода нету, возвращает пустой обїект
    * @param teacherName - имя препода
-   * @return {Promise<number>}
+   * @return {Promise<number>} - массив с рейтингами
    */
   getTeacherRatingsList(teacherName): Promise<any> {
     return new Promise((resolve => {
@@ -48,7 +49,7 @@ export class MongodbStitchProvider {
           .then(() => this.db.collection('teachers')
             .find({"name": teacherName}).asArray())
           .then(docs => {
-            this.sharedObjects.teacherRate = docs[0];
+            this.sharedObjects.teacherRate = docs.length > 0 ? docs[0]['rateList'] : {};
             resolve(docs);
           })
       }

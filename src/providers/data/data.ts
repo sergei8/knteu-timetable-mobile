@@ -58,7 +58,7 @@ export class DataProvider {
         }
       ]
     });
-    confirm.present();
+    confirm.present().then();
   }
 
   readStudentRozklad() {
@@ -224,9 +224,12 @@ export class DataProvider {
   /**
    * извлекает из БД документ с рейтингами препода teacherName
    * @param teacherName
-   * @return {Promise<Array<any>>} массив: [rating, votedUsers, showRate]
+   * @return {Promise<Array<any>>} массив: [rating, votedUsers, showVote]
    */
   getTeacherRating(teacherName): Promise<Array<any>> {
+
+    teacherName = 'препод112';
+
     // в ratings накапливаются последние рейтинги выданные пользователями
     let ratings = [];
     // инициализируем переменные возврата
@@ -235,8 +238,9 @@ export class DataProvider {
     let showVotes = true;
     return new Promise<any>(resolve => {
       // подключаемся к БД рейтингов
-      this.mongodbStitchProvider.getTeacherRatingsList("препод111")
+      this.mongodbStitchProvider.getTeacherRatingsList(teacherName)
         .then(ratingList => {
+          console.log(ratingList);
           if (ratingList.length > 0) {
             // в rateList - все рейтинги, оставленные преподу
             let rateList = ratingList[0].rateList;
@@ -246,7 +250,7 @@ export class DataProvider {
                 // в userRatesList - рейтинги, оставленные пользователем для этого препода
                 let userRatesList: object[] = rateList[userId];
                 // выбираем из рейтингов пользователя последний оставленный
-                let lastRate = this.selectLastRate(userRatesList);
+                let lastRate = this.selectLastRate(userRatesList)[0];
                 // добавляем его в массив актуальных рейтов
                 ratings.push(lastRate);
               }
@@ -268,18 +272,18 @@ export class DataProvider {
   /**
    * находит последний рейт, установленный данным пользователем
    * @param userRatesList - массив рейтингов [{date:__, rating:__}...]
-   * @return {number} - последний рейтинг
+   * @return {number} - последний рейтинг и его дата
    */
-  private selectLastRate(userRatesList: object[]): number {
+  selectLastRate(userRatesList: object[]): any {
     let lastRate = 0;
-    let minDate = new Date("01/01/01");
+    let maxDate = new Date("01/01/01");
     userRatesList.forEach((rate) => {
-      if (rate['date'] > minDate) {
+      if (rate['date'] > maxDate) {
         lastRate = rate['rating'];
-        minDate = rate['date'];
+        maxDate = rate['date'];
       }
     });
-    return lastRate;
+    return [lastRate, maxDate];
   }
 
   createStarsList(rating): string[] {

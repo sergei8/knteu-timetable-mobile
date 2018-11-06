@@ -32,6 +32,7 @@ import {AboutComponent} from '../components/about/about';
 import {SetupComponent} from '../components/setup/setup';
 import {HoursComponent} from '../components/hours/hours';
 import {RatingComponent} from '../components/rating/rating';
+import {RatingStarsComponent} from '../components/rating-stars/rating-stars';
 
 import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
@@ -50,7 +51,8 @@ import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch'
     SetupComponent,
     HoursComponent,
     AboutComponent,
-    RatingComponent
+    RatingComponent,
+    RatingStarsComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +75,8 @@ import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch'
     SetupComponent,
     HoursComponent,
     AboutComponent,
-    RatingComponent
+    RatingComponent,
+    RatingStarsComponent
 
   ],
   providers: [

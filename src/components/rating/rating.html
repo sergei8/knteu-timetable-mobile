@@ -3,10 +3,34 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{teacher}}</ion-title>
+    <ion-title>Рейтинг викладача</ion-title>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding class="page-home main-fon" id="studentMenu">
+<ion-content padding class="page-home main-fon">
+  <ion-card>
+    <ion-list>
+      <ion-item>
+        <ion-avatar *ngIf="showAvatar" item-start>
+          <img [src]="img_url">
+        </ion-avatar>
+        {{last}}<br>{{first}} {{middle}}
+      </ion-item>
+      <ion-item-divider></ion-item-divider>
+    </ion-list>
+    <rating-stars style="text-align: center;"></rating-stars>
+    <!--<rating-stars [rating]="rating" style="text-align: center;"></rating-stars>-->
+  </ion-card>
+  <ion-row>
+    <ion-col text-center>
+      <button ion-button round outline large center class="menuShowButton"
+              [disabled]="!(selectedFacName && selectedCourse && selectedGruppa)"
+              (click)="okClicked()">
+        Підтвердити
+      </button>
+    </ion-col>
+  </ion-row>
+
 </ion-content>
+

@@ -4,7 +4,7 @@ import {SharedObjects} from '../../providers/shared-data/shared-data';
 import {DataProvider} from '../../providers/data/data';
 import {Nav} from 'ionic-angular';
 import {RatingComponent} from "../rating/rating";
-// import {MongodbStitchProvider} from '../../providers/mongodb-stitch/mongodb-stitch';
+import {AlertController} from 'ionic-angular';
 
 import * as _ from 'lodash';
 
@@ -31,8 +31,8 @@ export class TeacherTtComponent {
   showAddButton: boolean;
 
   constructor(public navParams: NavParams, private sharedObjects: SharedObjects,
-              public data: DataProvider, public nav: Nav) {
-              // private mongodbStitchProvider: MongodbStitchProvider) {
+              public data: DataProvider, public nav: Nav,
+              private alert: AlertController) {
 
     this.teacher = navParams.get('teacher');
     this.wdp = navParams.get('wdp');
@@ -54,7 +54,6 @@ export class TeacherTtComponent {
     this.data.getTeacherRating(this.teacher)
       .then((result) => {
           [this.rating, this.votedUsers, this.showVotes] = result;
-          // console.log('*********', result);
           this.starsList = data.createStarsList(this.rating);
         }
       )
@@ -122,6 +121,58 @@ export class TeacherTtComponent {
   getDepartment(): string {
     return this.details ? this.details['dep'] : '';
   }
+
+  /**
+   * проверяет было ли уже голосование с этого девайса
+   * выводит диалог да/нет и вызывает экран нолосования
+   */
+  checkForPrevRates() {
+    // отладка --------------------------------------------
+    this.sharedObjects.currentUserDeviceId = '1539103546779';
+    //-----------------------------------------------------
+
+    // если общий объект teacherRate содержит список рейтингов
+    // то делаем обработку
+    if (this.sharedObjects.teacherRate.hasOwnProperty('rateList')) {
+      const lastRates = this.sharedObjects.teacherRate['rateList'];
+      const deviceId = this.sharedObjects.currentUserDeviceId;
+      // проверяем, голосовал ли уже юзер за єтого препода
+      if (Object.keys(lastRates).indexOf(deviceId) != -1) {
+        //  если голосовал, находим результаты последнего гососования
+        let [rate, date] = this.data.selectLastRate(lastRates[deviceId]);
+        const warningMessage = `Ваша оцінка за ${date.toLocaleDateString()} була ${rate}. Бажаєте змінити її?`
+        // вывод предкпреждения
+        let confirm = this.alert.create({
+          subTitle: 'Попередження',
+          message: warningMessage,
+          buttons: [
+            {
+              text: 'Ні ',
+              cssClass: 'alertButton',
+              handler: () => {
+              }
+            },
+            {
+              text: 'Так',
+              cssClass: 'alertButton',
+              handler: () => {
+                this.showRating().then();
+              }
+            }
+          ]
+        });
+        confirm.present().then();
+      }
+      else {
+        this.showRating().then();
+      }
+    } else {
+      // иначе, если общий объект `teacherRate` пустой, то значит рейтингов
+      // по этому преподу не было и пееходим на экрай рейтов
+      this.showRating().then();
+    }
+  }
+
 
   async showRating() {
     await this.nav.push(RatingComponent,

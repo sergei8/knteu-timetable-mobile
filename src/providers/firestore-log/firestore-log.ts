@@ -3,18 +3,22 @@ import {Device} from '@ionic-native/device';
 import {AngularFirestore} from 'angularfire2/firestore';
 // import {Geolocation} from '@ionic-native/geolocation';
 import {NetworkInterface} from '@ionic-native/network-interface';
+import {SharedObjects} from '../shared-data/shared-data';
 
 @Injectable()
 export class FirestoreLogProvider {
 
   constructor(private fireStore: AngularFirestore,
               private device: Device,
-              private networkInterface: NetworkInterface) {
+              private networkInterface: NetworkInterface,
+              private sharedObjects: SharedObjects) {
   }
 
   async setHomePageLog() {
     const path = `Home/${Date.now()}`;
     const homeDoc = this.fireStore.doc<any>(path);
+    this.sharedObjects.currentUserDeviceId = this.device.uuid;
+
     let userIpAddr = {ip: null};
     // перехват runtime-error при отладке
     try {
