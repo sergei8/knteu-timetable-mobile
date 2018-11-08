@@ -10,23 +10,39 @@
 
 <ion-content padding class="page-home main-fon">
   <ion-card>
+    <!--<ion-card-title>-->
     <ion-list>
       <ion-item>
         <ion-avatar *ngIf="showAvatar" item-start>
           <img [src]="img_url">
         </ion-avatar>
-        {{last}}<br>{{first}} {{middle}}
+        <strong>{{last}}</strong><br>{{first}} {{middle}}
       </ion-item>
-      <ion-item-divider></ion-item-divider>
+      <ion-item>
+        <rating-chart [rating]="teacherRatingList"
+                      [newRate]="settedRate">
+        </rating-chart>
+      </ion-item>
+      <!--<ion-item-divider></ion-item-divider>-->
+      <hr>
+      <ion-item text-wrap text-justify>
+        Оцініть професійні та особисті якості викладача.<br>
+        Наскільки Ви задоволені методикою викладання:
+      </ion-item>
+      <ion-item>
+        <rating-stars style="text-align: center;"
+                      [(settedRate)]="settedRate">
+        </rating-stars>
+      </ion-item>
     </ion-list>
-    <rating-stars style="text-align: center;"></rating-stars>
-    <!--<rating-stars [rating]="rating" style="text-align: center;"></rating-stars>-->
   </ion-card>
+
+
   <ion-row>
     <ion-col text-center>
       <button ion-button round outline large center class="menuShowButton"
-              [disabled]="!(selectedFacName && selectedCourse && selectedGruppa)"
-              (click)="okClicked()">
+              [disabled]="settedRate == 0"
+              (click)="acceptClicked()">
         Підтвердити
       </button>
     </ion-col>

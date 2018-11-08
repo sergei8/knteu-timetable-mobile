@@ -1,11 +1,14 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'rating-stars',
   templateUrl: 'rating-stars.html'
 })
 export class RatingStarsComponent {
-  @Input() rating: number;
+  @Input() settedRate: number;
+  @Output() settedRateChange = new EventEmitter();
+
+  rating: number;
 
   constructor() {
     this.rating = 0;
@@ -13,6 +16,7 @@ export class RatingStarsComponent {
 
   rateIt(num: number) {
     this.rating = num;
+    this.settedRateChange.emit(this.rating);
   }
 
   setColor(num: number) {

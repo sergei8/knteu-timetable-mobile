@@ -16,11 +16,12 @@ import {AppRate} from '@ionic-native/app-rate';
 import {Device} from '@ionic-native/device';
 // import {Geolocation}from'@ionic-native/geolocation';
 import {NetworkInterface} from '@ionic-native/network-interface';
+import {ChartsModule} from 'ng2-charts';
 
 import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {firebaseConfig} from './credentials';
-import {StarRatingModule} from 'ionic3-star-rating';
+// import {StarRatingModule} from 'ionic3-star-rating';
 
 import {MyApp} from './app.component';
 import {HomeComponent} from '../components/home/home';
@@ -33,6 +34,7 @@ import {SetupComponent} from '../components/setup/setup';
 import {HoursComponent} from '../components/hours/hours';
 import {RatingComponent} from '../components/rating/rating';
 import {RatingStarsComponent} from '../components/rating-stars/rating-stars';
+import {RatingChartComponent} from '../components/rating-chart/rating-chart';
 
 import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
@@ -52,7 +54,8 @@ import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch'
     HoursComponent,
     AboutComponent,
     RatingComponent,
-    RatingStarsComponent
+    RatingStarsComponent,
+    RatingChartComponent
   ],
   imports: [
     BrowserModule,
@@ -60,8 +63,7 @@ import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch'
     HttpClientModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
-    StarRatingModule,
-
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -76,8 +78,8 @@ import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch'
     HoursComponent,
     AboutComponent,
     RatingComponent,
-    RatingStarsComponent
-
+    RatingStarsComponent,
+    RatingChartComponent
   ],
   providers: [
     StatusBar,

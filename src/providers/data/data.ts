@@ -224,11 +224,13 @@ export class DataProvider {
   /**
    * извлекает из БД документ с рейтингами препода teacherName
    * @param teacherName
-   * @return {Promise<Array<any>>} массив: [rating, votedUsers, showVote]
+   * @return {Promise<Array<any>>} массив: [rating, votedUser, showVote]
    */
   getTeacherRating(teacherName): Promise<Array<any>> {
 
-    teacherName = 'препод112';
+    // ------ отладка -------------------
+    teacherName = 'препод111';
+    // ----------------------------------
 
     // в ratings накапливаются последние рейтинги выданные пользователями
     let ratings = [];
@@ -240,7 +242,6 @@ export class DataProvider {
       // подключаемся к БД рейтингов
       this.mongodbStitchProvider.getTeacherRatingsList(teacherName)
         .then(ratingList => {
-          console.log(ratingList);
           if (ratingList.length > 0) {
             // в rateList - все рейтинги, оставленные преподу
             let rateList = ratingList[0].rateList;
@@ -256,6 +257,10 @@ export class DataProvider {
               }
             }
           }
+          // сохраняем актуальные рейты препода в глоб. массиве
+          this.sharedData.teacherRatesList = ratings;
+          console.log('rates:', this.sharedData.teacherRatesList);
+
           rating = _.round(_.sum(ratings) / ratings.length, 1);
           votedUsers = ratings.length;
           resolve([rating, votedUsers, showVotes]);
