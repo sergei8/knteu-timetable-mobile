@@ -47,6 +47,11 @@
             width: auto; height: auto; max-width: 50%; max-height: 50%'>
   <p style="text-align: center">{{getFacultet()}}</p>
   <p style="text-align: center">{{getDepartment()}}</p>
+
+  <div style="text-align: center;">
+    <ion-spinner name="bubbles" *ngIf="showSpinner"></ion-spinner>
+  </div>
+
   <p *ngIf="showVotes" style="text-align: center; cursor: grab" (click)="checkForPrevRates()">
     <span *ngFor="let star of starsList">
       <ion-icon name={{star}} style="color: #FFCC33; font-size: 2em"></ion-icon>

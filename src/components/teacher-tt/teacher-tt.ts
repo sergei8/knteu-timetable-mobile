@@ -14,7 +14,8 @@ import * as _ from 'lodash';
 })
 export class TeacherTtComponent {
 
-  teacher: string;
+  teacher: string;  // фио препода из расписания
+  teacherFullName: string; // фио препода со страницы кафедры
   weekShowSwitch = {};   // скрывают/открывают дни недели
   wdp: object;
   details: object;
@@ -27,6 +28,7 @@ export class TeacherTtComponent {
   votedUsers: number;   // число проголосовавших
   showVotes: boolean;   // выключается при ошибке доступа к БД что бы не показывать рейты
   starsList: string[];
+  showSpinner: boolean;
 
   showAddButton: boolean;
 
@@ -50,20 +52,46 @@ export class TeacherTtComponent {
     this.rating = 0;
     this.votedUsers = 0;
     this.showVotes = true;
+    this.showSpinner = true;
 
-    this.data.getTeacherRating(this.teacher)
-      .then((result) => {
-          [this.rating, this.votedUsers, this.showVotes] = result;
-          this.starsList = data.createStarsList(this.rating);
-        }
-      )
-      .catch();
+
+    /*
+        // получить текущий рейтинг препода и построить звездочки
+        this.data.getTeacherRating(this.teacher)
+          .then((result) => {
+              [this.rating, this.votedUsers, this.showVotes] = result;
+              this.showSpinner = false;
+              this.starsList = data.createStarsList(this.rating);
+            }
+          )
+          .catch();
+    */
 
     // заполним переключатели видимости недель
     for (let i in this.weekNames) {
       this.weekShowSwitch[this.weekNames[i]] = true;
     }
 
+  }
+
+  ionViewWillEnter() {
+    // получить текущий рейтинг препода и построить звездочки
+    // ВСЕГДА при открытии этого экрана!!!
+    this.data.getTeacherRating(this.teacherFullName)
+      .then((result) => {
+          // если фио препода обрабатывалось в getTeacherRating
+          if (result) {
+            [this.rating, this.votedUsers, this.showVotes] = result;
+            // console.log(result);
+            this.starsList = this.data.createStarsList(this.rating);
+          }
+          else {
+            this.starsList = [];
+          }
+          this.showSpinner = false;
+        }
+      )
+      .catch();
   }
 
   /**
@@ -111,7 +139,8 @@ export class TeacherTtComponent {
   }
 
   getName(): string {
-    return this.details ? this.details['name'] : '';
+    this.teacherFullName = this.details ? this.details['name'] : '';
+    return this.teacherFullName;
   }
 
   getFacultet(): string {
@@ -129,19 +158,25 @@ export class TeacherTtComponent {
   checkForPrevRates() {
     // отладка --------------------------------------------
     this.sharedObjects.currentUserDeviceId = '1539103546779';
+    // this.sharedObjects.currentUserDeviceId = Date.now().toString();
     //-----------------------------------------------------
 
+
+/*
+console.log('!!!!',this.sharedObjects.teacherRate);
+console.log(this.sharedObjects.teacherRatesList);
+*/
     // если общий объект teacherRate содержит список рейтингов
     // то делаем обработку
-    if (this.sharedObjects.teacherRate.hasOwnProperty('rateList')) {
-      const lastRates = this.sharedObjects.teacherRate['rateList'];
+    if (Object.keys(this.sharedObjects.teacherRate).length > 0) {
+      const lastRates = this.sharedObjects.teacherRate;
       const deviceId = this.sharedObjects.currentUserDeviceId;
       // проверяем, голосовал ли уже юзер за єтого препода
       if (Object.keys(lastRates).indexOf(deviceId) != -1) {
         //  если голосовал, находим результаты последнего гососования
         let [rate, date] = this.data.selectLastRate(lastRates[deviceId]);
         const warningMessage = `Ваша оцінка за ${date.toLocaleDateString()} була ${rate}. Бажаєте змінити її?`
-        // вывод предкпреждения
+        // вывод предупреждения
         let confirm = this.alert.create({
           subTitle: 'Попередження',
           message: warningMessage,
@@ -169,6 +204,7 @@ export class TeacherTtComponent {
     } else {
       // иначе, если общий объект `teacherRate` пустой, то значит рейтингов
       // по этому преподу не было и пееходим на экрай рейтов
+      this.data.addNewTeacher(this.teacherFullName);
       this.showRating().then();
     }
   }

@@ -3,6 +3,7 @@ import {Nav} from 'ionic-angular';
 import {NavParams} from 'ionic-angular';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
 import {AlertController} from 'ionic-angular';
+import {DataProvider} from '../../providers/data/data';
 
 // import {RatingStarsComponent} from '../rating-stars/rating-stars';
 
@@ -24,17 +25,15 @@ export class RatingComponent {
 
   constructor(private sharedObjects: SharedObjects,
               public nav: Nav, public navParams: NavParams,
-              private alert: AlertController) {
+              private alert: AlertController,
+              public data: DataProvider) {
 
-    this
-      .showAvatar = true;
+    this.showAvatar = true;
 
-    this
-      .details = navParams.get('details');
+    this.details = navParams.get('details');
     // получіть адрес фоткі
     try {
-      this
-        .img_url = this.details['img_url'];
+      this.img_url = this.details['img_url'];
     }
 
     catch {
@@ -61,6 +60,8 @@ export class RatingComponent {
           text: 'Ок',
           cssClass: 'alertButton',
           handler: () => {
+            console.log(this.details);
+            this.data.addNewUserRate(this.details['name'], this.sharedObjects.currentUserDeviceId, 5);
             this.nav.pop().then();
           }
         }

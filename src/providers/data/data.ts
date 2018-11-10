@@ -223,13 +223,13 @@ export class DataProvider {
 
   /**
    * извлекает из БД документ с рейтингами препода teacherName
-   * @param teacherName
+   * @param teacherName - фио препода с кафедральной страницы (в detail)
    * @return {Promise<Array<any>>} массив: [rating, votedUser, showVote]
    */
   getTeacherRating(teacherName): Promise<Array<any>> {
 
     // ------ отладка -------------------
-    teacherName = 'препод111';
+    // teacherName = 'препод111';
     // ----------------------------------
 
     // в ratings накапливаются последние рейтинги выданные пользователями
@@ -239,9 +239,14 @@ export class DataProvider {
     let votedUsers = 0;
     let showVotes = true;
     return new Promise<any>(resolve => {
-      // подключаемся к БД рейтингов
+      // если фио препода нету то возвращаем фигу
+      if (teacherName == '') {
+        resolve(null);
+      }
+      // выбираем из БД реййтинги препода
       this.mongodbStitchProvider.getTeacherRatingsList(teacherName)
         .then(ratingList => {
+          console.log(teacherName, ratingList);
           if (ratingList.length > 0) {
             // в rateList - все рейтинги, оставленные преподу
             let rateList = ratingList[0].rateList;
@@ -259,7 +264,7 @@ export class DataProvider {
           }
           // сохраняем актуальные рейты препода в глоб. массиве
           this.sharedData.teacherRatesList = ratings;
-          console.log('rates:', this.sharedData.teacherRatesList);
+          // console.log('rates:', this.sharedData.teacherRatesList);
 
           rating = _.round(_.sum(ratings) / ratings.length, 1);
           votedUsers = ratings.length;
@@ -273,6 +278,17 @@ export class DataProvider {
         })
     })
   }
+
+
+  addNewTeacher(teacherName) {
+    this.mongodbStitchProvider.addNewTeacher(teacherName);
+  }
+
+  addNewUserRate(teacherName: string, userId: string, rate: number) {
+    // console.log(teacherName, userId, rate);
+    this.mongodbStitchProvider.addNewUserRate(teacherName, userId, rate)
+  }
+
 
   /**
    * находит последний рейт, установленный данным пользователем

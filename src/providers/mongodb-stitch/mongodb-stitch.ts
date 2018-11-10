@@ -56,4 +56,15 @@ export class MongodbStitchProvider {
       }
     ))
   }
+
+  addNewTeacher(teacherName: string) {
+    this.client.auth.loginWithCredential(new AnonymousCredential())
+      .then(() => this.db.collection('teachers')
+        .insertOne({name: teacherName, rateList: {}}))
+  }
+
+  addNewUserRate(teacherName:string,userId:string,rate:number){
+        console.log(teacherName, userId, rate);
+  }
+
 }

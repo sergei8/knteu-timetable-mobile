@@ -75,24 +75,6 @@ export class TeacherComponent {
     this.wdp = teacherInfo[0];
     this.teacherDetails = teacherInfo[1];
 
-    /*
-        _.each(this.allTimeTable, (fio, teacherName) =>
-          _.each(this.sharedObjects.weekNames.map(x => fio[x]), (week, weekIndex) =>
-            _.each(week, (day, dayName) =>
-              _.each(day, (para, paraNumber) => {
-                  if (teacherName === teacher) {
-                    this.teacherDetails = fio.details;
-                    let weekName = this.sharedObjects.weekNames[weekIndex];
-                    this.wdp[weekName][dayName][paraNumber] = [].concat(para[5], para[3], para[4],
-                      para[0], para[1], para[2]);
-                  }
-                }
-              )
-            )
-          )
-        );
-    */
-
     // логировать если разрешено
     if (!this.sharedObjects.stopLogging) {
       this.fireStore.setTeacherPageLog(teacher).then().catch();
