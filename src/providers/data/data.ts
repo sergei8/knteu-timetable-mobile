@@ -14,19 +14,20 @@ import * as _ from 'lodash';
 declare const require: any;
 const localforage: LocalForage = require("localforage");
 
+
 @Injectable()
 export class DataProvider {
 
   constructor(public http: HttpClient,
               private alert: AlertController,
-              private sharedData: SharedObjects,
+              private sharedObjects: SharedObjects,
               private toast: ToastController,
               private mongodbStitchProvider: MongodbStitchProvider) {
   }
 
+
   getFile(url): Observable<Object> {
     return this.http.get(url)
-    // .map(response => response);
   }
 
   // сохраняет распісаніе студента или препода локально
@@ -122,7 +123,7 @@ export class DataProvider {
     return localforage.getItem('setup')
       .then(result => {
           if (result || result == {}) {
-            this.sharedData.globalParams = result;
+            this.sharedObjects.globalParams = result;
           }
         },
         (error) => console.log(error))
@@ -146,16 +147,16 @@ export class DataProvider {
    * @return {any[]} расписание и сведения о преподе (фио, фотка, ...)
    */
   getTeacherWdp(name: string): any[] {
-    let wdp = $.extend(true, {}, this.sharedData.WeekDayPara);    //  очищаем расписание группы
+    let wdp = $.extend(true, {}, this.sharedObjects.WeekDayPara);    //  очищаем расписание группы
     let teacherDetails: object = {};
 
-    _.each(this.sharedData.allTimeTable, (fio, teacherName) =>
-      _.each(this.sharedData.weekNames.map(x => fio[x]), (week, weekIndex) =>
+    _.each(this.sharedObjects.allTimeTable, (fio, teacherName) =>
+      _.each(this.sharedObjects.weekNames.map(x => fio[x]), (week, weekIndex) =>
         _.each(week, (day, dayName) =>
           _.each(day, (para, paraNumber) => {
               if (teacherName === name) {
                 teacherDetails = fio.details;
-                const weekName = this.sharedData.weekNames[weekIndex];
+                const weekName = this.sharedObjects.weekNames[weekIndex];
                 wdp[weekName][dayName][paraNumber] = [].concat(para[5], para[3], para[4],
                   para[0], para[1], para[2]);
               }
@@ -174,8 +175,8 @@ export class DataProvider {
   getFacNameList(): string[] {
 
     let facNameList: string[] = [];
-    _.each(this.sharedData.allTimeTable, (fio) =>
-      _.forEach(this.sharedData.weekNames.map(x => fio[x]), (week) =>
+    _.each(this.sharedObjects.allTimeTable, (fio) =>
+      _.forEach(this.sharedObjects.weekNames.map(x => fio[x]), (week) =>
         _.each(week, (day) =>
           _.each(day, (para) => {
               if (!(_.includes(facNameList, para[0]))) {
@@ -199,7 +200,7 @@ export class DataProvider {
       'fac': <string[]>[],
       'dep': <string[]>[]
     };
-    _.each(this.sharedData.allTimeTable, (fio) => {
+    _.each(this.sharedObjects.allTimeTable, (fio) => {
         // если свойство `details` присутствует у препода то формируем списки
         if (fio.details) {
           if (_.indexOf(depFacNames.fac, fio.details.fac) === -1) {
@@ -243,13 +244,21 @@ export class DataProvider {
       if (teacherName == '') {
         resolve(null);
       }
-      // выбираем из БД реййтинги препода
+      // выбираем из БД рейтинги препода
       this.mongodbStitchProvider.getTeacherRatingsList(teacherName)
-        .then(ratingList => {
-          console.log(teacherName, ratingList);
-          if (ratingList.length > 0) {
+        .then(docs => {
+          const ratingObj = this.sharedObjects.teacherRate = docs.length > 0 ? docs[0]['rateList'] : {};
+
+          this.sharedObjects.teacherInfo.rateList = ratingObj;
+          this.sharedObjects.teacherInfo.teacherName = teacherName;
+          // console.log(docs);
+          this.analyseDocs(docs, teacherName);
+          // this.processTeacherInfo();
+
+          // console.log(teacherName, ratingObj);
+          if (Object.keys(ratingObj).length > 0) {
             // в rateList - все рейтинги, оставленные преподу
-            let rateList = ratingList[0].rateList;
+            let rateList = ratingObj[0].rateList;
             // перебираем рейтинги по каждому пользователю;
             for (let userId in rateList) {
               if (rateList.hasOwnProperty(userId)) {
@@ -263,8 +272,7 @@ export class DataProvider {
             }
           }
           // сохраняем актуальные рейты препода в глоб. массиве
-          this.sharedData.teacherRatesList = ratings;
-          // console.log('rates:', this.sharedData.teacherRatesList);
+          this.sharedObjects.teacherInfo.rateList = ratings;
 
           rating = _.round(_.sum(ratings) / ratings.length, 1);
           votedUsers = ratings.length;
@@ -279,14 +287,29 @@ export class DataProvider {
     })
   }
 
+  private analyseDocs(teacherDocs: any, teacherName: string): void {
+    // console.log(teacherDocs);
+    // если массив пустой (препод не найден) - создаем док-т для препода
+    if (teacherDocs.length === 0) {
+      this.sharedObjects.teacherInfo.newTeacher = true;
+      return;
+    }
+    // устанавливаем флаг есть ли id юзера  в ratingList
+    this.sharedObjects.teacherInfo.newUserId = !(teacherName in Object.keys(teacherDocs[0].rateList));
+    return;
+  }
 
-  addNewTeacher(teacherName) {
-    this.mongodbStitchProvider.addNewTeacher(teacherName);
+  processTeacherInfo() {
+    console.log(this.sharedObjects.teacherInfo);
+    if (this.sharedObjects.teacherInfo.newTeacher) {
+      this.mongodbStitchProvider.addNewTeacher(this.sharedObjects.teacherInfo.teacherName);
+    }
+
   }
 
   addNewUserRate(teacherName: string, userId: string, rate: number) {
     // console.log(teacherName, userId, rate);
-    this.mongodbStitchProvider.addNewUserRate(teacherName, userId, rate)
+    // this.mongodbStitchProvider.addNewUserRate(teacherName, userId, rate)
   }
 
 

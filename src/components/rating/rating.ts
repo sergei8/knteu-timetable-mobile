@@ -5,15 +5,12 @@ import {SharedObjects} from '../../providers/shared-data/shared-data';
 import {AlertController} from 'ionic-angular';
 import {DataProvider} from '../../providers/data/data';
 
-// import {RatingStarsComponent} from '../rating-stars/rating-stars';
-
 @Component({
   selector: 'rating',
   templateUrl: 'rating.html'
 })
 export class RatingComponent {
 
-  // teacher: any;
   details: object;
   img_url: string;
   showAvatar: boolean; // не виводіт аватар препода, если нет фотки
@@ -48,7 +45,7 @@ export class RatingComponent {
     this.first = name[1];
     this.middle = name[2];
 
-    this.teacherRatingList = this.sharedObjects.teacherRatesList;
+    this.teacherRatingList = this.sharedObjects.teacherInfo.rateList;
   }
 
   acceptClicked() {
@@ -60,8 +57,9 @@ export class RatingComponent {
           text: 'Ок',
           cssClass: 'alertButton',
           handler: () => {
-            console.log(this.details);
-            this.data.addNewUserRate(this.details['name'], this.sharedObjects.currentUserDeviceId, 5);
+            // console.log(this.details);
+            this.wrireRateToDb();
+            // this.data.addNewUserRate(this.details['name'], this.sharedObjects.currentUserDeviceId, 5);
             this.nav.pop().then();
           }
         }
@@ -69,6 +67,12 @@ export class RatingComponent {
     });
     confirm.present().then();
 
+
+  }
+
+  private wrireRateToDb(){
+    console.log(this.sharedObjects.teacherInfo.rateList);
+    console.log(this.sharedObjects.currentUserDeviceId, this.teacherRatingList);
 
   }
 }

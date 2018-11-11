@@ -52,7 +52,7 @@
     <ion-spinner name="bubbles" *ngIf="showSpinner"></ion-spinner>
   </div>
 
-  <p *ngIf="showVotes" style="text-align: center; cursor: grab" (click)="checkForPrevRates()">
+  <p *ngIf="showVotes" style="text-align: center; cursor: grab" (click)="setRatingPage()">
     <span *ngFor="let star of starsList">
       <ion-icon name={{star}} style="color: #FFCC33; font-size: 2em"></ion-icon>
     </span><br>

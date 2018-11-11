@@ -49,7 +49,7 @@ export class RatingChartComponent {
       ratesData[this.newRate - 1] += 1;
     }
 
-    console.log(ratesData);
+    // console.log('ratesData:',ratesData);
     this.totalRatesCount = _.reverse(ratesData);
     this.barChartData = [{data: this.totalRatesCount}];
   }

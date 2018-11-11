@@ -74,6 +74,10 @@ export class TeacherTtComponent {
 
   }
 
+  /**
+   * Выполняется каждый раз при показе экрана
+   * вызывает считывание актуального рейта препода
+   */
   ionViewWillEnter() {
     // получить текущий рейтинг препода и построить звездочки
     // ВСЕГДА при открытии этого экрана!!!
@@ -153,19 +157,15 @@ export class TeacherTtComponent {
 
   /**
    * проверяет было ли уже голосование с этого девайса
-   * выводит диалог да/нет и вызывает экран нолосования
+   * выводит диалог да/нет и вызывает экран голосования
    */
-  checkForPrevRates() {
+  setRatingPage() {
+
     // отладка --------------------------------------------
     this.sharedObjects.currentUserDeviceId = '1539103546779';
     // this.sharedObjects.currentUserDeviceId = Date.now().toString();
     //-----------------------------------------------------
 
-
-/*
-console.log('!!!!',this.sharedObjects.teacherRate);
-console.log(this.sharedObjects.teacherRatesList);
-*/
     // если общий объект teacherRate содержит список рейтингов
     // то делаем обработку
     if (Object.keys(this.sharedObjects.teacherRate).length > 0) {
@@ -204,7 +204,7 @@ console.log(this.sharedObjects.teacherRatesList);
     } else {
       // иначе, если общий объект `teacherRate` пустой, то значит рейтингов
       // по этому преподу не было и пееходим на экрай рейтов
-      this.data.addNewTeacher(this.teacherFullName);
+      // this.data.addNewTeacher(this.teacherFullName);
       this.showRating().then();
     }
   }

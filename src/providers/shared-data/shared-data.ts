@@ -15,7 +15,12 @@ export class SharedObjects {
   teacherRate: object;  // ВСЕ рейты текущего препода
   teacherRatesList: number[]; // массив с актуальными рейтами препода
   currentUserDeviceId: string;
-
+  teacherInfo = {
+    teacherName: '',
+    newTeacher: false,
+    newUserId: false,
+    rateList: {}
+  };
 
   constructor() {
     this.globalParams = {};
