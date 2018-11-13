@@ -48,8 +48,6 @@ export class MongodbStitchProvider {
           .then(() => this.db.collection('teachers')
             .find({"name": teacherName}).asArray())
           .then(docs => {
-            // запоминаем рейт в глобальнм объекте
-            // this.sharedObjects.teacherRate = docs.length > 0 ? docs[0]['rateList'] : {};
             resolve(docs);
           })
       }

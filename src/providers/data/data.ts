@@ -255,27 +255,32 @@ export class DataProvider {
           this.analyseDocs(docs, teacherName);
           // this.processTeacherInfo();
 
-          // console.log(teacherName, ratingObj);
+          console.log(teacherName, ratingObj, Object.keys(ratingObj).length);
+
           if (Object.keys(ratingObj).length > 0) {
             // в rateList - все рейтинги, оставленные преподу
-            let rateList = ratingObj[0].rateList;
+            // let rateList = ratingObj['rateList'];
+            // console.log(rateList)
             // перебираем рейтинги по каждому пользователю;
-            for (let userId in rateList) {
-              if (rateList.hasOwnProperty(userId)) {
+            for (let userId in ratingObj) {
+              if (ratingObj.hasOwnProperty(userId)) {
                 // в userRatesList - рейтинги, оставленные пользователем для этого препода
-                let userRatesList: object[] = rateList[userId];
+                let userRatesList: object[] = ratingObj[userId];
+                console.log(userRatesList);
                 // выбираем из рейтингов пользователя последний оставленный
-                let lastRate = this.selectLastRate(userRatesList)[0];
+                let lastRate = this.selectLastRate(userRatesList);
+                console.log(lastRate)
                 // добавляем его в массив актуальных рейтов
-                ratings.push(lastRate);
+                ratings.push(lastRate[0]);
               }
             }
           }
           // сохраняем актуальные рейты препода в глоб. массиве
-          this.sharedObjects.teacherInfo.rateList = ratings;
+          this.sharedObjects.teacherInfo.currentRates = ratings;
 
           rating = _.round(_.sum(ratings) / ratings.length, 1);
           votedUsers = ratings.length;
+          console.log('ratings!!!',ratings)
           resolve([rating, votedUsers, showVotes]);
         })
         // если ошибка доступа к БД, то выключаем показ рейтинга

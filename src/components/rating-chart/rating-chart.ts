@@ -37,6 +37,7 @@ export class RatingChartComponent {
   }
 
   ngOnChanges() {
+    console.log('#######', this.rating)
     let ratesCountObj = _.countBy(this.rating);
     let ratesData = [0, 0, 0, 0, 0];
     _.each(Object.keys(ratesCountObj), key => {

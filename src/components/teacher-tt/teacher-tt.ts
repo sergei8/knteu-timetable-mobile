@@ -14,6 +14,8 @@ import * as _ from 'lodash';
 })
 export class TeacherTtComponent {
 
+  checkForEmptyDay = TeacherTtComponent.checkForEmptyDay;
+
   teacher: string;  // фио препода из расписания
   teacherFullName: string; // фио препода со страницы кафедры
   weekShowSwitch = {};   // скрывают/открывают дни недели
@@ -55,24 +57,13 @@ export class TeacherTtComponent {
     this.showSpinner = true;
 
 
-    /*
-        // получить текущий рейтинг препода и построить звездочки
-        this.data.getTeacherRating(this.teacher)
-          .then((result) => {
-              [this.rating, this.votedUsers, this.showVotes] = result;
-              this.showSpinner = false;
-              this.starsList = data.createStarsList(this.rating);
-            }
-          )
-          .catch();
-    */
 
     // заполним переключатели видимости недель
     for (let i in this.weekNames) {
       this.weekShowSwitch[this.weekNames[i]] = true;
     }
-
   }
+
 
   /**
    * Выполняется каждый раз при показе экрана
@@ -83,10 +74,9 @@ export class TeacherTtComponent {
     // ВСЕГДА при открытии этого экрана!!!
     this.data.getTeacherRating(this.teacherFullName)
       .then((result) => {
-          // если фио препода обрабатывалось в getTeacherRating
+          // когда фио препода обработалось в getTeacherRating
           if (result) {
             [this.rating, this.votedUsers, this.showVotes] = result;
-            // console.log(result);
             this.starsList = this.data.createStarsList(this.rating);
           }
           else {
@@ -103,7 +93,7 @@ export class TeacherTtComponent {
    * @param day
    * @return {boolean}
    */
-  checkForEmptyDay(day): boolean {
+  static checkForEmptyDay(day): boolean {
     let result = _.reduce(day, (acum, item) => acum += item.length, 0);
     return result > 0;
   }

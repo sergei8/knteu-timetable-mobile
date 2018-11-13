@@ -19,6 +19,7 @@ export class SharedObjects {
     teacherName: '',
     newTeacher: false,
     newUserId: false,
+    currentRates: [],
     rateList: {}
   };
 
