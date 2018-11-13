@@ -57,7 +57,6 @@ export class TeacherTtComponent {
     this.showSpinner = true;
 
 
-
     // заполним переключатели видимости недель
     for (let i in this.weekNames) {
       this.weekShowSwitch[this.weekNames[i]] = true;
@@ -69,7 +68,8 @@ export class TeacherTtComponent {
    * Выполняется каждый раз при показе экрана
    * вызывает считывание актуального рейта препода
    */
-  ionViewWillEnter() {
+  // ionViewWillEnter() {
+    ionViewDidLoad(){
     // получить текущий рейтинг препода и построить звездочки
     // ВСЕГДА при открытии этого экрана!!!
     this.data.getTeacherRating(this.teacherFullName)

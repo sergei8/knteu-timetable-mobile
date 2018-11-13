@@ -37,7 +37,7 @@ export class RatingChartComponent {
   }
 
   ngOnChanges() {
-    console.log('#######', this.rating)
+    // console.log('#######', this.rating)
     let ratesCountObj = _.countBy(this.rating);
     let ratesData = [0, 0, 0, 0, 0];
     _.each(Object.keys(ratesCountObj), key => {
@@ -46,7 +46,7 @@ export class RatingChartComponent {
     });
 
     if (this.newRate > 0) {
-      console.log('@@@@@@', this.newRate);
+      // console.log('@@@@@@', this.newRate);
       ratesData[this.newRate - 1] += 1;
     }
 
@@ -55,16 +55,5 @@ export class RatingChartComponent {
     this.barChartData = [{data: this.totalRatesCount}];
   }
 
-
-// events
-  /*
-    public chartClicked(e: any): void {
-      console.log(e);
-    }
-
-    public chartHovered(e: any): void {
-      console.log(e);
-    }
-  */
 
 }
