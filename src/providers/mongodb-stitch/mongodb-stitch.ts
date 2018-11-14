@@ -50,18 +50,21 @@ export class MongodbStitchProvider {
           .then(docs => {
             resolve(docs);
           })
+          .catch((error) => console.log(error))
       }
     ))
   }
 
-  addNewTeacher(teacherName: string) {
-    this.client.auth.loginWithCredential(new AnonymousCredential())
-      .then(() => this.db.collection('teachers')
-        .insertOne({name: teacherName, rateList: {}}))
+  writeTeacherDoc(rateList: object, name:string): Promise<any> {
+    return new Promise<any>(resolve => {
+      this.client.auth.loginWithCredential(new AnonymousCredential())
+        .then(() => this.db.collection('teachers')
+          .updateOne({name: name}, {$set: {rateList: rateList} }, {upsert: true}))
+        .catch((error) => console.log(error));
+
+      resolve();
+    });
   }
 
-  addNewUserRate(teacherName:string,userId:string,rate:number){
-        console.log(teacherName, userId, rate);
-  }
 
 }

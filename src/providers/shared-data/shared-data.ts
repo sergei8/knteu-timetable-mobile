@@ -13,7 +13,6 @@ export class SharedObjects {
   stopLogging: boolean;
   isConnected = true;  // наличие интернета
   teacherRate: object;  // ВСЕ рейты текущего препода
-  teacherRatesList: number[]; // массив с актуальными рейтами препода
   currentUserDeviceId: string;
   teacherInfo = {
     teacherName: '',

@@ -89,7 +89,6 @@ export class DataProvider {
   }
 
   saveStudentRozklad(rozklad) {
-    // console.log(rozklad);
     localforage.setItem("student", rozklad);
   }
 
@@ -229,10 +228,6 @@ export class DataProvider {
    */
   getTeacherRating(teacherName): Promise<Array<any>> {
 
-    // ------ отладка -------------------
-    // teacherName = 'препод111';
-    // ----------------------------------
-
     // в ratings накапливаются последние рейтинги выданные пользователями
     let ratings = [];
     // инициализируем переменные возврата
@@ -251,25 +246,18 @@ export class DataProvider {
 
           this.sharedObjects.teacherInfo.rateList = ratingObj;
           this.sharedObjects.teacherInfo.teacherName = teacherName;
-          // console.log(docs);
-          this.analyseDocs(docs, teacherName);
-          // this.processTeacherInfo();
 
-          console.log(teacherName, ratingObj, Object.keys(ratingObj).length);
+          this.analyseDocs(ratingObj, teacherName);
 
           if (Object.keys(ratingObj).length > 0) {
-            // в rateList - все рейтинги, оставленные преподу
-            // let rateList = ratingObj['rateList'];
-            // console.log(rateList)
+            // в ratingObj - все рейтинги, оставленные преподу
             // перебираем рейтинги по каждому пользователю;
             for (let userId in ratingObj) {
               if (ratingObj.hasOwnProperty(userId)) {
                 // в userRatesList - рейтинги, оставленные пользователем для этого препода
                 let userRatesList: object[] = ratingObj[userId];
-                console.log(userRatesList);
                 // выбираем из рейтингов пользователя последний оставленный
                 let lastRate = this.selectLastRate(userRatesList);
-                console.log(lastRate)
                 // добавляем его в массив актуальных рейтов
                 ratings.push(lastRate[0]);
               }
@@ -280,7 +268,6 @@ export class DataProvider {
 
           rating = _.round(_.sum(ratings) / ratings.length, 1);
           votedUsers = ratings.length;
-          console.log('ratings!!!',ratings)
           resolve([rating, votedUsers, showVotes]);
         })
         // если ошибка доступа к БД, то выключаем показ рейтинга
@@ -292,31 +279,23 @@ export class DataProvider {
     })
   }
 
-  private analyseDocs(teacherDocs: any, teacherName: string): void {
-    // console.log(teacherDocs);
-    // если массив пустой (препод не найден) - создаем док-т для препода
-    if (teacherDocs.length === 0) {
+  private analyseDocs(ratingObj: object, teacherName: string): void {
+    // еслі препод не найден - ставім флаг newTeacher
+    if (!ratingObj) {
       this.sharedObjects.teacherInfo.newTeacher = true;
       return;
     }
-    // устанавливаем флаг есть ли id юзера  в ratingList
-    this.sharedObjects.teacherInfo.newUserId = !(teacherName in Object.keys(teacherDocs[0].rateList));
-    return;
-  }
+    // устанавливаем флаг есть ли id юзера  в ratingList (нету - true:newUser)
 
-  processTeacherInfo() {
-    console.log(this.sharedObjects.teacherInfo);
-    if (this.sharedObjects.teacherInfo.newTeacher) {
-      this.mongodbStitchProvider.addNewTeacher(this.sharedObjects.teacherInfo.teacherName);
+    if (Object.keys(ratingObj).indexOf(this.sharedObjects.currentUserDeviceId) === -1) {
+      this.sharedObjects.teacherInfo.newUserId = true
     }
-
+    // this.sharedObjects.teacherInfo.newUserId = !(this.sharedObjects.currentUserDeviceId in Object.keys(ratingObj));
   }
 
-  addNewUserRate(teacherName: string, userId: string, rate: number) {
-    // console.log(teacherName, userId, rate);
-    // this.mongodbStitchProvider.addNewUserRate(teacherName, userId, rate)
+  writeTeacherRates(doc: object) {
+    this.mongodbStitchProvider.writeTeacherDoc(doc['rateList'], doc['name']).then();
   }
-
 
   /**
    * находит последний рейт, установленный данным пользователем

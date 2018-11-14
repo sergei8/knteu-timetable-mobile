@@ -19,8 +19,6 @@ export class RatingComponent {
   teacherRatingList: object;
   settedRate: number = 0; // выбранный рейт
 
-  // navPromise = new Promise(() => this.nav.pop());
-
   constructor(private sharedObjects: SharedObjects,
               public nav: NavController, public navParams: NavParams,
               public data: DataProvider) {
@@ -53,15 +51,12 @@ export class RatingComponent {
       .then(() => {
         this.data.showToastMessage('Дякуємо! Вашу думку враховано.', 'bottom',
           'infoToast', false, 5000);
-        console.log('new rate:', this.settedRate)
-        console.log(this.sharedObjects.teacherInfo);
-        console.log(this.sharedObjects.currentUserDeviceId);
-
       })
       .then(() => {
-        this.nav.pop().then(()=>{});
+        this.nav.pop().then(() => {
+        });
       })
-      .catch(() => console.log('error!'))
+      .catch((err) => console.log(err))
 
   }
 
@@ -69,7 +64,7 @@ export class RatingComponent {
     // обновить this.sharedObjects.teacherInfo.currentRates выставленным рейтингом `settedRate`
 
     const newRateObj = {
-      'date': Date.now(),
+      'date': new Date(),
       'rating': this.settedRate
     };
 
@@ -79,6 +74,14 @@ export class RatingComponent {
       } else {
         this.sharedObjects.teacherInfo.rateList[this.sharedObjects.currentUserDeviceId].push(newRateObj)
       }
+
+      const teacherDoc = {
+          name: this.sharedObjects.teacherInfo.teacherName,
+          rateList: this.sharedObjects.teacherInfo.rateList
+        };
+
+       this.data.writeTeacherRates(teacherDoc);
+
       resolve();
     });
 

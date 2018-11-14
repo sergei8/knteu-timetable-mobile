@@ -5,7 +5,7 @@ import * as _ from 'lodash';
   selector: 'rating-chart',
   templateUrl: 'rating-chart.html'
 })
-export class RatingChartComponent {
+export class RatingChartComponent implements OnChanges {
   @Input() rating: object;
   @Input() newRate: number;
 
@@ -26,7 +26,7 @@ export class RatingChartComponent {
   public barChartLegend = false;
   public barColors: Array<object> = [
     {
-      backgroundColor: 'ffcb53'
+      backgroundColor: 'rgba(225,10,24,0.2)'
     }];
 
   public barChartData: Array<object> = [
@@ -37,7 +37,6 @@ export class RatingChartComponent {
   }
 
   ngOnChanges() {
-    // console.log('#######', this.rating)
     let ratesCountObj = _.countBy(this.rating);
     let ratesData = [0, 0, 0, 0, 0];
     _.each(Object.keys(ratesCountObj), key => {
@@ -46,11 +45,9 @@ export class RatingChartComponent {
     });
 
     if (this.newRate > 0) {
-      // console.log('@@@@@@', this.newRate);
       ratesData[this.newRate - 1] += 1;
     }
 
-    // console.log('ratesData:',ratesData);
     this.totalRatesCount = _.reverse(ratesData);
     this.barChartData = [{data: this.totalRatesCount}];
   }

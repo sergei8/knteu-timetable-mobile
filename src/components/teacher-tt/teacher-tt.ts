@@ -68,8 +68,13 @@ export class TeacherTtComponent {
    * Выполняется каждый раз при показе экрана
    * вызывает считывание актуального рейта препода
    */
-  // ionViewWillEnter() {
-    ionViewDidLoad(){
+  ionViewDidLoad() {
+
+    // отладка --------------------------------------------
+    this.sharedObjects.currentUserDeviceId = '1539103546771';
+    // this.sharedObjects.currentUserDeviceId = Date.now().toString();
+    //-----------------------------------------------------
+
     // получить текущий рейтинг препода и построить звездочки
     // ВСЕГДА при открытии этого экрана!!!
     this.data.getTeacherRating(this.teacherFullName)
@@ -85,7 +90,7 @@ export class TeacherTtComponent {
           this.showSpinner = false;
         }
       )
-      .catch();
+      .catch((err) => console.log(err));
   }
 
   /**
@@ -151,10 +156,6 @@ export class TeacherTtComponent {
    */
   setRatingPage() {
 
-    // отладка --------------------------------------------
-    this.sharedObjects.currentUserDeviceId = '1539103546779';
-    // this.sharedObjects.currentUserDeviceId = Date.now().toString();
-    //-----------------------------------------------------
 
     // если общий объект teacherRate содержит список рейтингов
     // то делаем обработку
