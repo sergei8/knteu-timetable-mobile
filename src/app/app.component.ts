@@ -53,8 +53,6 @@ export class MyApp {
     }else {
        console.log("[mongoClient] : error!")
     }
-
-    // this.fireStore.setHomePageLog().then().catch();
   }
 
   initializeApp() {

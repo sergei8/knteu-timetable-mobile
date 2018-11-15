@@ -52,5 +52,4 @@ export class RatingChartComponent implements OnChanges {
     this.barChartData = [{data: this.totalRatesCount}];
   }
 
-
 }
