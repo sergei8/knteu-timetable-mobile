@@ -19,6 +19,8 @@ import {SharedObjects} from '../providers/shared-data/shared-data';
 import {FirestoreLogProvider} from '../providers/firestore-log/firestore-log'
 import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch';
 
+import {timer} from 'rxjs/observable/timer';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -32,6 +34,8 @@ export class MyApp {
   configUrl = 'https://raw.githubusercontent.com/sergei8/tt-mobile/master/app-config.json';
 
   askForSavedRozklad: boolean;
+  showSplash = true; // <-- show animation
+
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
@@ -48,10 +52,10 @@ export class MyApp {
     this.readTimeTable();
 
     // подключение к mongodb через mongo stitch
-    if (this.mongodbStitchProvider.initClient()){
+    if (this.mongodbStitchProvider.initClient()) {
       console.log("[mongoClient] : done!")
-    }else {
-       console.log("[mongoClient] : error!")
+    } else {
+      console.log("[mongoClient] : error!")
     }
   }
 
@@ -59,6 +63,8 @@ export class MyApp {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      timer(3000).subscribe(() => this.showSplash = false)
     });
   }
 
