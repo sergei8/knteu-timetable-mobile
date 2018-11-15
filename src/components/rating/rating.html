@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Рейтинг викладача</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="page-home main-fon">
+  <ion-card>
+    <!--<ion-card-title>-->
+    <ion-list>
+      <ion-item>
+        <ion-avatar *ngIf="showAvatar" item-start>
+          <img [src]="img_url">
+        </ion-avatar>
+        <strong>{{last}}</strong><br>{{first}} {{middle}}
+      </ion-item>
+      <ion-item>
+        <rating-chart [rating]="teacherRatingList"
+                      [newRate]="settedRate">
+        </rating-chart>
+      </ion-item>
+      <!--<ion-item-divider></ion-item-divider>-->
+      <hr>
+      <ion-item text-wrap text-justify>
+        Оцініть професійні та особисті якості викладача.<br>
+        Наскільки Ви задоволені методикою викладання:
+      </ion-item>
+      <ion-item>
+        <rating-stars style="text-align: center;"
+                      [(settedRate)]="settedRate">
+        </rating-stars>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+
+  <ion-row>
+    <ion-col text-center>
+      <button ion-button round outline large center class="menuShowButton"
+              [disabled]="settedRate == 0"
+              (click)="acceptClicked()">
+        Підтвердити
+      </button>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
+

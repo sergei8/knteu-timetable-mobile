@@ -1,3 +1,5 @@
+//TODO: перед установкой неового релиза включить логгироваие
+
 import {Injectable} from '@angular/core';
 
 @Injectable()
@@ -6,14 +8,27 @@ export class SharedObjects {
   WeekDayPara: object;
   weekNames: string[];
   dayNamesList: string[];
-  paraNamberList:string[];
+  paraNamberList: string[];
   globalParams: object;
-
+  stopLogging: boolean;
   isConnected = true;  // наличие интернета
+  teacherRate: object;  // ВСЕ рейты текущего препода
+  currentUserDeviceId: string;
+  teacherInfo = {
+    teacherName: '',
+    newTeacher: false,
+    newUserId: false,
+    currentRates: [],
+    rateList: {}
+  };
 
   constructor() {
     this.globalParams = {};
     this.allTimeTable = {};
+
+    /* Для отладки - не использовать логирование */
+    this.stopLogging = true;
+    /* ----------------------------------------- */
 
     this.WeekDayPara = {
       'Перший тиждень': {

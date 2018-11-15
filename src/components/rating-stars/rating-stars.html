@@ -1,0 +1,6 @@
+<div>
+  <ion-icon name="star" *ngFor="let num of [1,2,3,4,5]"
+            style="font-size: 3em; width: 20%" (click)="rateIt(num)"
+            [ngStyle]="{'color': setColor(num)}">
+  </ion-icon>
+</div>

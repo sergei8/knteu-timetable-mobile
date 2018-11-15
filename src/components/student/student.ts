@@ -40,28 +40,6 @@ export class StudentComponent {
     this.groupList = [];
   }
 
-/*
-  getFacNameList() {
-
-    let facNameList: string[] = [];
-    _.each(this.allTimeTable, (fio) =>
-      _.forEach(this.sharedObjects.weekNames.map(x => fio[x]), (week) =>
-        _.each(week, (day) =>
-          _.each(day, (para) => {
-              if (!(_.includes(facNameList, para[0]))) {
-                facNameList.push(para[0]);    // build faculties menu
-              }
-            }
-          )
-        )
-      )
-    );
-
-    this.facNameList = facNameList.sort();
-    this.groupList = [];
-  }
-*/
-
   getCourseList() {
 
     let courseNamberList = [];
@@ -141,7 +119,7 @@ export class StudentComponent {
       )
     );
 
-    this.fireStore.setStudentPageLog(this.selectedFacName, this.selectedCourse, this.selectedGruppa);
+    this.fireStore.setStudentPageLog(this.selectedFacName, this.selectedCourse, this.selectedGruppa).then();
 
     this.nav.push(StudentTtComponent,
       {

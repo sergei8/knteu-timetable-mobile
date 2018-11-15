@@ -12,23 +12,26 @@ const localforage: LocalForage = require("localforage");
 export class SetupComponent {
 
   isSaveRozklad: boolean;
+  isAllowRating: boolean;
 
   constructor(private sharedData: SharedObjects, private data: DataProvider) {
 
     data.readSetup()
       .then(result => {
-        // console.log('after readSetup---', this.sharedData.globalParams);
         this.isSaveRozklad = this.sharedData.globalParams['saveRozklad'];
-
       })
 
   }
 
   saveRozkladClicked() {
     this.sharedData.globalParams['saveRozklad'] = this.isSaveRozklad;
-    // console.log('write ****', this.sharedData.globalParams);
-    // localforage.setItem('setup', {});
-    localforage.setItem('setup', this.sharedData.globalParams);
+    localforage.setItem('setup', this.sharedData.globalParams).then();
+  }
+
+  allowRating() {
+    this.sharedData.globalParams['allowRating'] = this.isAllowRating;
+    localforage.setItem('setup', this.sharedData.globalParams).then();
+
   }
 
   clearRozklad() {
@@ -36,7 +39,7 @@ export class SetupComponent {
       .then(() => {
         this.data.showToastMessage('Ви видалили збережений локально розклад', 'top',
           'infoToast', false, 3000);
-        localforage.removeItem('teacher');
+        localforage.removeItem('teacher').then();
       });
   }
 

@@ -1,6 +1,6 @@
 {
   "name": "tt-mobile",
-  "version": "1.1.0",
+  "version": "2.0.1",
   "author": "Serhii Shkliarskiy",
   "homepage": "http://shkliarskiy.moodlecloud.com",
   "private": true,
@@ -31,6 +31,7 @@
     "@ionic/storage": "2.0.1",
     "ajv": "^6.5.3",
     "angularfire2": "^5.0.2",
+    "chart.js": "^2.7.3",
     "cordova-android": "^6.2.3",
     "cordova-ios": "~4.3.1",
     "cordova-plugin-apprate": "^1.4.0",
@@ -49,12 +50,15 @@
     "jquery": "^3.2.1",
     "localforage": "^1.5.0",
     "lodash": "^4.17.4",
+    "mongodb-stitch-browser-sdk": "^4.0.14-5",
+    "ng2-charts": "^1.6.0",
     "rxjs": "^6.2.2",
     "rxjs-compat": ">=6.2.2",
     "sw-toolbox": "3.6.0",
     "zone.js": ">=0.8.26"
   },
   "devDependencies": {
+    "@angular/cli": "^7.0.4",
     "@ionic/app-scripts": "2.1.3",
     "@ionic/lab": "1.0.9",
     "typescript": ">=2.7.2"
