@@ -77,31 +77,16 @@ ion-list-header {
   @extend .dayHeader;
 }
 
-/*
-.alertButton {
+.alert-button {
   background-color: #007aff !important;
   color: #fafafa !important;
-  !*
   width: 60px!important;
-  align-text: center !important;
-  border-radius: 8px !important;
-  *!
+  //text-align: .;
 }
-*/
 
-.alert-wrapper {
-  //background: #007aff ;
+.alert-wrapper{
   border-radius: 8px !important;
   text-align: center !important;
-  .alert-button {
-    text-align: center !important;
-    width: 60px !important;
-    border-radius: 8px !important;
-    background-color: #007aff !important;
-    color: #fafafa !important;
-    //white-space: pre;
-  }
-
 }
 
 .hoursTitle {
@@ -123,15 +108,15 @@ ion-list-header {
   }
 }
 
-.aboutLogo {
+.aboutLogo{
   color: $HEADER_COLOR;
   font-size: 2em;
   margin: 0 .2em;
 }
 
-ion-avatar img {
-  width: 100% !important;
-  height: 100% !important;
-  max-width: 4em !important; //any size
-  max-height: 4em !important; //any size
+ion-avatar img  {
+width:100% !important;
+height : 100% !important;
+max-width: 4em!important;  //any size
+max-height: 4em!important; //any size
 }

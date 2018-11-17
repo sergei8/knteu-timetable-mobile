@@ -1,5 +1,6 @@
 // TODO: 1. Перенести time-table.json в облако MongoDB
 
+// FIXME: 1. Поменять картинку в SplashScreen
 // FIXME: 2. Спрятать как-то config.json
 // FIXME: 3. Поправить в конфиге ссылку на time-table.json
 
@@ -20,6 +21,7 @@ import {ChartsModule} from 'ng2-charts';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {firebaseConfig} from './credentials';
+// import {StarRatingModule} from 'ionic3-star-rating';
 
 import {MyApp} from './app.component';
 import {HomeComponent} from '../components/home/home';
