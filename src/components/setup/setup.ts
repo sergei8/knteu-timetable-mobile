@@ -37,7 +37,7 @@ export class SetupComponent {
   clearRozklad() {
     localforage.removeItem('student')
       .then(() => {
-        this.data.showToastMessage('Ви видалили збережений локально розклад', 'top',
+        this.data.showToastMessage('Ви видалили збережений локально розклад', 'bottom',
           'infoToast', false, 3000);
         localforage.removeItem('teacher').then();
       });

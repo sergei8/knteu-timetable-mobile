@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FirestoreLogProvider} from '../../providers/firestore-log/firestore-log'
 import {SharedObjects} from '../../providers/shared-data/shared-data';
 
@@ -6,10 +6,14 @@ import {SharedObjects} from '../../providers/shared-data/shared-data';
   selector: 'home',
   templateUrl: 'home.html'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
-  constructor(private fireStore: FirestoreLogProvider, sharedObjects: SharedObjects) {
-    if (!sharedObjects.stopLogging) {
+  constructor(private fireStore: FirestoreLogProvider,
+              public sharedObjects: SharedObjects) {
+  }
+
+  ngOnInit() {
+    if (!this.sharedObjects.stopLogging) {
       this.fireStore.setHomePageLog().then().catch()
     }
   }

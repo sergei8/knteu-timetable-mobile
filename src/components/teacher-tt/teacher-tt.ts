@@ -171,16 +171,15 @@ export class TeacherTtComponent {
         let confirm = this.alert.create({
           subTitle: 'Попередження',
           message: warningMessage,
+          // cssClass: 'alertWindow',
           buttons: [
             {
-              text: 'Ні ',
-              cssClass: 'alertButton',
+              text: 'Ні',
               handler: () => {
               }
             },
             {
               text: 'Так',
-              cssClass: 'alertButton',
               handler: () => {
                 this.showRating().then();
               }

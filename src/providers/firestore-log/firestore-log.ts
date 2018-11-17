@@ -25,15 +25,7 @@ export class FirestoreLogProvider {
       userIpAddr = await this.networkInterface.getCarrierIPAddress();
     } catch (e) {
     }
-    /*
-        const location = this.geolocation.getCurrentPosition()
-          .then((response) => {
-            const lat = response.coords.latitude;
-            const lon = response.coords.longitude;
-            return [lat, lon];
-          }).catch((error): void => {
-          });
-    */
+
     homeDoc.set({
       userDeviceId: this.device.uuid,
       userDeviceModel: this.device.model,
@@ -45,7 +37,7 @@ export class FirestoreLogProvider {
             userLatitude: location[0],
             userLongitude: location[2],
       */
-    });
+    }).then().catch();
   }
 
   async setStudentPageLog(faculty: string, course: string, group: string, saved = false) {
@@ -70,6 +62,16 @@ export class FirestoreLogProvider {
       name: teacherName,
       fromDiscipline: fromDiscipline,
       saved: saved
+    }).then().catch()
+  }
+
+  async setRatingPageLog(teacherName: string, action:string='entered') {
+    const path = `Rating/${Date.now()}`;
+    const ratingDoc = this.fireStore.doc<any>(path);
+    ratingDoc.set({
+      userDeviceId: this.device.uuid,
+      teacherName: teacherName,
+      action: action
     }).then().catch()
   }
 }

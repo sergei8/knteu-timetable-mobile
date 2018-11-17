@@ -1,14 +1,15 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {NavParams} from 'ionic-angular';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
 import {DataProvider} from '../../providers/data/data';
+import {FirestoreLogProvider} from '../../providers/firestore-log/firestore-log'
 
 @Component({
   selector: 'rating',
   templateUrl: 'rating.html'
 })
-export class RatingComponent {
+export class RatingComponent implements OnInit {
 
   details: object;
   img_url: string;
@@ -21,7 +22,8 @@ export class RatingComponent {
 
   constructor(private sharedObjects: SharedObjects,
               public nav: NavController, public navParams: NavParams,
-              public data: DataProvider) {
+              public data: DataProvider,
+              public fireStore: FirestoreLogProvider) {
 
     this.showAvatar = true;
 
@@ -46,13 +48,36 @@ export class RatingComponent {
     this.teacherRatingList = this.sharedObjects.teacherInfo.currentRates;
   }
 
-  acceptClicked() {
+  ngOnInit() {
+    if (!this.sharedObjects.stopLogging) {
+      this.fireStore.setRatingPageLog(this.sharedObjects.teacherInfo.teacherName)
+        .then().catch()
+    }
+
+  }
+
+
+  /**
+   * выполняет цепочку асинхронных функций:
+   *  - запись рейта в БД
+   *  - вывод высплывающего сообщение
+   *  - запись статистики в лог
+   *  - возврат на предыдущий экран
+   */
+  acceptClicked(): void {
     this.writeRateToDb()
-      .then(() => {
+      .then((): void => {
         this.data.showToastMessage('Дякуємо! Вашу думку враховано.', 'bottom',
           'infoToast', false, 5000);
       })
-      .then(() => {
+      .then((): void => {
+        if (!this.sharedObjects.stopLogging) {
+          this.fireStore.setRatingPageLog(this.sharedObjects.teacherInfo.teacherName,
+            "voted")
+            .then().catch()
+        }
+      })
+      .then((): void => {
         this.nav.pop().then(() => {
         });
       })
@@ -76,11 +101,11 @@ export class RatingComponent {
       }
 
       const teacherDoc = {
-          name: this.sharedObjects.teacherInfo.teacherName,
-          rateList: this.sharedObjects.teacherInfo.rateList
-        };
+        name: this.sharedObjects.teacherInfo.teacherName,
+        rateList: this.sharedObjects.teacherInfo.rateList
+      };
 
-       this.data.writeTeacherRates(teacherDoc);
+      this.data.writeTeacherRates(teacherDoc);
 
       resolve();
     });
