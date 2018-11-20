@@ -5,6 +5,7 @@ import {DataProvider} from '../../providers/data/data';
 import {Nav} from 'ionic-angular';
 import {RatingComponent} from "../rating/rating";
 import {AlertController} from 'ionic-angular';
+import {Device} from '@ionic-native/device';
 
 import * as _ from 'lodash';
 
@@ -36,7 +37,8 @@ export class TeacherTtComponent {
 
   constructor(public navParams: NavParams, private sharedObjects: SharedObjects,
               public data: DataProvider, public nav: Nav,
-              private alert: AlertController) {
+              private alert: AlertController,
+              private device: Device) {
 
     this.teacher = navParams.get('teacher');
     this.wdp = navParams.get('wdp');
@@ -71,9 +73,11 @@ export class TeacherTtComponent {
   ionViewDidLoad() {
 
     // отладка --------------------------------------------
-    this.sharedObjects.currentUserDeviceId = '1539103546771';
+    // this.sharedObjects.currentUserDeviceId = '1539103546771';
     // this.sharedObjects.currentUserDeviceId = Date.now().toString();
     //-----------------------------------------------------
+
+    this.sharedObjects.currentUserDeviceId = this.device.uuid;
 
     // получить текущий рейтинг препода и построить звездочки
     // ВСЕГДА при открытии этого экрана!!!
@@ -174,13 +178,11 @@ export class TeacherTtComponent {
           buttons: [
             {
               text: 'Ні ',
-              // cssClass: 'item-left',
               handler: () => {
               }
             },
             {
               text: 'Так',
-              // cssClass: 'alertButton',
               handler: () => {
                 this.showRating().then();
               }

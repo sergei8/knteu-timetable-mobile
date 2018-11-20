@@ -65,7 +65,7 @@ export class FirestoreLogProvider {
     }).then().catch()
   }
 
-  async setRatingPageLog(teacherName: string, action:string='entered') {
+  async setRatingPageLog(teacherName: string, action:string='view') {
     const path = `Rating/${Date.now()}`;
     const ratingDoc = this.fireStore.doc<any>(path);
     ratingDoc.set({

@@ -39,13 +39,13 @@ export class DataProvider {
       buttons: [
         {
           text: 'Ні',
-          cssClass: 'alertButton',
+          // cssClass: 'alertButton',
           handler: () => {
           }
         },
         {
           text: 'Так',
-          cssClass: 'alertButton',
+          // cssClass: 'alertButton',
           handler: () => {
             if (rozklad.id === 'student') {
               this.saveStudentRozklad(rozklad);
@@ -125,7 +125,7 @@ export class DataProvider {
             this.sharedObjects.globalParams = result;
           }
         },
-        (error) => console.log(error))
+        (error) => console.log('ошибка чтения Setup:', error));
   }
 
   showToastMessage(message, position, cssClass, showCloseButton, duration) {
@@ -253,14 +253,14 @@ export class DataProvider {
             // в ratingObj - все рейтинги, оставленные преподу
             // перебираем рейтинги по каждому пользователю;
             for (let userId in ratingObj) {
-              if (ratingObj.hasOwnProperty(userId)) {
-                // в userRatesList - рейтинги, оставленные пользователем для этого препода
-                let userRatesList: object[] = ratingObj[userId];
-                // выбираем из рейтингов пользователя последний оставленный
-                let lastRate = this.selectLastRate(userRatesList);
-                // добавляем его в массив актуальных рейтов
-                ratings.push(lastRate[0]);
-              }
+              // if (ratingObj.hasOwnProperty(userId)) {
+              // в userRatesList - рейтинги, оставленные пользователем для этого препода
+              let userRatesList: object[] = ratingObj[userId];
+              // выбираем из рейтингов пользователя последний оставленный
+              let lastRate = this.selectLastRate(userRatesList);
+              // добавляем его в массив актуальных рейтов
+              ratings.push(lastRate[0]);
+              // }
             }
           }
           // сохраняем актуальные рейты препода в глоб. массиве
@@ -290,7 +290,6 @@ export class DataProvider {
     if (Object.keys(ratingObj).indexOf(this.sharedObjects.currentUserDeviceId) === -1) {
       this.sharedObjects.teacherInfo.newUserId = true
     }
-    // this.sharedObjects.teacherInfo.newUserId = !(this.sharedObjects.currentUserDeviceId in Object.keys(ratingObj));
   }
 
   writeTeacherRates(doc: object) {

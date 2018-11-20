@@ -50,7 +50,7 @@ export class MongodbStitchProvider {
           .then(docs => {
             resolve(docs);
           })
-          .catch((error) => console.log(error))
+          .catch((error) => console.log('Error getTeacherRatingsList' ,error))
       }
     ))
   }
@@ -60,7 +60,7 @@ export class MongodbStitchProvider {
       this.client.auth.loginWithCredential(new AnonymousCredential())
         .then(() => this.db.collection('teachers')
           .updateOne({name: name}, {$set: {rateList: rateList} }, {upsert: true}))
-        .catch((error) => console.log(error));
+        .catch((error) => console.log('writeTeacherDoc', error));
 
       resolve();
     });

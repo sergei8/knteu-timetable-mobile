@@ -49,13 +49,13 @@ export class RatingComponent implements OnInit {
   }
 
   ngOnInit() {
+
     if (!this.sharedObjects.stopLogging) {
       this.fireStore.setRatingPageLog(this.sharedObjects.teacherInfo.teacherName)
         .then().catch()
     }
 
   }
-
 
   /**
    * выполняет цепочку асинхронных функций:
@@ -73,7 +73,7 @@ export class RatingComponent implements OnInit {
       .then((): void => {
         if (!this.sharedObjects.stopLogging) {
           this.fireStore.setRatingPageLog(this.sharedObjects.teacherInfo.teacherName,
-            "voted")
+            "vote")
             .then().catch()
         }
       })
@@ -81,7 +81,7 @@ export class RatingComponent implements OnInit {
         this.nav.pop().then(() => {
         });
       })
-      .catch((err) => console.log(err))
+      .catch((err) => console.log('Ошибка в Ratinf: ', err))
 
   }
 

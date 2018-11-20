@@ -204,14 +204,13 @@ export class MyApp {
 
   // получіть конфіг-файл
   readConfig(): void {
-    // console.log(this.configUrl);
     this.dataProvider.getFile(this.configUrl)
       .subscribe(
         response => {
           this.timeTableUrl = response['time-table-url'];
         },
         error => {
-          console.log(error, 'Error config');
+          console.log('Error config', error);
           this.sharedObjects.isConnected = false;
         },
         () => {

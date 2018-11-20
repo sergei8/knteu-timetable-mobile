@@ -49,7 +49,6 @@ export class TeacherComponent {
 
     // получить вводиое поисковое значеие
     let input = ev.target.value;
-    // console.log(input);
 
     if (!input) {
       this.teachers = [];
