@@ -20,9 +20,9 @@ export class DataProvider {
 
   constructor(public http: HttpClient,
               private alert: AlertController,
-              private sharedObjects: SharedObjects,
+              public sharedObjects: SharedObjects,
               private toast: ToastController,
-              private mongodbStitchProvider: MongodbStitchProvider) {
+              public mongodbStitchProvider: MongodbStitchProvider) {
   }
 
 
@@ -243,6 +243,7 @@ export class DataProvider {
       this.mongodbStitchProvider.getTeacherRatingsList(teacherName)
         .then(docs => {
           const ratingObj = this.sharedObjects.teacherRate = docs.length > 0 ? docs[0]['rateList'] : {};
+          this.sharedObjects.teacherRate = ratingObj;
 
           this.sharedObjects.teacherInfo.rateList = ratingObj;
           this.sharedObjects.teacherInfo.teacherName = teacherName;

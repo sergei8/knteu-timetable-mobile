@@ -11,13 +11,13 @@ export class FirestoreLogProvider {
   constructor(private fireStore: AngularFirestore,
               private device: Device,
               private networkInterface: NetworkInterface,
-              private sharedObjects: SharedObjects) {
+              public sharedObjects: SharedObjects) {
   }
 
   async setHomePageLog() {
     const path = `Home/${Date.now()}`;
     const homeDoc = this.fireStore.doc<any>(path);
-    this.sharedObjects.currentUserDeviceId = this.device.uuid;
+    // this.sharedObjects.currentUserDeviceId = this.device.uuid;
 
     let userIpAddr = {ip: null};
     // перехват runtime-error при отладке
@@ -27,7 +27,7 @@ export class FirestoreLogProvider {
     }
 
     homeDoc.set({
-      userDeviceId: this.device.uuid,
+      userDeviceId: this.sharedObjects.currentUserDeviceId,
       userDeviceModel: this.device.model,
       userDevicePlatform: this.device.platform,
       userOsVersion: this.device.version,

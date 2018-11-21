@@ -1,9 +1,10 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, ViewChild, OnInit} from '@angular/core';
 import {Nav, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {AlertController} from 'ionic-angular';
 import {SetupComponent} from '../components/setup/setup';
+import {Device} from '@ionic-native/device';
 
 import {HomeComponent} from '../components/home/home';
 import {TeacherComponent} from '../components/teacher/teacher';
@@ -24,7 +25,7 @@ import {timer} from 'rxjs/observable/timer';
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class MyApp implements OnInit {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomeComponent;
@@ -41,10 +42,11 @@ export class MyApp {
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
               private dataProvider: DataProvider,
-              private sharedObjects: SharedObjects,
+              public sharedObjects: SharedObjects,
               private alert: AlertController,
               private fireStore: FirestoreLogProvider,
-              private mongodbStitchProvider: MongodbStitchProvider) {
+              private mongodbStitchProvider: MongodbStitchProvider,
+              private device: Device) {
 
     this.splashScreen.show();
     this.readConfig();
@@ -66,6 +68,10 @@ export class MyApp {
 
       timer(3000).subscribe(() => this.showSplash = false)
     });
+  }
+
+  ngOnInit() {
+    this.sharedObjects.currentUserDeviceId = this.device.uuid;
   }
 
   openStudent() {

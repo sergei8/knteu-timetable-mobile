@@ -14,12 +14,12 @@ export class SharedObjects {
   isConnected = true;  // наличие интернета
   teacherRate: object;  // ВСЕ рейты текущего препода
   currentUserDeviceId: string;
-  teacherInfo = {
+  public teacherInfo = {
     teacherName: '',
     newTeacher: false,
     newUserId: false,
     currentRates: [],
-    rateList: {}
+    rateList: {'dummy':[]}
   };
 
   constructor() {

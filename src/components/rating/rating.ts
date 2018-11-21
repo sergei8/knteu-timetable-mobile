@@ -4,6 +4,9 @@ import {NavParams} from 'ionic-angular';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
 import {DataProvider} from '../../providers/data/data';
 import {FirestoreLogProvider} from '../../providers/firestore-log/firestore-log'
+import {Device} from '@ionic-native/device';
+
+import {MongodbStitchProvider} from '../../providers/mongodb-stitch/mongodb-stitch';
 
 @Component({
   selector: 'rating',
@@ -20,10 +23,12 @@ export class RatingComponent implements OnInit {
   teacherRatingList: object;
   settedRate: number = 0; // выбранный рейт
 
-  constructor(private sharedObjects: SharedObjects,
+  constructor(public sharedObjects: SharedObjects,
               public nav: NavController, public navParams: NavParams,
               public data: DataProvider,
-              public fireStore: FirestoreLogProvider) {
+              public fireStore: FirestoreLogProvider,
+              private mongodbStitchProvider: MongodbStitchProvider,
+              public device: Device) {
 
     this.showAvatar = true;
 
@@ -68,7 +73,7 @@ export class RatingComponent implements OnInit {
     this.writeRateToDb()
       .then((): void => {
         this.data.showToastMessage('Дякуємо! Вашу думку враховано.', 'bottom',
-          'infoToast', false, 5000);
+          'infoToast', false, 4000);
       })
       .then((): void => {
         if (!this.sharedObjects.stopLogging) {
@@ -78,26 +83,34 @@ export class RatingComponent implements OnInit {
         }
       })
       .then((): void => {
+        this.nav.popTo(this.nav.getByIndex(this.nav.length()-2));
+/*
         this.nav.pop().then(() => {
         });
+*/
       })
-      .catch((err) => console.log('Ошибка в Ratinf: ', err))
+      .catch((err) => console.log('Ошибка в Rating: ', err))
 
   }
 
   writeRateToDb(): Promise<any> {
     // обновить this.sharedObjects.teacherInfo.currentRates выставленным рейтингом `settedRate`
 
-    const newRateObj = {
-      'date': new Date(),
-      'rating': this.settedRate
-    };
-
     return new Promise<any>(resolve => {
+
+      // console.log('*******', this.sharedObjects.teacherInfo, this.device.uuid);
+      const newRateObj = {
+        'date': new Date(),
+        'rating': this.settedRate
+      };
+
       if (this.sharedObjects.teacherInfo.newUserId) {
-        this.sharedObjects.teacherInfo.rateList[this.sharedObjects.currentUserDeviceId] = [newRateObj]
+        this.sharedObjects.teacherInfo.rateList[this.device.uuid] = [newRateObj];
+        this.sharedObjects.teacherInfo.newUserId = true;
+
       } else {
-        this.sharedObjects.teacherInfo.rateList[this.sharedObjects.currentUserDeviceId].push(newRateObj)
+        this.sharedObjects.teacherInfo.rateList[this.device.uuid].push(newRateObj);
+        this.sharedObjects.teacherInfo.newUserId = false;
       }
 
       const teacherDoc = {
@@ -105,9 +118,11 @@ export class RatingComponent implements OnInit {
         rateList: this.sharedObjects.teacherInfo.rateList
       };
 
-      this.data.writeTeacherRates(teacherDoc);
+      // this.data.writeTeacherRates(teacherDoc);
+      this.mongodbStitchProvider.writeTeacherDoc(teacherDoc['rateList'], teacherDoc['name'])
+        .then(() => resolve());
 
-      resolve();
+      // resolve();
     });
 
   }
