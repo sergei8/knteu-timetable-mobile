@@ -77,8 +77,6 @@ export class TeacherTtComponent {
     // this.sharedObjects.currentUserDeviceId = Date.now().toString();
     //-----------------------------------------------------
 
-    // this.sharedObjects.currentUserDeviceId = this.device.uuid;
-
     // получить текущий рейтинг препода и построить звездочки
     // ВСЕГДА при открытии этого экрана!!!
     this.data.getTeacherRating(this.teacherFullName)

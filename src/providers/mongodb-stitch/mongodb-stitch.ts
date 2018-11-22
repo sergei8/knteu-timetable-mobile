@@ -55,13 +55,18 @@ export class MongodbStitchProvider {
     ))
   }
 
+  /**
+   * перезаписывает досумент препода новыми рейтингами или создает новый док-т, если препода нет в БД
+   * @param {object} rateList - объект с рейтингами препода
+   * @param {string} name - имя препода
+   * @return {Promise<any>}
+   */
   writeTeacherDoc(rateList: object, name:string): Promise<any> {
     return new Promise<any>(resolve => {
       this.client.auth.loginWithCredential(new AnonymousCredential())
         .then(() => this.db.collection('teachers')
           .updateOne({name: name}, {$set: {rateList: rateList} }, {upsert: true}))
         .catch((error) => console.log('writeTeacherDoc', error));
-
       resolve();
     });
   }

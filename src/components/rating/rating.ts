@@ -14,13 +14,13 @@ import {MongodbStitchProvider} from '../../providers/mongodb-stitch/mongodb-stit
 })
 export class RatingComponent implements OnInit {
 
-  details: object;
+  details: object;    // детали по преподу
   img_url: string;
   showAvatar: boolean; // не виводіт аватар препода, если нет фотки
   last: string; // фамілія
   first: string; // імя
   middle: string; // отчество
-  teacherRatingList: object;
+  teacherRatingList: object;  // содержит последние рейтинги препода
   settedRate: number = 0; // выбранный рейт
 
   constructor(public sharedObjects: SharedObjects,
@@ -37,13 +37,14 @@ export class RatingComponent implements OnInit {
     try {
       this.img_url = this.details['img_url'];
     }
-
     catch {
       this.showAvatar = false;
     }
+
     if (!this.img_url) {
       this.showAvatar = false
     }
+
 // распарсіть ФІО
     const name = this.details['name'].split(' ');
     this.last = name[0];
@@ -59,7 +60,6 @@ export class RatingComponent implements OnInit {
       this.fireStore.setRatingPageLog(this.sharedObjects.teacherInfo.teacherName)
         .then().catch()
     }
-
   }
 
   /**
@@ -84,21 +84,21 @@ export class RatingComponent implements OnInit {
       })
       .then((): void => {
         this.nav.popTo(this.nav.getByIndex(this.nav.length()-2));
-/*
-        this.nav.pop().then(() => {
-        });
-*/
       })
       .catch((err) => console.log('Ошибка в Rating: ', err))
 
   }
 
+  /**
+   * добавляет в рейтинги препода новый рейт и вызывает mongo-stich для записи
+   * нобновленного списка рейтингов в документ препода
+   * @return {Promise<any>}
+   */
   writeRateToDb(): Promise<any> {
     // обновить this.sharedObjects.teacherInfo.currentRates выставленным рейтингом `settedRate`
 
     return new Promise<any>(resolve => {
 
-      // console.log('*******', this.sharedObjects.teacherInfo, this.device.uuid);
       const newRateObj = {
         'date': new Date(),
         'rating': this.settedRate
@@ -107,7 +107,6 @@ export class RatingComponent implements OnInit {
       if (this.sharedObjects.teacherInfo.newUserId) {
         this.sharedObjects.teacherInfo.rateList[this.device.uuid] = [newRateObj];
         this.sharedObjects.teacherInfo.newUserId = true;
-
       } else {
         this.sharedObjects.teacherInfo.rateList[this.device.uuid].push(newRateObj);
         this.sharedObjects.teacherInfo.newUserId = false;
@@ -118,14 +117,11 @@ export class RatingComponent implements OnInit {
         rateList: this.sharedObjects.teacherInfo.rateList
       };
 
-      // this.data.writeTeacherRates(teacherDoc);
       this.mongodbStitchProvider.writeTeacherDoc(teacherDoc['rateList'], teacherDoc['name'])
         .then(() => resolve());
 
-      // resolve();
     });
 
   }
-
 
 }

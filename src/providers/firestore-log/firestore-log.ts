@@ -17,7 +17,6 @@ export class FirestoreLogProvider {
   async setHomePageLog() {
     const path = `Home/${Date.now()}`;
     const homeDoc = this.fireStore.doc<any>(path);
-    // this.sharedObjects.currentUserDeviceId = this.device.uuid;
 
     let userIpAddr = {ip: null};
     // перехват runtime-error при отладке
