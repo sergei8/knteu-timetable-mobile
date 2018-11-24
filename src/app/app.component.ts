@@ -51,7 +51,7 @@ export class MyApp implements OnInit {
     this.splashScreen.show();
     this.readConfig();
     this.initializeApp();
-    this.readTimeTable();
+    // this.readTimeTable();
 
     // подключение к mongodb через mongo stitch
     if (this.mongodbStitchProvider.initClient()) {
@@ -193,8 +193,9 @@ export class MyApp implements OnInit {
   readTimeTable() {
     // todo отладочная вставка - удалить потом assets/db/time-table...
     // this.timeTableUrl = 'http://localhost:8100/assets/db/time-table.json';
-    this.timeTableUrl = 'https://raw.githubusercontent.com/sergei8/TT-site/master/assets/db/time-table-new.json';
+    // this.timeTableUrl = 'https://raw.githubusercontent.com/sergei8/TT-site/master/assets/db/time-table-new.json';
     // ------------------
+    // console.log('***********',this.timeTableUrl);
     this.dataProvider.getFile(this.timeTableUrl)
       .subscribe(
         response => {
@@ -221,7 +222,7 @@ export class MyApp implements OnInit {
         },
         () => {
           /* когда app-config прочітан визиваем загрузку time-table.json*/
-          // this.readTimeTable();
+          this.readTimeTable();
         }
       );
   }
