@@ -40,16 +40,18 @@ ion-list-header {
 
 .menuShowButton {
   color: $MENU_BACKGROUND;
-  //border-color: $MENU_BACKGROUND;
-  border-color: rgba(173, 173, 173, 0);
+  //border-color: $MAIN_FONT_COLOR;
+  border-color: rgba(173, 173, 173, 1);
   //background-image: radial-gradient(rgba(173, 173, 173, 1) 0%, rgba(54, 54, 54, 0) 100%);
-  //box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em #800;
+  box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em $MENU_BACKGROUND;
+  /*
   box-shadow:
    inset 0 0 3px 1px rgba(0,0,0,.8),
    inset rgba(0,0,0,.3) -5px -5px 8px 5px,
    inset rgba(255,255,255,.5) 5px 5px 8px 5px,
    1px 1px 1px rgba(255,255,255,.1),
    -2px -2px 5px rgba(0,0,0,.5);
+  */
 
 }
 
