@@ -40,7 +40,17 @@ ion-list-header {
 
 .menuShowButton {
   color: $MENU_BACKGROUND;
-  border-color: $MAIN_FONT_COLOR;
+  //border-color: $MENU_BACKGROUND;
+  border-color: rgba(173, 173, 173, 0);
+  //background-image: radial-gradient(rgba(173, 173, 173, 1) 0%, rgba(54, 54, 54, 0) 100%);
+  //box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em #800;
+  box-shadow:
+   inset 0 0 3px 1px rgba(0,0,0,.8),
+   inset rgba(0,0,0,.3) -5px -5px 8px 5px,
+   inset rgba(255,255,255,.5) 5px 5px 8px 5px,
+   1px 1px 1px rgba(255,255,255,.1),
+   -2px -2px 5px rgba(0,0,0,.5);
+
 }
 
 .menuShowButton:hover {
@@ -80,11 +90,11 @@ ion-list-header {
 .alert-button {
   background-color: #007aff !important;
   color: #fafafa !important;
-  width: 60px!important;
+  width: 60px !important;
   //text-align: .;
 }
 
-.alert-wrapper{
+.alert-wrapper {
   border-radius: 8px !important;
   text-align: center !important;
 }
@@ -108,15 +118,15 @@ ion-list-header {
   }
 }
 
-.aboutLogo{
+.aboutLogo {
   color: $HEADER_COLOR;
   font-size: 2em;
   margin: 0 .2em;
 }
 
-ion-avatar img  {
-width:100% !important;
-height : 100% !important;
-max-width: 4em!important;  //any size
-max-height: 4em!important; //any size
+ion-avatar img {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 4em !important; //any size
+  max-height: 4em !important; //any size
 }
