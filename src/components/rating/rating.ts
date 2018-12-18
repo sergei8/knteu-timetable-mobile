@@ -33,16 +33,23 @@ export class RatingComponent implements OnInit {
     this.showAvatar = true;
 
     this.details = navParams.get('details');
-    // получіть адрес фоткі
-    try {
-      this.img_url = this.details['img_url'];
-    }
-    catch {
-      this.showAvatar = false;
-    }
 
-    if (!this.img_url) {
-      this.showAvatar = false
+    try {
+    //  проверим есть ли аватар
+    if (this.details.hasOwnProperty("avatar_url")) {
+      this.img_url = this.details["avatar_url"];
+    } else {
+      // аватара нету, может есть фотка?
+      if (this.details.hasOwnProperty("img_url")) {
+        this.img_url = this.details["img_url"];
+      } else {
+        // ничего нет - скроеим поле аватара
+        this.showAvatar = false;
+      }
+    }
+    } catch {
+      //что-то пошло не так ...
+      this.showAvatar = false;
     }
 
 // распарсіть ФІО
@@ -83,7 +90,7 @@ export class RatingComponent implements OnInit {
         }
       })
       .then((): void => {
-        this.nav.popTo(this.nav.getByIndex(this.nav.length()-2));
+        this.nav.popTo(this.nav.getByIndex(this.nav.length() - 2));
       })
       .catch((err) => console.log('Ошибка в Rating: ', err))
 
