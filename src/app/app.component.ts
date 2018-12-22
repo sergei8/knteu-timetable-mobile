@@ -14,7 +14,6 @@ import {TeacherTtComponent} from "../components/teacher-tt/teacher-tt";
 import {AboutComponent} from '../components/about/about';
 import {HoursComponent} from '../components/hours/hours';
 
-
 import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
 import {FirestoreLogProvider} from '../providers/firestore-log/firestore-log'
@@ -193,7 +192,7 @@ export class MyApp implements OnInit {
   readTimeTable() {
     // todo отладочная вставка - удалить потом assets/db/time-table...
     // this.timeTableUrl = 'http://localhost:8100/assets/db/time-table.json';
-    // this.timeTableUrl = 'https://raw.githubusercontent.com/sergei8/TT-site/master/assets/db/time-table-new.json';
+    this.timeTableUrl = 'https://raw.githubusercontent.com/sergei8/TT-site/master/assets/db/time-table.json';
     // ------------------
     // console.log('***********',this.timeTableUrl);
     this.dataProvider.getFile(this.timeTableUrl)
@@ -203,7 +202,7 @@ export class MyApp implements OnInit {
         },
         error => {
           this.sharedObjects.isConnected = false;
-          console.log('ERROR time-table: ', error.message);
+          console.log('ERROR time-table: ', error);
         }
       );
 

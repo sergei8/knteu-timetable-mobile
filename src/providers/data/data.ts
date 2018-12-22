@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {HttpHeaders} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs/Observable";
 import {AlertController} from 'ionic-angular';
@@ -27,7 +28,9 @@ export class DataProvider {
 
 
   getFile(url): Observable<Object> {
-    return this.http.get(url)
+    let headers = new HttpHeaders();
+    headers.set('Accept-Encoding', 'gzip').set('Content-Type', 'application/json; charset=utf-8');
+    return this.http.get(url, {headers: headers})
   }
 
   // сохраняет распісаніе студента или препода локально

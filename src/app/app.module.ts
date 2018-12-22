@@ -14,14 +14,15 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {AppRate} from '@ionic-native/app-rate';
 import {Device} from '@ionic-native/device';
-// import {Geolocation}from'@ionic-native/geolocation';
 import {NetworkInterface} from '@ionic-native/network-interface';
 import {ChartsModule} from 'ng2-charts';
 
 import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {firebaseConfig} from './credentials';
+
 // import {StarRatingModule} from 'ionic3-star-rating';
+// import {Geolocation}from'@ionic-native/geolocation';
 
 import {MyApp} from './app.component';
 import {HomeComponent} from '../components/home/home';
@@ -92,7 +93,7 @@ import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch'
     DataProvider,
     SharedObjects,
     FirestoreLogProvider,
-    MongodbStitchProvider
+    MongodbStitchProvider,
   ]
 })
 export class AppModule {
