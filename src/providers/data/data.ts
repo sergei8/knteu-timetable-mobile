@@ -26,10 +26,14 @@ export class DataProvider {
               public mongodbStitchProvider: MongodbStitchProvider) {
   }
 
-
+  /**
+   * получает time-table одним куском из url
+   * @param url - место, где лежит time-table
+   * @return {Observable<Object>}
+   */
   getFile(url): Observable<Object> {
     let headers = new HttpHeaders();
-    headers.set('Accept-Encoding', 'gzip').set('Content-Type', 'application/json; charset=utf-8');
+    headers.set('Accept-Encoding', 'gzip');
     return this.http.get(url, {headers: headers})
   }
 
