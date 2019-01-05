@@ -43,7 +43,7 @@ ion-list-header {
   //border-color: $MAIN_FONT_COLOR;
   border-color: rgba(173, 173, 173, 1);
   //background-image: radial-gradient(rgba(173, 173, 173, 1) 0%, rgba(54, 54, 54, 0) 100%);
-  box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em $MENU_BACKGROUND;
+  box-shadow: 0 0 0 60px rgba(0, 0, 0, 0) inset, .1em .1em .2em $MENU_BACKGROUND;
 }
 
 .menuShowButton:hover {
@@ -123,3 +123,4 @@ ion-avatar img {
   max-width: 4em !important; //any size
   max-height: 4em !important; //any size
 }
+
