@@ -194,7 +194,6 @@ export class MyApp implements OnInit {
     // this.timeTableUrl = 'http://localhost:8100/assets/db/time-table.json';
     this.timeTableUrl = 'https://raw.githubusercontent.com/sergei8/TT-site/master/assets/db/time-table.json';
     // ------------------
-    // console.log('***********',this.timeTableUrl);
     this.dataProvider.getFile(this.timeTableUrl)
       .subscribe(
         response => {
