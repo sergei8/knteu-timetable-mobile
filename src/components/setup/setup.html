@@ -15,46 +15,41 @@
       </ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-8>
-            дозволіти зберігати розклад
-          </ion-col>
-          <ion-col offset-2>
-            <ion-checkbox [(ngModel)]="isSaveRozklad" role="button"
-                          (ionChange)="saveRozkladClicked()" class="setupHeader"
-                          style="margin-top: 15px!important;">
-            </ion-checkbox>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+      <ion-item>
+        <ion-label>
+          дозволити зберігати розклад
+        </ion-label>
+        <ion-toggle [(ngModel)]="isSaveRozklad"
+                    (ionChange)="saveRozkladClicked()">
+        </ion-toggle>
+      </ion-item>
     </ion-card-content>
   </ion-card>
 
-<!--
-  <ion-card>
-    <ion-card-header no-padding text-center class="setupHeader">
-      <ion-card-title>
-        Рейтинг викладачей
-      </ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-8>
-            Увімкнути/вимкнути
-          </ion-col>
-          <ion-col offset-2>
-            <ion-checkbox [(ngModel)]="isAllowRating" role="button"
-                          (ionChange)="allowRating()" class="setupHeader"
-                          style="margin-top: 15px!important;">
-            </ion-checkbox>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
--->
+  <!--
+    <ion-card>
+      <ion-card-header no-padding text-center class="setupHeader">
+        <ion-card-title>
+          Рейтинг викладачей
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-8>
+              Увімкнути/вимкнути
+            </ion-col>
+            <ion-col offset-2>
+              <ion-checkbox [(ngModel)]="isAllowRating" role="button"
+                            (ionChange)="allowRating()" class="setupHeader"
+                            style="margin-top: 15px!important;">
+              </ion-checkbox>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  -->
 
   <ion-card padding-bottom>
     <ion-card-header no-padding text-center class='setupHeader'>
@@ -63,15 +58,27 @@
       </ion-card-title>
     </ion-card-header>
     <ion-card-content>
+      <!--
+            <ion-item>
+              <ion-label>
+                Натисніть, щоб видалити збережені розклади
+              </ion-label>
+              <ion-fab mini>
+                <button  (click)="clearRozklad()">
+                  <ion-icon name="trash"></ion-icon>
+                </button>
+              </ion-fab>
+            </ion-item>
+      -->
       <ion-grid>
         <ion-row>
           <ion-col col-8>
             Натисніть, щоб видалити збережені розклади
           </ion-col>
-          <ion-col offset-1>
-            <ion-fab mini>
+          <ion-col offset-2>
+            <ion-fab>
               <button ion-fab (click)="clearRozklad()">
-                <ion-icon name="trash"></ion-icon>
+                <ion-icon name="trash" ></ion-icon>
               </button>
             </ion-fab>
           </ion-col>
