@@ -18,6 +18,7 @@ import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
 import {FirestoreLogProvider} from '../providers/firestore-log/firestore-log'
 import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch';
+import {Push, PushObject, PushOptions} from '@ionic-native/push';
 
 import {timer} from 'rxjs/observable/timer';
 
@@ -45,12 +46,14 @@ export class MyApp implements OnInit {
               private alert: AlertController,
               private fireStore: FirestoreLogProvider,
               private mongodbStitchProvider: MongodbStitchProvider,
-              private device: Device) {
+              private device: Device,
+              private push: Push) {
 
     this.splashScreen.show();
     this.readConfig();
     this.initializeApp();
     // this.readTimeTable();
+    this.pushSetup();
 
     // подключение к mongodb через mongo stitch
     if (this.mongodbStitchProvider.initClient()) {
@@ -58,6 +61,28 @@ export class MyApp implements OnInit {
     } else {
       console.log("[mongoClient] : error!")
     }
+  }
+
+  pushSetup() {
+    const options: PushOptions = {
+      android: {
+        senderID: '186245343652'
+      },
+      ios: {
+        alert: 'true',
+        badge: true,
+        sound: 'false'
+      }
+    };
+
+    const pushObject: PushObject = this.push.init(options);
+
+
+    pushObject.on('notification').subscribe((notification: any) => console.log('Received a notification', notification));
+
+    pushObject.on('registration').subscribe((registration: any) => console.log('Device registered', registration));
+
+    pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
   }
 
   initializeApp() {

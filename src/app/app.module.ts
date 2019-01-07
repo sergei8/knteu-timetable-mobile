@@ -20,6 +20,7 @@ import {ChartsModule} from 'ng2-charts';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {firebaseConfig} from './credentials';
+import {Push } from '@ionic-native/push';
 
 // import {StarRatingModule} from 'ionic3-star-rating';
 // import {Geolocation}from'@ionic-native/geolocation';
@@ -94,6 +95,7 @@ import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch'
     SharedObjects,
     FirestoreLogProvider,
     MongodbStitchProvider,
+    Push,
   ]
 })
 export class AppModule {
