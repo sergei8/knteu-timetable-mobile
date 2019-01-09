@@ -32,7 +32,7 @@ export class MyApp implements OnInit {
 
   appConfig = {};
   timeTableUrl: string;
-  configUrl = 'https://raw.githubusercontent.com/sergei8/tt-mobile/master/app-config.json';
+  configUrl = 'http://raw.githubusercontent.com/sergei8/tt-mobile/master/app-config.json';
 
   askForSavedRozklad: boolean;
   showSplash = true; // <-- show animation
@@ -52,9 +52,11 @@ export class MyApp implements OnInit {
     this.splashScreen.show();
     this.readConfig();
     this.initializeApp();
-    // this.readTimeTable();
-    this.pushSetup();
-
+    this.platform.ready()
+    {
+      this.splashScreen.hide();
+      this.pushSetup();
+    }
     // подключение к mongodb через mongo stitch
     if (this.mongodbStitchProvider.initClient()) {
       console.log("[mongoClient] : done!")
@@ -64,9 +66,12 @@ export class MyApp implements OnInit {
   }
 
   pushSetup() {
+
     const options: PushOptions = {
       android: {
-        senderID: '186245343652'
+        senderID: '186245343652',
+        iconColor: '#343434',
+        forceShow: true
       },
       ios: {
         alert: 'true',
@@ -77,12 +82,11 @@ export class MyApp implements OnInit {
 
     const pushObject: PushObject = this.push.init(options);
 
+    pushObject.on('notification').subscribe((notification: any) => console.log('*** Уведомление: ', notification));
 
-    pushObject.on('notification').subscribe((notification: any) => console.log('Received a notification', notification));
+    pushObject.on('registration').subscribe((registration: any) => console.log('*** Регистрация [токен]: ', registration));
 
-    pushObject.on('registration').subscribe((registration: any) => console.log('Device registered', registration));
-
-    pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
+    pushObject.on('error').subscribe(error => console.error('***Error with Push plugin', error));
   }
 
   initializeApp() {
@@ -217,7 +221,7 @@ export class MyApp implements OnInit {
   readTimeTable() {
     // todo отладочная вставка - удалить потом assets/db/time-table...
     // this.timeTableUrl = 'http://localhost:8100/assets/db/time-table.json';
-    this.timeTableUrl = 'https://raw.githubusercontent.com/sergei8/TT-site/master/assets/db/time-table.json';
+    this.timeTableUrl = 'http://raw.githubusercontent.com/sergei8/TT-site/master/assets/db/time-table.json';
     // ------------------
     this.dataProvider.getFile(this.timeTableUrl)
       .subscribe(

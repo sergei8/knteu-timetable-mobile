@@ -37,7 +37,7 @@
     "cordova-ios": "~4.3.1",
     "cordova-plugin-apprate": "~1.3.0",
     "cordova-plugin-console": "^1.0.5",
-    "cordova-plugin-device": "^1.1.4",
+    "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-dialogs": "^1.3.3",
     "cordova-plugin-geolocation": "^4.0.1",
     "cordova-plugin-globalization": "~1.0.7",
@@ -72,7 +72,6 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-console": {},
-      "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-whitelist": {},
@@ -85,7 +84,8 @@
       "phonegap-plugin-push": {
         "SENDER_ID": "186245343652"
       },
-      "cordova-plugin-apprate": {}
+      "cordova-plugin-apprate": {},
+      "cordova-plugin-device": {}
     },
     "platforms": [
       "ios",
