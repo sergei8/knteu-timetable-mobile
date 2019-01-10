@@ -79,7 +79,8 @@
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
       },
       "cordova-plugin-networkinterface": {},
-      "cordova-plugin-apprate": {}
+      "cordova-plugin-apprate": {},
+      "cordova-plugin-firebase": {}
     },
     "platforms": [
       "ios",
