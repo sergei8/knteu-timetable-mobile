@@ -27,13 +27,14 @@ export class DataProvider {
   }
 
   /**
-   * получает time-table одним куском из url
+   * получает json одним куском из url
    * @param url - место, где лежит time-table
    * @return {Observable<Object>}
    */
   getFile(url): Observable<Object> {
     let headers = new HttpHeaders();
     headers.set('Accept-Encoding', 'gzip');
+    headers.append('Access-Control-Allow-Origin', '*');
     return this.http.get(url, {headers: headers})
   }
 
