@@ -26,19 +26,19 @@
     "@ionic-native/device": "^4.14.0",
     "@ionic-native/geolocation": "^4.14.0",
     "@ionic-native/network-interface": "^4.14.0",
+    "@ionic-native/push": "^4.19.0",
     "@ionic-native/splash-screen": "^3.12.1",
     "@ionic-native/status-bar": "3.12.1",
     "@ionic/storage": "2.0.1",
     "ajv": "^6.5.3",
     "angularfire2": "^5.0.2",
     "chart.js": "^2.7.3",
-    "cordova-android": "7.1.4",
+    "cordova-android": "^7.1.4",
     "cordova-ios": "~4.3.1",
     "cordova-plugin-apprate": "~1.3.0",
     "cordova-plugin-console": "^1.0.5",
-    "cordova-plugin-device": "^1.1.4",
+    "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-dialogs": "^1.3.3",
-    "cordova-plugin-geolocation": "^4.0.1",
     "cordova-plugin-globalization": "~1.0.7",
     "cordova-plugin-networkinterface": "^2.0.0",
     "cordova-plugin-splashscreen": "^4.0.3",
@@ -54,6 +54,8 @@
     "lodash": "^4.17.4",
     "mongodb-stitch-browser-sdk": "^4.0.14-5",
     "ng2-charts": "^1.6.0",
+    "phonegap-plugin-multidex": "^1.0.0",
+    "phonegap-plugin-push": "2.2.3",
     "rxjs": "^6.2.2",
     "rxjs-compat": ">=6.2.2",
     "sw-toolbox": "3.6.0",
@@ -69,18 +71,17 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-console": {},
-      "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-whitelist": {},
       "ionic-plugin-keyboard": {},
       "cordova-plugin-globalization": {},
-      "cordova-plugin-geolocation": {
-        "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
-      },
       "cordova-plugin-networkinterface": {},
+      "phonegap-plugin-push": {
+        "SENDER_ID": "186245343652"
+      },
       "cordova-plugin-apprate": {},
-      "cordova-plugin-firebase": {}
+      "cordova-plugin-device": {}
     },
     "platforms": [
       "ios",

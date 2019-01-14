@@ -18,6 +18,7 @@ import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
 import {FirestoreLogProvider} from '../providers/firestore-log/firestore-log'
 import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch';
+import {Push, PushObject, PushOptions} from '@ionic-native/push';
 
 import {timer} from 'rxjs/observable/timer';
 
@@ -31,7 +32,7 @@ export class MyApp implements OnInit {
 
   appConfig = {};
   timeTableUrl: string;
-  configUrl = 'https://raw.githubusercontent.com/sergei8/tt-mobile/master/app-config.json';
+  configUrl = 'http://raw.githubusercontent.com/sergei8/tt-mobile/master/app-config.json';
 
   askForSavedRozklad: boolean;
   showSplash = true; // <-- show animation
@@ -45,19 +46,47 @@ export class MyApp implements OnInit {
               private alert: AlertController,
               private fireStore: FirestoreLogProvider,
               private mongodbStitchProvider: MongodbStitchProvider,
-              private device: Device) {
+              private device: Device,
+              private push: Push) {
 
     this.splashScreen.show();
     this.readConfig();
     this.initializeApp();
-    // this.readTimeTable();
-
+    this.platform.ready()
+    {
+      this.splashScreen.hide();
+      this.pushSetup();
+    }
     // подключение к mongodb через mongo stitch
     if (this.mongodbStitchProvider.initClient()) {
       console.log("[mongoClient] : done!")
     } else {
       console.log("[mongoClient] : error!")
     }
+  }
+
+  pushSetup() {
+
+    const options: PushOptions = {
+      android: {
+        senderID: '186245343652',
+        iconColor: '#343434',
+        forceShow: true
+      },
+      ios: {
+        alert: 'true',
+        badge: true,
+        sound: 'false'
+      }
+    };
+
+    const pushObject: PushObject = this.push.init(options);
+
+    pushObject.on('notification').subscribe((notification: any) => console.log('*** Уведомление: ', notification));
+
+    pushObject.on('registration').subscribe((registration: any) => console.log('*** Регистрация [токен]: ', registration));
+
+    pushObject.on('error').subscribe(error => console.error('***Error with Push plugin', error));
   }
 
   initializeApp() {
@@ -192,7 +221,7 @@ export class MyApp implements OnInit {
   readTimeTable() {
     // todo отладочная вставка - удалить потом assets/db/time-table...
     // this.timeTableUrl = 'http://localhost:8100/assets/db/time-table.json';
-    this.timeTableUrl = 'https://raw.githubusercontent.com/sergei8/TT-site/master/assets/db/time-table.json';
+    this.timeTableUrl = 'http://raw.githubusercontent.com/sergei8/TT-site/master/assets/db/time-table.json';
     // ------------------
     this.dataProvider.getFile(this.timeTableUrl)
       .subscribe(
