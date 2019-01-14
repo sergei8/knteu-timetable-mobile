@@ -32,7 +32,7 @@ export class MyApp implements OnInit {
 
   appConfig = {};
   timeTableUrl: string;
-  configUrl = 'http://raw.githubusercontent.com/sergei8/tt-mobile/master/app-config.json';
+  configUrl = 'https://raw.githubusercontent.com/sergei8/tt-mobile/master/app-config.json';
 
   askForSavedRozklad: boolean;
   showSplash = true; // <-- show animation
