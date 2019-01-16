@@ -27,7 +27,7 @@ export class SharedObjects {
     this.allTimeTable = {};
 
     /* Для отладки - не использовать логирование */
-    this.stopLogging = true;
+    this.stopLogging = false;
     /* ----------------------------------------- */
 
     this.WeekDayPara = {
