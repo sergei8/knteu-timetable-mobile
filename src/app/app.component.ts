@@ -52,7 +52,7 @@ export class MyApp implements OnInit {
     this.splashScreen.show();
     this.readConfig();
     this.initializeApp();
-    this.platform.ready()
+    this.platform.ready();
     {
       this.splashScreen.hide();
       this.pushSetup();
@@ -221,7 +221,8 @@ export class MyApp implements OnInit {
   readTimeTable() {
     // todo отладочная вставка - удалить потом assets/db/time-table...
     // this.timeTableUrl = 'http://localhost:8100/assets/db/time-table.json';
-    this.timeTableUrl = 'http://raw.githubusercontent.com/sergei8/TT-site/master/assets/db/time-table.json';
+    // this.timeTableUrl = 'https://raw.githubusercontent.com/sergei8/TT-site/master/assets/db/time-table.json?token=AF9ePDy24bBr6i0sumR3FfqincFJhcSnks5cVbOWwA%3D%3D';
+    // this.timeTableUrl = 'http://raw.githubusercontent.com/sergei8/TT-site/master/assets/db/time-table.json';
     // ------------------
     this.dataProvider.getFile(this.timeTableUrl)
       .subscribe(
