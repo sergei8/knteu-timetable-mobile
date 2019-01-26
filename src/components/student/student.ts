@@ -32,7 +32,7 @@ export class StudentComponent {
               private fireStore: FirestoreLogProvider) {
     this.allTimeTable = this.sharedObjects.allTimeTable;
     if (!this.sharedObjects.isConnected) {
-      this.data.showToastMessage('У Вас відсутнє підключення до Мережі!', 'bottom',
+      this.data.showToastMessage(' Нема доступу до розкладу в мережі!', 'bottom',
         'warningToast', true, 0);
     }
 
