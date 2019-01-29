@@ -32,7 +32,8 @@ export class MyApp implements OnInit {
 
   appConfig = {};
   timeTableUrl: string;
-  configUrl = 'https://raw.githubusercontent.com/sergei8/tt-mobile/master/app-config.json';
+  // configUrl = 'https://raw.githubusercontent.com/sergei8/tt-mobile/master/app-config.json';
+  configUrl = 'http://localhost:8100/assets/db/app-config.json';
 
   askForSavedRozklad: boolean;
   showSplash = true; // <-- show animation
@@ -220,7 +221,7 @@ export class MyApp implements OnInit {
   // подписаться на получение файла time-table.json
   readTimeTable() {
     // todo отладочная вставка - удалить потом assets/db/time-table...
-    // this.timeTableUrl = 'http://localhost:8100/assets/db/time-table.json';
+    this.timeTableUrl = 'http://localhost:8100/assets/db/time-table.json';
     // this.timeTableUrl = 'https://raw.githubusercontent.com/sergei8/TT-site/master/assets/db/time-table.json?token=AF9ePDy24bBr6i0sumR3FfqincFJhcSnks5cVbOWwA%3D%3D';
     // this.timeTableUrl = 'http://raw.githubusercontent.com/sergei8/TT-site/master/assets/db/time-table.json';
     // ------------------
@@ -243,6 +244,7 @@ export class MyApp implements OnInit {
       .subscribe(
         response => {
           this.timeTableUrl = response['time-table-url'];
+          this.sharedObjects.stopLogging = response['stop-logging']
         },
         error => {
           console.log('Error config', error);

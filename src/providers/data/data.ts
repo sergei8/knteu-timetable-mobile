@@ -32,7 +32,7 @@ export class DataProvider {
    * @return {Observable<Object>}
    */
   getFile(url): Observable<Object> {
-    console.log(url);
+    // console.log(url);
     let headers = new HttpHeaders();
     headers.set('Accept-Encoding', 'gzip');
     headers.append('Access-Control-Allow-Origin', '*');

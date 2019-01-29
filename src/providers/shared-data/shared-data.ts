@@ -1,4 +1,3 @@
-//TODO: перед установкой неового релиза включить логгироваие
 
 import {Injectable} from '@angular/core';
 
@@ -23,11 +22,11 @@ export class SharedObjects {
   };
 
   constructor() {
-    this.globalParams = {};
+    this.globalParams = {};   // хранит переключатель сохранения распсания локально
     this.allTimeTable = {};
 
     /* Для отладки - не использовать логирование */
-    this.stopLogging = false;
+    // this.stopLogging = true;
     /* ----------------------------------------- */
 
     this.WeekDayPara = {
