@@ -1,4 +1,3 @@
-
 import {Injectable} from '@angular/core';
 
 @Injectable()
@@ -13,12 +12,13 @@ export class SharedObjects {
   isConnected = true;  // наличие интернета
   teacherRate: object;  // ВСЕ рейты текущего препода
   currentUserDeviceId: string;
+  appVersion: string;
   public teacherInfo = {
     teacherName: '',
     newTeacher: false,
     newUserId: false,
     currentRates: [],
-    rateList: {'dummy':[]}
+    rateList: {'dummy': []}
   };
 
   constructor() {

@@ -42,7 +42,6 @@ import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
 import {FirestoreLogProvider} from '../providers/firestore-log/firestore-log';
 import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch';
-import { InterfacesProvider } from '../providers/interfaces/interfaces';
 
 @NgModule({
   declarations: [
@@ -97,7 +96,6 @@ import { InterfacesProvider } from '../providers/interfaces/interfaces';
     FirestoreLogProvider,
     MongodbStitchProvider,
     Push,
-    InterfacesProvider,
   ]
 })
 export class AppModule {

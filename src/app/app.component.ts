@@ -238,13 +238,17 @@ export class MyApp implements OnInit {
 
   }
 
-  // получіть конфіг-файл
+  /**
+   * читает конфиг, заполняет из него общие конфигурационные переменные
+   * и вызывает чтение `time-teble.json`
+   */
   readConfig(): void {
     this.dataProvider.getFile(this.configUrl)
       .subscribe(
         response => {
           this.timeTableUrl = response['time-table-url'];
-          this.sharedObjects.stopLogging = response['stop-logging']
+          this.sharedObjects.stopLogging = response['stop-logging'];
+          this.sharedObjects.appVersion = response['version'];
         },
         error => {
           console.log('Error config', error);
