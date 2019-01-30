@@ -1,4 +1,4 @@
-## FrontEnd of mobile app KNTEU timetable
+## Front-end part of mobile application `KNTEU timetable`
 
 Download it from [Google Play](https://play.google.com/store/apps/details?id=ek.knteu.timetable)
 
