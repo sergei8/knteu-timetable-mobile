@@ -35,19 +35,21 @@ export class RatingComponent implements OnInit {
     this.details = navParams.get('details');
 
     try {
-    //  проверим есть ли аватар
-    if (this.details.hasOwnProperty("avatar_url")) {
-      this.img_url = this.details["avatar_url"];
-      console.log(this.img_url)
-    } else {
-      // аватара нету, может есть фотка?
-      if (this.details.hasOwnProperty("img_url")) {
-        this.img_url = this.details["img_url"];
-      } else {
-        // ничего нет - скроеим поле аватара
-        this.showAvatar = false;
-      }
-    }
+      //  установим ссылку на аватар или на фотку если аватара нету
+      this.img_url = this.details["avatar_url"] || this.details["img_url"];
+      /*
+          if (this.details.hasOwnProperty("avatar_url")) {
+            this.img_url = this.details["avatar_url"];
+          } else {
+            // аватара нету, может есть фотка?
+            if (this.details.hasOwnProperty("img_url")) {
+              this.img_url = this.details["img_url"];
+            } else {
+              // ничего нет - скроеим поле аватара
+              this.showAvatar = false;
+            }
+          }
+      */
     } catch {
       //что-то пошло не так ...
       this.showAvatar = false;

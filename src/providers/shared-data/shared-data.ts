@@ -7,12 +7,14 @@ export class SharedObjects {
   weekNames: string[];
   dayNamesList: string[];
   paraNamberList: string[];
-  globalParams: object;
+  globalParams: object;   // хранит считанные при запуске cookie с локальнвми пар-ми
   stopLogging: boolean;
   isConnected = true;  // наличие интернета
   teacherRate: object;  // ВСЕ рейты текущего препода
   currentUserDeviceId: string;
   appVersion: string;
+  runPush: boolean;   // централизованное отключение push через app-config
+
   public teacherInfo = {
     teacherName: '',
     newTeacher: false,

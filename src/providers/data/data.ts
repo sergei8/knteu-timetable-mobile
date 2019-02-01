@@ -98,7 +98,7 @@ export class DataProvider {
   }
 
   saveStudentRozklad(rozklad) {
-    localforage.setItem("student", rozklad);
+    localforage.setItem("student", rozklad).then().catch();
   }
 
   readPrepodRozklad() {
@@ -127,10 +127,15 @@ export class DataProvider {
     localforage.setItem("teacher", rozklad).then().catch();
   }
 
-  readSetup() {
+  /**
+   * читает локальные настройки из cookie в globalParams
+   * @return {Promise<void>}
+   */
+  readLocalSetup(): any {
     return localforage.getItem('setup')
       .then(result => {
           if (result || result == {}) {
+            // console.log('local setup: ', result);
             this.sharedObjects.globalParams = result;
           }
         },

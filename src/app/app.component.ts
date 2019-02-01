@@ -51,13 +51,18 @@ export class MyApp implements OnInit {
               private push: Push) {
 
     this.splashScreen.show();
-    this.readConfig();
     this.initializeApp();
-    this.platform.ready();
-    {
-      this.splashScreen.hide();
-      this.pushSetup();
-    }
+    this.dataProvider.readLocalSetup().then();
+    this.readConfig();
+
+    /*
+        this.platform.ready().then(() => {
+          this.splashScreen.hide();
+          if (this.sharedObjects.runPush) {
+            this.pushSetup();
+          }
+        });
+    */
     // подключение к mongodb через mongo stitch
     if (this.mongodbStitchProvider.initClient()) {
       console.log("[mongoClient] : done!")
@@ -66,7 +71,7 @@ export class MyApp implements OnInit {
     }
   }
 
-  pushSetup() {
+  pushSetup(): void {
 
     const options: PushOptions = {
       android: {
@@ -82,30 +87,30 @@ export class MyApp implements OnInit {
     };
 
     const pushObject: PushObject = this.push.init(options);
-
     pushObject.on('notification').subscribe((notification: any) => console.log('*** Уведомление: ', notification));
-
     pushObject.on('registration').subscribe((registration: any) => console.log('*** Регистрация [токен]: ', registration));
-
     pushObject.on('error').subscribe(error => console.error('***Error with Push plugin', error));
   }
 
-  initializeApp() {
+  initializeApp(): void {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-
+      /* включить push уведомления, если это разрешено в общем конфиге и в локальном */
+      if (this.sharedObjects.runPush && this.sharedObjects.globalParams['getPush']) {
+        this.pushSetup();
+      }
       timer(3000).subscribe(() => this.showSplash = false)
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.sharedObjects.currentUserDeviceId = this.device.uuid;
   }
 
-  openStudent() {
+  openStudent(): void {
 
-    this.dataProvider.readSetup()
+    this.dataProvider.readLocalSetup()
       .then(() => {
         this.askForSavedRozklad = this.sharedObjects.globalParams['saveRozklad'];
         if (this.askForSavedRozklad) {  // если включен режим сохранения расписания
@@ -160,8 +165,8 @@ export class MyApp implements OnInit {
 
   }
 
-  openTeacher() {
-    this.dataProvider.readSetup()
+  openTeacher(): void {
+    this.dataProvider.readLocalSetup()
       .then(() => {
         this.askForSavedRozklad = this.sharedObjects.globalParams['saveRozklad'];
 
@@ -206,22 +211,22 @@ export class MyApp implements OnInit {
       });
   }
 
-  openSetup() {
+  openSetup(): void {
     this.nav.push(SetupComponent).then().catch();
   }
 
-  openAbout() {
+  openAbout(): void {
     this.nav.push(AboutComponent).then().catch();
   }
 
-  openHours() {
+  openHours(): void {
     this.nav.push(HoursComponent).then().catch();
   }
 
   // подписаться на получение файла time-table.json
-  readTimeTable() {
+  readTimeTable(): void {
     // todo отладочная вставка - удалить потом assets/db/time-table...
-    this.timeTableUrl = 'http://localhost:8100/assets/db/time-table.json';
+    // this.timeTableUrl = 'http://localhost:8100/assets/db/time-table.json';
     // this.timeTableUrl = 'https://raw.githubusercontent.com/sergei8/TT-site/master/assets/db/time-table.json?token=AF9ePDy24bBr6i0sumR3FfqincFJhcSnks5cVbOWwA%3D%3D';
     // this.timeTableUrl = 'http://raw.githubusercontent.com/sergei8/TT-site/master/assets/db/time-table.json';
     // ------------------
@@ -246,9 +251,11 @@ export class MyApp implements OnInit {
     this.dataProvider.getFile(this.configUrl)
       .subscribe(
         response => {
+          console.log(response);
           this.timeTableUrl = response['time-table-url'];
           this.sharedObjects.stopLogging = response['stop-logging'];
           this.sharedObjects.appVersion = response['version'];
+          this.sharedObjects.runPush = response['run-push'];
         },
         error => {
           console.log('Error config', error);

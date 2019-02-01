@@ -58,18 +58,7 @@
       </ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <!--
-            <ion-item>
-              <ion-label>
-                Натисніть, щоб видалити збережені розклади
-              </ion-label>
-              <ion-fab mini>
-                <button  (click)="clearRozklad()">
-                  <ion-icon name="trash"></ion-icon>
-                </button>
-              </ion-fab>
-            </ion-item>
-      -->
+
       <ion-grid>
         <ion-row>
           <ion-col col-8>
@@ -78,12 +67,30 @@
           <ion-col offset-2>
             <ion-fab>
               <button ion-fab (click)="clearRozklad()">
-                <ion-icon name="trash" ></ion-icon>
+                <ion-icon name="trash"></ion-icon>
               </button>
             </ion-fab>
           </ion-col>
         </ion-row>
       </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+    <ion-card>
+    <ion-card-header no-padding text-center class="setupHeader">
+      <ion-card-title>
+        Управління повідомленнями
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>
+          отримувати повідомлення
+        </ion-label>
+        <ion-toggle [(ngModel)]="isAllowPush"
+                    (ionChange)="saveRozkladClicked()">
+        </ion-toggle>
+      </ion-item>
     </ion-card-content>
   </ion-card>
 
