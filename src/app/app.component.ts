@@ -30,7 +30,7 @@ export class MyApp implements OnInit {
 
   rootPage: any = HomeComponent;
 
-  appConfig = {};
+  // appConfig = {};
   timeTableUrl: string;
   // configUrl = 'https://raw.githubusercontent.com/sergei8/tt-mobile/master/app-config.json';
   configUrl = 'http://localhost:8100/assets/db/app-config.json';
@@ -194,12 +194,12 @@ export class MyApp implements OnInit {
                           {
                             wdp: prepodRozklad['wdp'],
                             teacher: prepodRozklad['teacher']
-                          });
+                          }).catch();
                       }
                     }
                   ]
                 });
-                confirm.present();
+                confirm.present().catch();
               } else {
                 this.nav.push(TeacherComponent).then().catch();
               }
@@ -223,7 +223,10 @@ export class MyApp implements OnInit {
     this.nav.push(HoursComponent).then().catch();
   }
 
-  // подписаться на получение файла time-table.json
+
+  /**
+   * подписаться на получение файла time-table.json
+   */
   readTimeTable(): void {
     // todo отладочная вставка - удалить потом assets/db/time-table...
     // this.timeTableUrl = 'http://localhost:8100/assets/db/time-table.json';
@@ -245,7 +248,7 @@ export class MyApp implements OnInit {
 
   /**
    * читает конфиг, заполняет из него общие конфигурационные переменные
-   * и вызывает чтение `time-teble.json`
+   * и вызывает чтение `time-table.json`
    */
   readConfig(): void {
     this.dataProvider.getFile(this.configUrl)
