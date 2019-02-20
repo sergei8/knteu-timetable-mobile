@@ -1,6 +1,6 @@
 {
   "time-table-url": "https://raw.githubusercontent.com/sergei8/TT-site/master/assets/db/time-table.json?token=AF9ePEzqrT53nWARLRdS3Tu7dfpb0G4Eks5cc6SbwA%3D%3D",
-  "stop-logging": true,
+  "stop-logging": false,
   "version": "1.3.2",
   "show-rating": true,
   "semestr_start": ""
