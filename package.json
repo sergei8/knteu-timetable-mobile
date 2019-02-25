@@ -40,6 +40,7 @@
     "cordova-plugin-console": "1.1.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-dialogs": "2.0.1",
+    "cordova-plugin-firebase-crashlytics": "0.0.8",
     "cordova-plugin-globalization": "1.0.9",
     "cordova-plugin-inappbrowser": "3.0.0",
     "cordova-plugin-nativestorage": "2.3.2",
@@ -58,7 +59,7 @@
     "mongodb-stitch-browser-sdk": "^4.0.14-5",
     "ng2-charts": "^1.6.0",
     "phonegap-plugin-multidex": "^1.0.0",
-    "phonegap-plugin-push": "2.2.3",
+    "phonegap-plugin-push": "git+https://github.com/phonegap/phonegap-plugin-push.git",
     "rxjs": "^6.2.2",
     "rxjs-compat": ">=6.2.2",
     "sw-toolbox": "3.6.0",
@@ -75,9 +76,6 @@
     "plugins": {
       "ionic-plugin-keyboard": {},
       "cordova-plugin-networkinterface": {},
-      "phonegap-plugin-push": {
-        "SENDER_ID": "186245343652"
-      },
       "cordova-plugin-device": {},
       "cordova-android-play-services-gradle-release": {
         "PLAY_SERVICES_VERSION": "+"
@@ -91,7 +89,11 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-whitelist": {},
-      "cordova-plugin-console": {}
+      "cordova-plugin-console": {},
+      "phonegap-plugin-push": {
+        "FCM_VERSION": "15.0.1.",
+        "ANDROID_SUPPORT_V13_VERSION": "27.+"
+      }
     },
     "platforms": [
       "ios",

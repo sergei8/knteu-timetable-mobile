@@ -29,7 +29,7 @@ export class TeacherComponent {
               private  fireStore: FirestoreLogProvider) {
 
     if (!this.sharedObjects.isConnected) {
-      this.data.showToastMessage('У Вас відсутнє підключення до Мережі!', 'bottom',
+      this.data.showToastMessage('Нема доступу до розкладу в мережі!', 'bottom',
         'warningToast', true, 3000);
     }
     this.selectedFacName = null;
