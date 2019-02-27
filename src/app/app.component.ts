@@ -32,8 +32,8 @@ export class MyApp implements OnInit {
 
   // appConfig = {};
   timeTableUrl: string;
-  // configUrl = 'https://raw.githubusercontent.com/sergei8/tt-mobile/master/app-config.json';
-  configUrl = 'http://localhost:8100/assets/db/app-config.json';
+  configUrl = 'https://raw.githubusercontent.com/sergei8/tt-mobile/master/app-config.json';
+  // configUrl = 'http://localhost:8100/assets/db/app-config.json';
 
   askForSavedRozklad: boolean;
   showSplash = true; // <-- show animation
