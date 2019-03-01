@@ -1,7 +1,9 @@
 {
   "time-table-url": "https://raw.githubusercontent.com/sergei8/tt-mobile/master/time-table.json",
   "stop-logging": false,
-  "version": "1.3.2",
+  "version": "1.3.3",
   "show-rating": true,
-  "semestr_start": ""
+  "run-push": true,
+  "semestr-start-date": "",
+  "week-start-number": 1
 }
