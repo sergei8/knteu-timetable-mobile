@@ -3,7 +3,7 @@
   "stop-logging": true,
   "version": "1.3.3",
   "show-rating": true,
-  "run-push": false,
+  "run-push": true,
   "semestr-start-date": "",
   "week-start-number": 1
 }

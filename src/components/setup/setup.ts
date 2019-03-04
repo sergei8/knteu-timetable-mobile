@@ -17,10 +17,12 @@ export class SetupComponent {
 
   constructor(private sharedData: SharedObjects, private dataProvider: DataProvider) {
 
+    // this.isAllowPush = true;
+
     this.dataProvider.readLocalSetup()
       .then(result => {
-        this.isSaveRozklad = this.sharedData.globalParams['saveRozklad'];
-        this.isAllowPush = this.sharedData.globalParams['getPush'];
+        this.isSaveRozklad = this.sharedData.globalParams['saveRozklad'] ? this.sharedData.globalParams['saveRozklad']: false;
+        this.isAllowPush = this.sharedData.globalParams['getPush'] ? this.sharedData.globalParams['getPush'] : true;
       })
   }
 
@@ -30,19 +32,22 @@ export class SetupComponent {
     localforage.setItem('setup', this.sharedData.globalParams).then();
   }
 
-/*
-  allowRating() {
-    this.sharedData.globalParams['allowRating'] = this.isAllowRating;
-    localforage.setItem('setup', this.sharedData.globalParams).then();
-  }
-*/
+  /*
+    allowRating() {
+      this.sharedData.globalParams['allowRating'] = this.isAllowRating;
+      localforage.setItem('setup', this.sharedData.globalParams).then();
+    }
+  */
 
   clearRozklad() {
     localforage.removeItem('student')
       .then(() => {
-        this.dataProvider.showToastMessage('Ви видалили збережений локально розклад', 'bottom',
-          'infoToast', false, 3000);
-        localforage.removeItem('teacher').then();
+        localforage.removeItem('teacher')
+          .then(() => {
+              this.dataProvider.showToastMessage('Ви видалили усі локальні розклади', 'bottom',
+                'infoToast', false, 3000);
+            }
+          )
       });
   }
 
