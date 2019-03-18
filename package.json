@@ -38,6 +38,7 @@
     "cordova-ios": "^4.5.5",
     "cordova-plugin-apprate": "1.4.0",
     "cordova-plugin-console": "1.1.0",
+    "cordova-plugin-crosswalk-webview": "^2.4.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-dialogs": "2.0.1",
     "cordova-plugin-firebase-crashlytics": "0.0.8",
@@ -93,6 +94,13 @@
       "phonegap-plugin-push": {
         "FCM_VERSION": "15.0.1.",
         "ANDROID_SUPPORT_V13_VERSION": "27.+"
+      },
+      "cordova-plugin-crosswalk-webview": {
+        "XWALK_VERSION": "23+",
+        "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
+        "XWALK_COMMANDLINE": "--disable-pull-to-refresh-effect",
+        "XWALK_MODE": "embedded",
+        "XWALK_MULTIPLEAPK": "true"
       }
     },
     "platforms": [
