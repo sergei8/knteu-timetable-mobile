@@ -21,6 +21,9 @@
     "@angular/platform-browser": ">=6.0.9",
     "@angular/platform-browser-dynamic": ">=6.0.9",
     "@angular/tsc-wrapped": "^4.4.6",
+    "@capacitor/android": "^1.0.0-beta.19",
+    "@capacitor/cli": "^1.0.0-beta.19",
+    "@capacitor/core": "^1.0.0-beta.19",
     "@ionic-native/app-rate": "^4.13.0",
     "@ionic-native/core": ">=4.10.0",
     "@ionic-native/device": "^4.14.0",
@@ -32,15 +35,14 @@
     "ajv": "^6.5.3",
     "angularfire2": "^5.0.2",
     "chart.js": "^2.7.3",
-    "cordova-android": "^7.1.4",
+    "cordova-android": "^8.0.0",
     "cordova-android-firebase-gradle-release": "^2.0.0",
     "cordova-android-play-services-gradle-release": "^2.0.0",
-    "cordova-ios": "^4.5.5",
     "cordova-plugin-apprate": "1.4.0",
     "cordova-plugin-console": "1.1.0",
-    "cordova-plugin-crosswalk-webview": "^2.4.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-dialogs": "2.0.1",
+    "cordova-plugin-firebase": "~2.0.5",
     "cordova-plugin-firebase-crashlytics": "0.0.8",
     "cordova-plugin-globalization": "1.0.9",
     "cordova-plugin-inappbrowser": "3.0.0",
@@ -68,7 +70,7 @@
   },
   "devDependencies": {
     "@angular/cli": "^7.0.6",
-    "@ionic/app-scripts": "^3.2.2",
+    "@ionic/app-scripts": "^3.2.3",
     "@ionic/lab": "1.0.9",
     "typescript": ">=2.7.2"
   },
@@ -95,17 +97,11 @@
         "FCM_VERSION": "15.0.1.",
         "ANDROID_SUPPORT_V13_VERSION": "27.+"
       },
-      "cordova-plugin-crosswalk-webview": {
-        "XWALK_VERSION": "23+",
-        "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
-        "XWALK_COMMANDLINE": "--disable-pull-to-refresh-effect",
-        "XWALK_MODE": "embedded",
-        "XWALK_MULTIPLEAPK": "true"
-      }
+      "cordova-plugin-firebase-crashlytics": {
+        "ANDROID_FIREBASE_CORE_VERSION": "16.0.0"
+      },
+      "cordova-plugin-firebase": {}
     },
-    "platforms": [
-      "ios",
-      "android"
-    ]
+    "platforms": []
   }
 }
