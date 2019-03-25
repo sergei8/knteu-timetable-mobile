@@ -2,10 +2,11 @@ import {Component, ViewChild, OnInit} from '@angular/core';
 import {Nav, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
+import {Push, PushObject, PushOptions} from '@ionic-native/push';
 import {AlertController} from 'ionic-angular';
-import {SetupComponent} from '../components/setup/setup';
 import {Device} from '@ionic-native/device';
 
+import {SetupComponent} from '../components/setup/setup';
 import {HomeComponent} from '../components/home/home';
 import {TeacherComponent} from '../components/teacher/teacher';
 import {StudentComponent} from '../components/student/student';
@@ -18,7 +19,6 @@ import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
 import {FirestoreLogProvider} from '../providers/firestore-log/firestore-log'
 import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch';
-import {Push, PushObject, PushOptions} from '@ionic-native/push';
 
 import {timer} from 'rxjs/observable/timer';
 
@@ -32,7 +32,8 @@ export class MyApp implements OnInit {
 
   // appConfig = {};
   timeTableUrl: string;
-  configUrl = 'https://raw.githubusercontent.com/sergei8/tt-mobile/master/app-config.json';
+  // configUrl = 'https://firebasestorage.googleapis.com/v0/b/knteu-timetable.appspot.com/o/app-config.json?alt=media&token=dcd8029a-18cd-4adc-bcd0-d39d4bb31e0d';
+  configUrl = 'https://raw.githubusercontent.com/sergei8/knteu-timetable-mobile/master/app-config.json';
   // configUrl = 'http://localhost:8100/assets/db/app-config.json';
 
   askForSavedRozklad: boolean;
@@ -254,7 +255,7 @@ export class MyApp implements OnInit {
     this.dataProvider.getFile(this.configUrl)
       .subscribe(
         response => {
-          console.log(response);
+          console.log('########', response);
           this.timeTableUrl = response['time-table-url'];
           this.sharedObjects.stopLogging = response['stop-logging'];
           this.sharedObjects.appVersion = response['version'];

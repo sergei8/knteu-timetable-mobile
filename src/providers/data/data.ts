@@ -32,13 +32,13 @@ export class DataProvider {
    * @return {Observable<Object>}
    */
   getFile(url): Observable<Object> {
-    // console.log(url);
+    console.log(url);
     let headers = new HttpHeaders();
     headers.set('Accept-Encoding', 'gzip');
     headers.append('Access-Control-Allow-Origin', '*');
+    headers.append('Content-Type', 'application/json');
     return this.http.get(url, {headers: headers})
   }
-
   // сохраняет распісаніе студента или препода локально
   saveTimeTable(rozklad) {
 

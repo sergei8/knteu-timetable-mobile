@@ -1,6 +1,6 @@
 {
   "name": "tt-mobile",
-  "version": "2.0.1",
+  "version": "3.0.1",
   "author": "Serhii Shkliarskiy",
   "homepage": "http://shkliarskiy.moodlecloud.com",
   "private": true,
@@ -35,7 +35,7 @@
     "ajv": "^6.5.3",
     "angularfire2": "^5.0.2",
     "chart.js": "^2.7.3",
-    "cordova-android": "^8.0.0",
+    "cordova-android": "^7.1.4",
     "cordova-android-firebase-gradle-release": "^2.0.0",
     "cordova-android-play-services-gradle-release": "^2.0.0",
     "cordova-plugin-apprate": "1.4.0",
@@ -50,7 +50,7 @@
     "cordova-plugin-networkinterface": "^2.0.0",
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-statusbar": "2.4.2",
-    "cordova-plugin-whitelist": "1.3.3",
+    "cordova-plugin-whitelist": "^1.3.3",
     "cordova-support-google-services": "1.2.1",
     "firebase": "^5.5.1",
     "ionic-angular": ">=3.9.2",
@@ -63,6 +63,7 @@
     "ng2-charts": "^1.6.0",
     "phonegap-plugin-multidex": "^1.0.0",
     "phonegap-plugin-push": "git+https://github.com/phonegap/phonegap-plugin-push.git",
+    "q": "^1.5.1",
     "rxjs": "^6.2.2",
     "rxjs-compat": ">=6.2.2",
     "sw-toolbox": "3.6.0",
@@ -91,17 +92,20 @@
       "cordova-plugin-globalization": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-statusbar": {},
-      "cordova-plugin-whitelist": {},
       "cordova-plugin-console": {},
       "phonegap-plugin-push": {
         "FCM_VERSION": "15.0.1.",
-        "ANDROID_SUPPORT_V13_VERSION": "27.+"
+        "ANDROID_SUPPORT_V13_VERSION": "27.+",
+        "SENDER_ID": "186245343652"
       },
       "cordova-plugin-firebase-crashlytics": {
         "ANDROID_FIREBASE_CORE_VERSION": "16.0.0"
       },
-      "cordova-plugin-firebase": {}
+      "cordova-plugin-firebase": {},
+      "cordova-plugin-whitelist": {}
     },
-    "platforms": []
+    "platforms": [
+      "android"
+    ]
   }
 }
