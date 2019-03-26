@@ -35,14 +35,14 @@
     "ajv": "^6.5.3",
     "angularfire2": "^5.0.2",
     "chart.js": "^2.7.3",
-    "cordova-android": "^7.1.4",
+    "cordova-android": "7.1.4",
     "cordova-android-firebase-gradle-release": "^2.0.0",
     "cordova-android-play-services-gradle-release": "^2.0.0",
     "cordova-plugin-apprate": "1.4.0",
     "cordova-plugin-console": "1.1.0",
+    "cordova-plugin-crosswalk-webview": "^2.4.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-dialogs": "2.0.1",
-    "cordova-plugin-firebase": "~2.0.5",
     "cordova-plugin-firebase-crashlytics": "0.0.8",
     "cordova-plugin-globalization": "1.0.9",
     "cordova-plugin-inappbrowser": "3.0.0",
@@ -101,8 +101,14 @@
       "cordova-plugin-firebase-crashlytics": {
         "ANDROID_FIREBASE_CORE_VERSION": "16.0.0"
       },
-      "cordova-plugin-firebase": {},
-      "cordova-plugin-whitelist": {}
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-crosswalk-webview": {
+        "XWALK_VERSION": "23+",
+        "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
+        "XWALK_COMMANDLINE": "--disable-pull-to-refresh-effect",
+        "XWALK_MODE": "embedded",
+        "XWALK_MULTIPLEAPK": "true"
+      }
     },
     "platforms": [
       "android"
