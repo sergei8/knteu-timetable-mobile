@@ -307,9 +307,6 @@ export class DataProvider {
     }
   }
 
-  writeTeacherRates(doc: object) {
-    this.mongodbStitchProvider.writeTeacherDoc(doc['rateList'], doc['name']).then();
-  }
 
   /**
    * находит последний рейт, установленный данным пользователем

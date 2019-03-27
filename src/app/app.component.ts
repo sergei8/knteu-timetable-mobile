@@ -12,15 +12,15 @@ import {TeacherComponent} from '../components/teacher/teacher';
 import {StudentComponent} from '../components/student/student';
 import {StudentTtComponent} from '../components/student-tt/student-tt';
 import {TeacherTtComponent} from "../components/teacher-tt/teacher-tt";
-import {AboutComponent} from '../components/about/about';
-import {HoursComponent} from '../components/hours/hours';
+// import {AboutComponent} from '../components/about/about';
+// import {HoursComponent} from '../components/hours/hours';
 
 import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
 import {FirestoreLogProvider} from '../providers/firestore-log/firestore-log'
 import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch';
 
-import {timer} from 'rxjs/observable/timer';
+// import {timer} from 'rxjs/observable/timer';
 
 @Component({
   templateUrl: 'app.html'
@@ -219,11 +219,11 @@ export class MyApp implements OnInit {
   }
 
   openAbout(): void {
-    this.nav.push(AboutComponent).then().catch();
+    this.nav.push('AboutComponent').then().catch();
   }
 
   openHours(): void {
-    this.nav.push(HoursComponent).then().catch();
+    this.nav.push('HoursComponent').then().catch();
   }
 
 

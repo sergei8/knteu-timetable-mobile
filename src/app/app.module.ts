@@ -31,9 +31,9 @@ import {TeacherComponent} from '../components/teacher/teacher';
 import {StudentComponent} from '../components/student/student';
 import {StudentTtComponent} from '../components/student-tt/student-tt';
 import {TeacherTtComponent} from '../components/teacher-tt/teacher-tt';
-import {AboutComponent} from '../components/about/about';
+// import {AboutComponent} from '../components/about/about';
 import {SetupComponent} from '../components/setup/setup';
-import {HoursComponent} from '../components/hours/hours';
+// import {HoursComponent} from '../components/hours/hours';
 import {RatingComponent} from '../components/rating/rating';
 import {RatingStarsComponent} from '../components/rating-stars/rating-stars';
 import {RatingChartComponent} from '../components/rating-chart/rating-chart';
@@ -51,10 +51,9 @@ import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch'
     StudentComponent,
     StudentTtComponent,
     TeacherTtComponent,
-    AboutComponent,
+    // AboutComponent,
     SetupComponent,
-    HoursComponent,
-    AboutComponent,
+    // HoursComponent,
     RatingComponent,
     RatingStarsComponent,
     RatingChartComponent
@@ -75,13 +74,12 @@ import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch'
     StudentComponent,
     StudentTtComponent,
     TeacherTtComponent,
-    AboutComponent,
+    // AboutComponent,
     SetupComponent,
-    HoursComponent,
-    AboutComponent,
+    // HoursComponent,
     RatingComponent,
     RatingStarsComponent,
-    RatingChartComponent
+    RatingChartComponent,
   ],
   providers: [
     StatusBar,

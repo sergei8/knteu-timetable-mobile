@@ -1,7 +1,9 @@
 import {Component} from '@angular/core';
+import {IonicPage} from 'ionic-angular';
 import {AppRate} from '@ionic-native/app-rate'
 import {SharedObjects} from '../../providers/shared-data/shared-data';
 
+@IonicPage()
 @Component({
   selector: 'about',
   templateUrl: 'about.html'
@@ -27,7 +29,6 @@ export class AboutComponent {
 
 
   goToPlayMarket() {
-    // this.appRate.promptForRating(true);
     this.appRate.navigateToAppStore();
   }
 }
