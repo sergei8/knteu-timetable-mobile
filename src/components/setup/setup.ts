@@ -22,15 +22,22 @@ export class SetupComponent {
     this.dataProvider.readLocalSetup()
       .then(result => {
         this.isSaveRozklad = this.sharedData.globalParams['saveRozklad'] ? this.sharedData.globalParams['saveRozklad']: false;
-        this.isAllowPush = this.sharedData.globalParams['getPush'] ? this.sharedData.globalParams['getPush'] : true;
+        this.isAllowPush = this.sharedData.globalParams['getPush']
+        // this.isAllowPush = this.sharedData.globalParams['getPush'] ? this.sharedData.globalParams['getPush'] : true;
       })
   }
 
-  saveRozkladClicked() {
-    this.sharedData.globalParams['saveRozklad'] = this.isSaveRozklad;
-    this.sharedData.globalParams['getPush'] = this.isAllowPush;
+  saveParams(paramName, paramValue) {
+    this.sharedData.globalParams[paramName] = paramValue;
     localforage.setItem('setup', this.sharedData.globalParams).then();
   }
+/*
+  saveRozkladClicked() {
+    this.sharedData.globalParams['saveRozklad'] = this.isSaveRozklad;
+    // this.sharedData.globalParams['getPush'] = this.isAllowPush;
+    localforage.setItem('setup', this.sharedData.globalParams).then();
+  }
+*/
 
   /*
     allowRating() {

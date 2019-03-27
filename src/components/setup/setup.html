@@ -20,7 +20,7 @@
           дозволити зберігати розклад
         </ion-label>
         <ion-toggle [(ngModel)]="isSaveRozklad"
-                    (ionChange)="saveRozkladClicked()">
+                    (ionChange)="saveParams('saveRozklad', isSaveRozklad)">
         </ion-toggle>
       </ion-item>
     </ion-card-content>
@@ -76,7 +76,7 @@
     </ion-card-content>
   </ion-card>
 
-    <ion-card>
+  <ion-card>
     <ion-card-header no-padding text-center class="setupHeader">
       <ion-card-title>
         Управління повідомленнями
@@ -88,7 +88,7 @@
           отримувати повідомлення
         </ion-label>
         <ion-toggle [(ngModel)]="isAllowPush"
-                    (ionChange)="saveRozkladClicked()">
+                    (ionChange)="saveParams('getPush', isAllowPush)">
         </ion-toggle>
       </ion-item>
     </ion-card-content>

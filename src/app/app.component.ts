@@ -96,12 +96,14 @@ export class MyApp implements OnInit {
   initializeApp(): void {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
+      // this.statusBar.backgroundColorByHexString('#FFFFFF');
+      this.statusBar.hide();
       this.splashScreen.hide();
       /* включить push уведомления, если это разрешено в общем конфиге и в локальном */
       if (this.sharedObjects.runPush && this.sharedObjects.globalParams['getPush']) {
         this.pushSetup();
       }
-      timer(3000).subscribe(() => this.showSplash = false)
+      // timer(3000).subscribe(() => this.showSplash = true)
     });
   }
 

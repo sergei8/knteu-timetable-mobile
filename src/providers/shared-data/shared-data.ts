@@ -24,7 +24,7 @@ export class SharedObjects {
   };
 
   constructor() {
-    this.globalParams = {};   // хранит переключатель сохранения распсания локально
+    this.globalParams = {};
     this.allTimeTable = {};
 
     this.WeekDayPara = {
