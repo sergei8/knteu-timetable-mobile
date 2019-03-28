@@ -6,7 +6,7 @@ import {Push, PushObject, PushOptions} from '@ionic-native/push';
 import {AlertController} from 'ionic-angular';
 import {Device} from '@ionic-native/device';
 
-import {SetupComponent} from '../components/setup/setup';
+// import {SetupComponent} from '../components/setup/setup';
 import {HomeComponent} from '../components/home/home';
 import {TeacherComponent} from '../components/teacher/teacher';
 import {StudentComponent} from '../components/student/student';
@@ -215,7 +215,7 @@ export class MyApp implements OnInit {
   }
 
   openSetup(): void {
-    this.nav.push(SetupComponent).then().catch();
+    this.nav.push('SetupComponent').then().catch();
   }
 
   openAbout(): void {

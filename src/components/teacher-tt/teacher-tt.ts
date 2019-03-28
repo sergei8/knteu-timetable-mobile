@@ -3,7 +3,7 @@ import {NavParams} from 'ionic-angular';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
 import {DataProvider} from '../../providers/data/data';
 import {Nav} from 'ionic-angular';
-import {RatingComponent} from "../rating/rating";
+// import {RatingComponent} from "../rating/rating";
 import {AlertController} from 'ionic-angular';
 // import {Device} from '@ionic-native/device';
 
@@ -202,7 +202,7 @@ export class TeacherTtComponent {
 
 
   async showRating() {
-    await this.nav.push(RatingComponent,
+    await this.nav.push('RatingComponent',
       {
         teacher: this.teacher,
         details: this.details

@@ -15,7 +15,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {AppRate} from '@ionic-native/app-rate';
 import {Device} from '@ionic-native/device';
 import {NetworkInterface} from '@ionic-native/network-interface';
-import {ChartsModule} from 'ng2-charts';
+import {ChartsModule} from 'ng2-charts/ng2-charts';
 
 import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
@@ -32,9 +32,9 @@ import {StudentComponent} from '../components/student/student';
 import {StudentTtComponent} from '../components/student-tt/student-tt';
 import {TeacherTtComponent} from '../components/teacher-tt/teacher-tt';
 // import {AboutComponent} from '../components/about/about';
-import {SetupComponent} from '../components/setup/setup';
+// import {SetupComponent} from '../components/setup/setup';
 // import {HoursComponent} from '../components/hours/hours';
-import {RatingComponent} from '../components/rating/rating';
+// import {RatingComponent} from '../components/rating/rating';
 import {RatingStarsComponent} from '../components/rating-stars/rating-stars';
 import {RatingChartComponent} from '../components/rating-chart/rating-chart';
 
@@ -52,9 +52,9 @@ import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch'
     StudentTtComponent,
     TeacherTtComponent,
     // AboutComponent,
-    SetupComponent,
+    // SetupComponent,
     // HoursComponent,
-    RatingComponent,
+    // RatingComponent,
     RatingStarsComponent,
     RatingChartComponent
   ],
@@ -75,9 +75,9 @@ import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch'
     StudentTtComponent,
     TeacherTtComponent,
     // AboutComponent,
-    SetupComponent,
+    // SetupComponent,
     // HoursComponent,
-    RatingComponent,
+    // RatingComponent,
     RatingStarsComponent,
     RatingChartComponent,
   ],

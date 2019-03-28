@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {IonicPage} from 'ionic-angular';
 import {NavController} from 'ionic-angular';
 import {NavParams} from 'ionic-angular';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
@@ -8,10 +9,12 @@ import {Device} from '@ionic-native/device';
 
 import {MongodbStitchProvider} from '../../providers/mongodb-stitch/mongodb-stitch';
 
+@IonicPage()
 @Component({
   selector: 'rating',
   templateUrl: 'rating.html'
 })
+
 export class RatingComponent implements OnInit {
 
   details: object;    // детали по преподу
@@ -93,7 +96,7 @@ export class RatingComponent implements OnInit {
         }
       })
       .then((): void => {
-        this.nav.popTo(this.nav.getByIndex(this.nav.length() - 2));
+        this.nav.popTo(this.nav.getByIndex(this.nav.length() - 2)).catch();
       })
       .catch((err) => console.log('Ошибка в Rating: ', err))
 

@@ -1,5 +1,6 @@
 import {Component, Input, OnChanges} from '@angular/core';
 import * as _ from 'lodash';
+import {ChartsModule} from 'ng2-charts/ng2-charts';
 
 @Component({
   selector: 'rating-chart',

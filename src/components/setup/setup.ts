@@ -1,10 +1,12 @@
 import {Component} from '@angular/core';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
 import {DataProvider} from '../../providers/data/data';
+import {IonicPage} from 'ionic-angular';
 
 declare const require: any;
 const localforage: LocalForage = require("localforage");
 
+@IonicPage()
 @Component({
   selector: 'setup',
   templateUrl: 'setup.html'
