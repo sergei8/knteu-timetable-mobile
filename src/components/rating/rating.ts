@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {IonicPage} from 'ionic-angular';
 import {NavController} from 'ionic-angular';
 import {NavParams} from 'ionic-angular';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
@@ -9,7 +8,6 @@ import {Device} from '@ionic-native/device';
 
 import {MongodbStitchProvider} from '../../providers/mongodb-stitch/mongodb-stitch';
 
-@IonicPage()
 @Component({
   selector: 'rating',
   templateUrl: 'rating.html'

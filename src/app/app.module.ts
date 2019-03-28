@@ -34,7 +34,7 @@ import {TeacherTtComponent} from '../components/teacher-tt/teacher-tt';
 // import {AboutComponent} from '../components/about/about';
 // import {SetupComponent} from '../components/setup/setup';
 // import {HoursComponent} from '../components/hours/hours';
-// import {RatingComponent} from '../components/rating/rating';
+import {RatingComponent} from '../components/rating/rating';
 import {RatingStarsComponent} from '../components/rating-stars/rating-stars';
 import {RatingChartComponent} from '../components/rating-chart/rating-chart';
 
@@ -54,7 +54,7 @@ import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch'
     // AboutComponent,
     // SetupComponent,
     // HoursComponent,
-    // RatingComponent,
+    RatingComponent,
     RatingStarsComponent,
     RatingChartComponent
   ],
@@ -77,7 +77,7 @@ import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch'
     // AboutComponent,
     // SetupComponent,
     // HoursComponent,
-    // RatingComponent,
+    RatingComponent,
     RatingStarsComponent,
     RatingChartComponent,
   ],
