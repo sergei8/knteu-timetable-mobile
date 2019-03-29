@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {IonicPage} from 'ionic-angular';
 import {NavParams} from 'ionic-angular';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
 import {DataProvider} from '../../providers/data/data';
@@ -9,6 +10,7 @@ import {AlertController} from 'ionic-angular';
 
 import * as _ from 'lodash';
 
+@IonicPage()
 @Component({
   selector: 'teacher-tt',
   templateUrl: 'teacher-tt.html'
@@ -72,10 +74,6 @@ export class TeacherTtComponent {
    */
   ionViewDidEnter() {
 
-    // отладка --------------------------------------------
-    // this.sharedObjects.currentUserDeviceId = '1539103546771';
-    // this.sharedObjects.currentUserDeviceId = Date.now().toString();
-    //-----------------------------------------------------
 
     // получить текущий рейтинг препода и построить звездочки
     // ВСЕГДА при открытии этого экрана!!!

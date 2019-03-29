@@ -121,7 +121,7 @@ export class StudentComponent {
 
     this.fireStore.setStudentPageLog(this.selectedFacName, this.selectedCourse, this.selectedGruppa).then();
 
-    this.nav.push(StudentTtComponent,
+    this.nav.push('StudentTtComponent',
       {
         wdp: this.wdp,
         facName: this.selectedFacName,

@@ -1,13 +1,15 @@
 import {Component} from '@angular/core';
+import {IonicPage} from 'ionic-angular';
 import {NavParams} from 'ionic-angular';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
 import {DataProvider} from '../../providers/data/data';
 import {FirestoreLogProvider} from '../../providers/firestore-log/firestore-log';
-import {TeacherTtComponent} from "../teacher-tt/teacher-tt";
+// import {TeacherTtComponent} from "../teacher-tt/teacher-tt";
 import {Nav} from 'ionic-angular';
 
 import * as _ from 'lodash';
 
+@IonicPage()
 @Component({
   selector: 'student-tt',
   templateUrl: 'student-tt.html'
@@ -90,7 +92,7 @@ export class StudentTtComponent {
 
     this.fireStore.setTeacherPageLog(name, discipline, true).then().catch();
 
-    this.nav.push(TeacherTtComponent,
+    this.nav.push("TeacherTtComponent",
       {
         wdp: wdp,
         teacher: name,

@@ -78,7 +78,7 @@ export class TeacherComponent {
       this.fireStore.setTeacherPageLog(teacher).then().catch();
     }
 
-    this.nav.push(TeacherTtComponent,
+    this.nav.push('TeacherTtComponent',
       {
         wdp: this.wdp,
         teacher: teacher,
