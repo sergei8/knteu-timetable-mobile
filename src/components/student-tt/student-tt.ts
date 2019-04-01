@@ -4,7 +4,6 @@ import {NavParams} from 'ionic-angular';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
 import {DataProvider} from '../../providers/data/data';
 import {FirestoreLogProvider} from '../../providers/firestore-log/firestore-log';
-// import {TeacherTtComponent} from "../teacher-tt/teacher-tt";
 import {Nav} from 'ionic-angular';
 
 import * as _ from 'lodash';

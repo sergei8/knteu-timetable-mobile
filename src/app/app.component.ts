@@ -6,14 +6,11 @@ import {Push, PushObject, PushOptions} from '@ionic-native/push';
 import {AlertController} from 'ionic-angular';
 import {Device} from '@ionic-native/device';
 
-// import {SetupComponent} from '../components/setup/setup';
 import {HomeComponent} from '../components/home/home';
 import {TeacherComponent} from '../components/teacher/teacher';
 import {StudentComponent} from '../components/student/student';
 import {StudentTtComponent} from '../components/student-tt/student-tt';
 import {TeacherTtComponent} from "../components/teacher-tt/teacher-tt";
-// import {AboutComponent} from '../components/about/about';
-// import {HoursComponent} from '../components/hours/hours';
 
 import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
@@ -65,10 +62,10 @@ export class MyApp implements OnInit {
         });
     */
     // подключение к mongodb через mongo stitch
-    if (this.mongodbStitchProvider.initClient()) {
-      console.log("[mongoClient] : done!")
+    if (this.mongodbStitchProvider.initClients()) {
+      console.log("[mongoClient ] : done!")
     } else {
-      console.log("[mongoClient] : error!")
+      console.log("[mongoClient ] : error!")
     }
   }
 
@@ -81,9 +78,11 @@ export class MyApp implements OnInit {
         forceShow: true
       },
       ios: {
+/*
         alert: 'true',
         badge: true,
         sound: 'false'
+*/
       }
     };
 

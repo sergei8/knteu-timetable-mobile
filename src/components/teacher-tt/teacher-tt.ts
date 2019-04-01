@@ -6,7 +6,6 @@ import {DataProvider} from '../../providers/data/data';
 import {Nav} from 'ionic-angular';
 import {RatingComponent} from "../rating/rating";
 import {AlertController} from 'ionic-angular';
-// import {Device} from '@ionic-native/device';
 
 import * as _ from 'lodash';
 
