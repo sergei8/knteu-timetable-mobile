@@ -8,6 +8,9 @@ import {
   UserPasswordCredential,
   UserApiKeyCredential
 } from 'mongodb-stitch-browser-sdk';
+import {resolve} from "url";
+import {r} from "tar";
+import {_catch} from "rxjs-compat/operator/catch";
 
 @Injectable({
   providedIn: 'root'
@@ -90,5 +93,25 @@ export class MongodbStitchProvider {
     });
   }
 
+  /**
+   * вибирает из БД новостей все новости
+   * @return {Promise<any>} - массив документов-новостей,
+   * без поля `details` и `blog_urk`, сортированый обратно порядку записи
+   */
+  getShortNewsList() {
+
+    const options = {
+      "projection": {"blog_url": 0, "details": 0},
+      "sort": {"$natural": -1}
+    };
+
+    return new Promise(resolve => {
+      this.clientNews.auth.loginWithCredential(new AnonymousCredential()).then()
+        .then(() => this.dbNews.collection('news-list')
+          .find({}, options).asArray())
+        .then((doc) => resolve(doc))
+    })
+
+  }
 
 }

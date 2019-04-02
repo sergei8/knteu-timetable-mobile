@@ -84,10 +84,16 @@ export class StudentTtComponent {
     this.data.saveTimeTable(rozklad);
   }
 
+  /**
+   * Открывает экран преподавателя
+   * @param {string} name - имя препода
+   * @param {string} discipline - дисциплина, с которой делать переход на препода (для лога)
+   */
+
   openTeacher(name: string, discipline: string): void {
-    const teacheInfo: any[] = this.data.getTeacherWdp(name);
-    const wdp = teacheInfo[0];
-    const teacherDetails = teacheInfo[1];
+    const teacherInfo: any[] = this.data.getTeacherWdp(name);
+    const wdp = teacherInfo[0];
+    const teacherDetails = teacherInfo[1];
 
     this.fireStore.setTeacherPageLog(name, discipline, true).then().catch();
 

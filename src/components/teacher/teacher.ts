@@ -73,7 +73,6 @@ export class TeacherComponent {
     this.teacherDetails = teacherInfo[1];
 
     // логировать если разрешено
-    console.log('*******', this.sharedObjects.stopLogging);
     if (!this.sharedObjects.stopLogging) {
       this.fireStore.setTeacherPageLog(teacher).then().catch();
     }
