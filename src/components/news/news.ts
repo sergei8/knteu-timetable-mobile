@@ -6,9 +6,10 @@ import {MongodbStitchProvider} from '../../providers/mongodb-stitch/mongodb-stit
 import {FirestoreLogProvider} from '../../providers/firestore-log/firestore-log';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
 import {DataProvider} from '../../providers/data/data';
+import {NewsDetailsComponent} from "../news-details/news-details";
 
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'news',
   templateUrl: 'news.html'
@@ -16,7 +17,8 @@ import {DataProvider} from '../../providers/data/data';
 export class NewsComponent {
 
   text: string;
-  shortNewsList: Object[];
+  shortNewsList: any;
+  private showSpinner: boolean;
 
   constructor(public nav: Nav, private mongodbStitchProvider: MongodbStitchProvider,
               private  fireStore: FirestoreLogProvider,
@@ -26,23 +28,42 @@ export class NewsComponent {
     if (!this.sharedObjects.isConnected) {
       this.data.showToastMessage('Відсутній доступ до інтернет', 'bottom',
         'warningToast', true, 3000);
+      this.showSpinner = false;
     }
-
-    console.log('Hello NewsComponent Component');
-    this.text = 'Hello World';
-
   }
 
-
+  /**
+   * вызывается после загрузки экрана
+   * пишет лог, если разрешено
+   * инициирует асинхронное чтение новостей из БД
+   */
   ionViewDidLoad() {
+/*
     if (!this.sharedObjects.stopLogging) {
       this.fireStore.setHomePageLog().then().catch()
     }
+*/
+
+    this.showSpinner = true;
     this.mongodbStitchProvider.getShortNewsList()
-      .then((res)=> console.log(res));
-    ;
+      .then((res) => {
+        this.showSpinner = false;
+        this.shortNewsList = res;
+        console.log(this.shortNewsList)
+      });
 
   }
 
+  /**
+   * загружает модуль отображения деталей новости и передает ему id новости
+   * @param {string} newsId - id новости, и title новости
+   */
+  showNewsDetails(newsId: string, title: string): void {
+    this.nav.push('NewsDetailsComponent',
+      {
+        newsId: newsId,
+        title: title
+      }).then().catch();
+  }
 
 }

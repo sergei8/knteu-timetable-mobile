@@ -61,7 +61,7 @@ export class MongodbStitchProvider {
    * @param teacherName - имя препода
    * @return {Promise<number>} - массив с рейтингами
    */
-  getTeacherRatingsList(teacherName): Promise<any> {
+  getTeacherRatingsList(teacherName): Promise<Object[]> {
     return new Promise((resolve => {
         // this.clientRatings.auth.loginWithCredential(new AnonymousCredential()).catch();
         // const credential = new UserApiKeyCredential("f4e30324-d286-41f4-852f-d69c9d36ce11");
@@ -98,19 +98,36 @@ export class MongodbStitchProvider {
    * @return {Promise<any>} - массив документов-новостей,
    * без поля `details` и `blog_urk`, сортированый обратно порядку записи
    */
-  getShortNewsList() {
+  async getShortNewsList(): Promise<any> {
 
     const options = {
       "projection": {"blog_url": 0, "details": 0},
       "sort": {"$natural": -1}
     };
 
-    return new Promise(resolve => {
-      this.clientNews.auth.loginWithCredential(new AnonymousCredential()).then()
-        .then(() => this.dbNews.collection('news-list')
-          .find({}, options).asArray())
-        .then((doc) => resolve(doc))
-    })
+    /*
+        return new Promise(resolve => {
+          this.clientNews.auth.loginWithCredential(new AnonymousCredential()).then()
+            .then(() => this.dbNews.collection('news-list')
+              .find({}, options).asArray())
+            .then((doc) => resolve(doc))
+        })
+    */
+
+    return await this.clientNews.auth.loginWithCredential(new AnonymousCredential())
+      .then(async () => await this.dbNews.collection('news-list')
+        .find({}, options).asArray())
+  }
+
+  async getDetails(newsId: string): Promise<Array<Object>>{
+
+    const options = {
+      "projection": {"details": 1, "_id": 0}
+    };
+
+    return await this.clientNews.auth.loginWithCredential(new AnonymousCredential())
+      .then(async () => await this.dbNews.collection('news-list')
+        .find({"_id" : newsId}, options).asArray())
 
   }
 

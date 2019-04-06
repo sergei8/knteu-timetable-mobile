@@ -3,7 +3,7 @@ import {SharedObjects} from '../../providers/shared-data/shared-data';
 import {DataProvider} from '../../providers/data/data';
 import {FirestoreLogProvider} from '../../providers/firestore-log/firestore-log';
 import {Nav} from 'ionic-angular';
-import {TeacherTtComponent} from '../teacher-tt/teacher-tt';
+// import {TeacherTtComponent} from '../teacher-tt/teacher-tt';
 
 import * as _ from 'lodash';
 
