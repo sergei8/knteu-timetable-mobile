@@ -14,7 +14,7 @@ export class FirestoreLogProvider {
               public sharedObjects: SharedObjects) {
   }
 
-  async setHomePageLog() {
+  async setHomePageLog():Promise<void> {
     const path = `Home/${Date.now()}`;
     const homeDoc = this.fireStore.doc<any>(path);
 
@@ -25,7 +25,7 @@ export class FirestoreLogProvider {
     } catch (e) {
     }
 
-    homeDoc.set({
+    await homeDoc.set({
       userDeviceId: this.sharedObjects.currentUserDeviceId,
       userDeviceModel: this.device.model,
       userDevicePlatform: this.device.platform,
@@ -39,11 +39,11 @@ export class FirestoreLogProvider {
     }).then().catch();
   }
 
-  async setStudentPageLog(faculty: string, course: string, group: string, saved = false) {
+  async setStudentPageLog(faculty: string, course: string, group: string, saved = false): Promise<void> {
     const path = `Student/${Date.now()}`;
     const studentDoc = this.fireStore.doc<any>(path);
 
-    studentDoc.set({
+    await studentDoc.set({
         userDeviceId: this.device.uuid,
         faculty: faculty,
         course: course,
@@ -53,10 +53,10 @@ export class FirestoreLogProvider {
     ).then().catch()
   }
 
-  async setTeacherPageLog(teacherName: string, fromDiscipline: string = null, saved = false) {
+  async setTeacherPageLog(teacherName: string, fromDiscipline: string = null, saved = false): Promise<void> {
     const path = `Teacher/${Date.now()}`;
     const teacherDoc = this.fireStore.doc<any>(path);
-    teacherDoc.set({
+    await teacherDoc.set({
       userDeviceId: this.device.uuid,
       name: teacherName,
       fromDiscipline: fromDiscipline,
@@ -64,13 +64,35 @@ export class FirestoreLogProvider {
     }).then().catch()
   }
 
-  async setRatingPageLog(teacherName: string, action:string='view') {
+  async setRatingPageLog(teacherName: string, action: string = 'view'): Promise<void> {
     const path = `Rating/${Date.now()}`;
     const ratingDoc = this.fireStore.doc<any>(path);
-    ratingDoc.set({
+    await ratingDoc.set({
       userDeviceId: this.device.uuid,
       teacherName: teacherName,
       action: action
     }).then().catch()
   }
+
+  async setNewsPageLog(): Promise<void> {
+    const path = `News/${Date.now()}`;
+    const newsDoc = this.fireStore.doc<any>(path);
+    await newsDoc.set({
+      userDeviceId: this.device.uuid,
+      newsId: ""
+    }).then().catch()
+
+  }
+
+  async setNewsDetailsPageLog(newsId: string): Promise<void> {
+    const path = `News-details/${Date.now()}`;
+    const newsDoc = this.fireStore.doc<any>(path);
+    await newsDoc.set({
+      userDeviceId: this.device.uuid,
+      newsId: newsId
+    }).then().catch()
+
+  }
+
+
 }

@@ -4,6 +4,8 @@ import {IonicPage} from 'ionic-angular';
 import {Nav} from 'ionic-angular';
 import {NavParams} from 'ionic-angular';
 import {MongodbStitchProvider} from '../../providers/mongodb-stitch/mongodb-stitch';
+import {FirestoreLogProvider} from '../../providers/firestore-log/firestore-log'
+import {SharedObjects} from '../../providers/shared-data/shared-data';
 
 @IonicPage()
 @Component({
@@ -20,7 +22,9 @@ export class NewsDetailsComponent {
 
   constructor(public nav: Nav, public navParams: NavParams,
               public mongoStitch: MongodbStitchProvider,
-              private sanitizer: DomSanitizer) {
+              private sanitizer: DomSanitizer,
+              private  fireStore: FirestoreLogProvider,
+              private sharedObjects: SharedObjects) {
 
     this.newsId = this.navParams.get('newsId');
     this.title = this.navParams.get('title');
@@ -28,6 +32,11 @@ export class NewsDetailsComponent {
   }
 
   ionViewDidEnter() {
+
+    if (!this.sharedObjects.stopLogging) {
+      this.fireStore.setNewsDetailsPageLog(this.newsId).then().catch()
+    }
+
     this.mongoStitch.getDetails(this.newsId)
       .then(res => {
         if (res) {

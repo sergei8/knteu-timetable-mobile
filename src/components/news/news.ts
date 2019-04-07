@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {IonicPage} from 'ionic-angular';
 import {Nav} from 'ionic-angular';
+import {FirestoreLogProvider} from '../../providers/firestore-log/firestore-log'
 
 import {MongodbStitchProvider} from '../../providers/mongodb-stitch/mongodb-stitch';
-import {FirestoreLogProvider} from '../../providers/firestore-log/firestore-log';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
 import {DataProvider} from '../../providers/data/data';
 import {NewsDetailsComponent} from "../news-details/news-details";
@@ -38,18 +38,17 @@ export class NewsComponent {
    * инициирует асинхронное чтение новостей из БД
    */
   ionViewDidLoad() {
-/*
+
     if (!this.sharedObjects.stopLogging) {
-      this.fireStore.setHomePageLog().then().catch()
+      this.fireStore.setNewsPageLog().then().catch()
     }
-*/
 
     this.showSpinner = true;
     this.mongodbStitchProvider.getShortNewsList()
       .then((res) => {
         this.showSpinner = false;
         this.shortNewsList = res;
-        console.log(this.shortNewsList)
+        // console.log(this.shortNewsList)
       });
 
   }
