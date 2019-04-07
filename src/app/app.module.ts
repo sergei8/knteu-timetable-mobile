@@ -35,6 +35,9 @@ import {StudentComponent} from '../components/student/student';
 // import {SetupComponent} from '../components/setup/setup';
 // import {HoursComponent} from '../components/hours/hours';
 
+import {NewsComponent} from '../components/news/news';
+// import {NewsDetailsComponent} from '../components/news-details/news-details';
+
 import {RatingComponent} from '../components/rating/rating';
 import {RatingStarsComponent} from '../components/rating-stars/rating-stars';
 import {RatingChartComponent} from '../components/rating-chart/rating-chart';
@@ -55,6 +58,8 @@ import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch'
     // AboutComponent,
     // SetupComponent,
     // HoursComponent,
+    NewsComponent,
+    // NewsDetailsComponent,
     RatingComponent,
     RatingStarsComponent,
     RatingChartComponent
@@ -78,6 +83,8 @@ import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch'
     // AboutComponent,
     // SetupComponent,
     // HoursComponent,
+    NewsComponent,
+    // NewsDetailsComponent,
     RatingComponent,
     RatingStarsComponent,
     RatingChartComponent,

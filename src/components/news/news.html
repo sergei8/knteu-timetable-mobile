@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Новини КНТЕУ</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="page-home main-fon">
+
+  <div class="spinnerCenter" *ngIf="showSpinner">
+    <ion-spinner name="bubbles"></ion-spinner>
+  </div>
+
+  <ion-card *ngFor="let news of shortNewsList">
+    <ion-card-header class="dayHeader" style="color: #fafafa">
+      {{news.date}}
+    </ion-card-header>
+    <ion-card-content style="text-align: justify;">
+      {{news.title}}
+    </ion-card-content>
+    <ion-card-content>
+      <img src="{{news.pict_url}}">
+      <ion-card-content>
+        <p (click)="showNewsDetails(news._id, news.title)" style="color: #007aff">{{news.annotation}}</p>
+        <!--<ion-b (click)="showNewsDetails(news._id)" > детальніше</ion-b>-->
+        <!--<div (click)="showNewsDetails(news._id)" > {{news.annotation}}</div>-->
+      </ion-card-content>
+    </ion-card-content>
+    <!--
+        <ion-row>
+          <ion-col>&nbsp;</ion-col>
+        </ion-row>
+    -->
+  </ion-card>
+
+</ion-content>

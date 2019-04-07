@@ -6,7 +6,6 @@ import {DataProvider} from '../../providers/data/data';
 import {Nav} from 'ionic-angular';
 import {RatingComponent} from "../rating/rating";
 import {AlertController} from 'ionic-angular';
-// import {Device} from '@ionic-native/device';
 
 import * as _ from 'lodash';
 
@@ -42,9 +41,9 @@ export class TeacherTtComponent {
               private alert: AlertController,
               /*private device: Device*/) {
 
-    this.teacher = navParams.get('teacher');
-    this.wdp = navParams.get('wdp');
-    this.details = navParams.get('details');
+    this.teacher = this.navParams.get('teacher');
+    this.wdp = this.navParams.get('wdp');
+    this.details = this.navParams.get('details');
 
     this.weekNames = this.sharedObjects.weekNames;
     this.dayNamesList = this.sharedObjects.dayNamesList;

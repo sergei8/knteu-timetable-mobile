@@ -6,14 +6,12 @@ import {Push, PushObject, PushOptions} from '@ionic-native/push';
 import {AlertController} from 'ionic-angular';
 import {Device} from '@ionic-native/device';
 
-// import {SetupComponent} from '../components/setup/setup';
 import {HomeComponent} from '../components/home/home';
 import {TeacherComponent} from '../components/teacher/teacher';
 import {StudentComponent} from '../components/student/student';
-import {StudentTtComponent} from '../components/student-tt/student-tt';
-import {TeacherTtComponent} from "../components/teacher-tt/teacher-tt";
-// import {AboutComponent} from '../components/about/about';
-// import {HoursComponent} from '../components/hours/hours';
+// import {StudentTtComponent} from '../components/student-tt/student-tt';
+// import {TeacherTtComponent} from "../components/teacher-tt/teacher-tt";
+import {NewsComponent} from '../components/news/news';
 
 import {DataProvider} from '../providers/data/data';
 import {SharedObjects} from '../providers/shared-data/shared-data';
@@ -65,10 +63,10 @@ export class MyApp implements OnInit {
         });
     */
     // подключение к mongodb через mongo stitch
-    if (this.mongodbStitchProvider.initClient()) {
-      console.log("[mongoClient] : done!")
+    if (this.mongodbStitchProvider.initClients()) {
+      console.log("[mongoClient ] : done!")
     } else {
-      console.log("[mongoClient] : error!")
+      console.log("[mongoClient ] : error!")
     }
   }
 
@@ -81,9 +79,11 @@ export class MyApp implements OnInit {
         forceShow: true
       },
       ios: {
+/*
         alert: 'true',
         badge: true,
         sound: 'false'
+*/
       }
     };
 
@@ -141,7 +141,7 @@ export class MyApp implements OnInit {
                           this.fireStore.setStudentPageLog(studentRozklad['facName'],
                             studentRozklad['course'], studentRozklad['group'], true);
                           // переход на экран студента
-                          this.nav.push(StudentTtComponent,
+                          this.nav.push('StudentTtComponent',
                             {
                               wdp: studentRozklad['wdp'],
                               facName: studentRozklad['facName'],
@@ -186,14 +186,14 @@ export class MyApp implements OnInit {
                       text: 'Ні',
                       cssClass: 'alertButton',
                       handler: () => {
-                        this.nav.push(TeacherComponent);
+                        this.nav.push(TeacherComponent).then();
                       }
                     },
                     {
                       text: 'Так',
                       cssClass: 'alertButton',
                       handler: () => {
-                        this.nav.push(TeacherTtComponent,
+                        this.nav.push('TeacherTtComponent',
                           {
                             wdp: prepodRozklad['wdp'],
                             teacher: prepodRozklad['teacher']
@@ -226,6 +226,9 @@ export class MyApp implements OnInit {
     this.nav.push('HoursComponent').then().catch();
   }
 
+  openNews(): void {
+    this.nav.push(NewsComponent).then().catch();
+  }
 
   /**
    * подписаться на получение файла time-table.json

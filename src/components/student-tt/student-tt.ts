@@ -4,7 +4,6 @@ import {NavParams} from 'ionic-angular';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
 import {DataProvider} from '../../providers/data/data';
 import {FirestoreLogProvider} from '../../providers/firestore-log/firestore-log';
-// import {TeacherTtComponent} from "../teacher-tt/teacher-tt";
 import {Nav} from 'ionic-angular';
 
 import * as _ from 'lodash';
@@ -85,10 +84,16 @@ export class StudentTtComponent {
     this.data.saveTimeTable(rozklad);
   }
 
+  /**
+   * Открывает экран преподавателя
+   * @param {string} name - имя препода
+   * @param {string} discipline - дисциплина, с которой делать переход на препода (для лога)
+   */
+
   openTeacher(name: string, discipline: string): void {
-    const teacheInfo: any[] = this.data.getTeacherWdp(name);
-    const wdp = teacheInfo[0];
-    const teacherDetails = teacheInfo[1];
+    const teacherInfo: any[] = this.data.getTeacherWdp(name);
+    const wdp = teacherInfo[0];
+    const teacherDetails = teacherInfo[1];
 
     this.fireStore.setTeacherPageLog(name, discipline, true).then().catch();
 

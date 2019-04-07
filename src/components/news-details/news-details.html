@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="page-home main-fon">
+
+  <div class="spinnerCenter" *ngIf="showSpinner">
+    <ion-spinner name="bubbles"></ion-spinner>
+  </div>
+
+  <ion-card>
+    <ion-card-content *ngIf="detailsHTML" padding="2px">
+      <!--<p [innerHTML]="detailsHTML" style="text-align: justify"></p>-->
+      <p [innerHTML]="safeHTML(detailsHTML)" style="text-align: justify"></p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -124,3 +124,14 @@ ion-avatar img {
   max-height: 4em !important; //any size
 }
 
+a {
+  text-decoration: none;
+}
+
+.spinnerCenter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

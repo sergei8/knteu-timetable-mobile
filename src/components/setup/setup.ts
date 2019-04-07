@@ -25,7 +25,6 @@ export class SetupComponent {
       .then(result => {
         this.isSaveRozklad = this.sharedData.globalParams['saveRozklad'] ? this.sharedData.globalParams['saveRozklad']: false;
         this.isAllowPush = this.sharedData.globalParams['getPush']
-        // this.isAllowPush = this.sharedData.globalParams['getPush'] ? this.sharedData.globalParams['getPush'] : true;
       })
   }
 

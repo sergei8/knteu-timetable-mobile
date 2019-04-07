@@ -39,6 +39,7 @@ export class DataProvider {
     headers.append('Content-Type', 'application/json');
     return this.http.get(url, {headers: headers})
   }
+
   // сохраняет распісаніе студента или препода локально
   saveTimeTable(rozklad) {
 
@@ -268,7 +269,6 @@ export class DataProvider {
             // в ratingObj - все рейтинги, оставленные преподу
             // перебираем рейтинги по каждому пользователю;
             for (let userId in ratingObj) {
-              // if (ratingObj.hasOwnProperty(userId)) {
               // в userRatesList - рейтинги, оставленные пользователем для этого препода
               let userRatesList: object[] = ratingObj[userId];
               // выбираем из рейтингов пользователя последний оставленный

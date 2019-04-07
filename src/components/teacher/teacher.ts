@@ -3,7 +3,7 @@ import {SharedObjects} from '../../providers/shared-data/shared-data';
 import {DataProvider} from '../../providers/data/data';
 import {FirestoreLogProvider} from '../../providers/firestore-log/firestore-log';
 import {Nav} from 'ionic-angular';
-import {TeacherTtComponent} from '../teacher-tt/teacher-tt';
+// import {TeacherTtComponent} from '../teacher-tt/teacher-tt';
 
 import * as _ from 'lodash';
 
@@ -73,7 +73,6 @@ export class TeacherComponent {
     this.teacherDetails = teacherInfo[1];
 
     // логировать если разрешено
-    console.log('*******', this.sharedObjects.stopLogging);
     if (!this.sharedObjects.stopLogging) {
       this.fireStore.setTeacherPageLog(teacher).then().catch();
     }
