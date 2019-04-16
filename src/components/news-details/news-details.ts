@@ -31,6 +31,9 @@ export class NewsDetailsComponent {
 
   }
 
+  /**
+   * при входе в экран логтрует юзера и читает из БД поле `details` новости
+   */
   ionViewDidEnter() {
 
     if (!this.sharedObjects.stopLogging) {
@@ -43,7 +46,9 @@ export class NewsDetailsComponent {
           this.details = res[0]['details'];
           this.detailsHTML = this.details['text'];
           this.showSpinner = false;
-          // console.log(this.detailsHTML)
+          // сделать абсолютные внутренние ссылкив на фото в html
+          this.detailsHTML = this.detailsHTML.replace(/<img src="\/image\//g,
+            '<img src="http://knute.edu.ua/image/')
         }
         else {
           this.detailsHTML = 'нема деталей'
@@ -55,9 +60,10 @@ export class NewsDetailsComponent {
       })
   }
 
+  // защита innerHTML
   safeHTML(detailsHTML) {
     // console.log("safeHTML");
     return this.sanitizer.bypassSecurityTrustHtml(detailsHTML)
-    // return this.detailsHTML
   }
+
 }

@@ -31,8 +31,8 @@ export class MyApp implements OnInit {
   // appConfig = {};
   timeTableUrl: string;
   // configUrl = 'https://firebasestorage.googleapis.com/v0/b/knteu-timetable.appspot.com/o/app-config.json?alt=media&token=dcd8029a-18cd-4adc-bcd0-d39d4bb31e0d';
-  configUrl = 'https://raw.githubusercontent.com/sergei8/knteu-timetable-mobile/master/app-config.json';
-  // configUrl = 'http://localhost:8100/assets/db/app-config.json';
+  // configUrl = 'https://raw.githubusercontent.com/sergei8/knteu-timetable-mobile/master/app-config.json';
+  configUrl = 'http://localhost:8100/assets/db/app-config.json';
 
   askForSavedRozklad: boolean;
   showSplash = true; // <-- show animation

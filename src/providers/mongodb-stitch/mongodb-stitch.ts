@@ -5,12 +5,7 @@ import {
   AnonymousCredential,
   StitchAppClient,
   RemoteMongoDatabase,
-  UserPasswordCredential,
-  UserApiKeyCredential
 } from 'mongodb-stitch-browser-sdk';
-import {resolve} from "url";
-import {r} from "tar";
-import {_catch} from "rxjs-compat/operator/catch";
 
 @Injectable({
   providedIn: 'root'
@@ -22,14 +17,7 @@ export class MongodbStitchProvider {
   clientNews: StitchAppClient;
   dbNews: RemoteMongoDatabase;
 
-  /*
-    appId: string;
-    dbName: string;
-  */
-
   constructor() {
-    // this.appId = 'rating-kvicy';
-    // this.dbName = 'ratings';
   }
 
   /**
@@ -63,8 +51,6 @@ export class MongodbStitchProvider {
    */
   getTeacherRatingsList(teacherName): Promise<Object[]> {
     return new Promise((resolve => {
-        // this.clientRatings.auth.loginWithCredential(new AnonymousCredential()).catch();
-        // const credential = new UserApiKeyCredential("f4e30324-d286-41f4-852f-d69c9d36ce11");
 
         this.clientRatings.auth.loginWithCredential(new AnonymousCredential())
           .then(() => this.dbRatings.collection('teachers')
@@ -105,21 +91,17 @@ export class MongodbStitchProvider {
       "sort": {"$natural": -1}
     };
 
-    /*
-        return new Promise(resolve => {
-          this.clientNews.auth.loginWithCredential(new AnonymousCredential()).then()
-            .then(() => this.dbNews.collection('news-list')
-              .find({}, options).asArray())
-            .then((doc) => resolve(doc))
-        })
-    */
-
     return await this.clientNews.auth.loginWithCredential(new AnonymousCredential())
       .then(async () => await this.dbNews.collection('news-list')
         .find({}, options).asArray())
   }
 
-  async getDetails(newsId: string): Promise<Array<Object>>{
+  /**
+   * извлекает из БД `news-list` детали новости
+   * @param {string} newsId - id новостного док-та
+   * @return {Promise<Array<Object>>}
+   */
+  async getDetails(newsId: string): Promise<Array<Object>> {
 
     const options = {
       "projection": {"details": 1, "_id": 0}
@@ -127,7 +109,39 @@ export class MongodbStitchProvider {
 
     return await this.clientNews.auth.loginWithCredential(new AnonymousCredential())
       .then(async () => await this.dbNews.collection('news-list')
-        .find({"_id" : newsId}, options).asArray())
+        .find({"_id": newsId}, options).asArray())
+
+  }
+
+  /**
+   * обновляет поле `votes` после голосования
+   * @param {Object} news - новость, для которой было голосование
+   * @return {Promise<any>} - делается асинхронно
+   */
+  async storeNewsVote(news: Object): Promise<any> {
+    const query = {_id: news['_id']};
+    const update = {
+      $set: {
+        votes: news['votes']
+      }
+    };
+
+    return await this.clientNews.auth.loginWithCredential(new AnonymousCredential())
+      .then(async () => await this.dbNews.collection('news-list')
+        .updateOne(query, update).catch(e => console.log(e)))
+  }
+
+  /**
+   * обновляет поле `views` (просмотры) для новости с newsID
+   * @param {string} newsId - id новости
+   * @param {Array<string>} views - массив, содержащий id устр-в юзеров
+   * @return {Promise<any>} - асинхронное обещание
+   */
+  async storeViews(newsId: string, views: Array<string>): Promise<any> {
+    return await this.clientNews.auth.loginWithCredential(new AnonymousCredential())
+      .then(async () => await this.dbNews.collection('news-list')
+        .updateOne({_id: newsId}, {$set: {views: views}})
+        .catch(e => console.log(e)))
 
   }
 

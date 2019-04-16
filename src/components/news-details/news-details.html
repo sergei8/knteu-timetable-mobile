@@ -8,7 +8,7 @@
 </ion-header>
 
 
-<ion-content padding class="page-home main-fon">
+<ion-content  class="page-home main-fon">
 
   <div class="spinnerCenter" *ngIf="showSpinner">
     <ion-spinner name="bubbles"></ion-spinner>
@@ -16,7 +16,6 @@
 
   <ion-card>
     <ion-card-content *ngIf="detailsHTML" padding="2px">
-      <!--<p [innerHTML]="detailsHTML" style="text-align: justify"></p>-->
       <p [innerHTML]="safeHTML(detailsHTML)" style="text-align: justify"></p>
     </ion-card-content>
   </ion-card>

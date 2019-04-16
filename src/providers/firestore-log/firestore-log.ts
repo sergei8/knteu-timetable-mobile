@@ -79,7 +79,7 @@ export class FirestoreLogProvider {
     const newsDoc = this.fireStore.doc<any>(path);
     await newsDoc.set({
       userDeviceId: this.device.uuid,
-      newsId: ""
+      // newsId: ""
     }).then().catch()
 
   }

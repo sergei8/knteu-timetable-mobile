@@ -129,9 +129,14 @@ a {
 }
 
 .spinnerCenter {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.news-comments {
+  font-size: 1.5em;
+  color: #8c8c8c;
 }

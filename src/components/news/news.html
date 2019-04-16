@@ -7,7 +7,6 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding class="page-home main-fon">
 
   <div class="spinnerCenter" *ngIf="showSpinner">
@@ -15,25 +14,39 @@
   </div>
 
   <ion-card *ngFor="let news of shortNewsList">
-    <ion-card-header class="dayHeader" style="color: #fafafa">
+    <ion-card-header class="dayHeader" style="color: #fafafa;">
       {{news.date}}
     </ion-card-header>
-    <ion-card-content style="text-align: justify;">
+    <ion-card-content style="text-align: justify; font-weight: bold">
       {{news.title}}
     </ion-card-content>
     <ion-card-content>
       <img src="{{news.pict_url}}">
-      <ion-card-content>
-        <p (click)="showNewsDetails(news._id, news.title)" style="color: #007aff">{{news.annotation}}</p>
-        <!--<ion-b (click)="showNewsDetails(news._id)" > детальніше</ion-b>-->
-        <!--<div (click)="showNewsDetails(news._id)" > {{news.annotation}}</div>-->
-      </ion-card-content>
     </ion-card-content>
-    <!--
-        <ion-row>
-          <ion-col>&nbsp;</ion-col>
-        </ion-row>
-    -->
+    <ion-card-content>
+      <p (click)="showNewsDetails(news)" style="color: #007aff">
+        {{news.annotation}}
+      </p>
+    </ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-1 offset-1>
+          <ion-icon name="ios-arrow-up" class="news-comments" (click)="changeVotes(1, news._id)"></ion-icon>
+        </ion-col>
+        <ion-col col size="auto" class="news-comments" style="font-size: 1.2em">
+          {{getVotesBalance(news.votes)}}
+        </ion-col>
+        <ion-col col-1>
+          <ion-icon name="ios-arrow-down" class="news-comments"(click)="changeVotes(0, news._id)"></ion-icon>
+        </ion-col>
+        <ion-col col-1 offset-5>
+          <ion-icon name="eye" class="news-comments"></ion-icon>
+        </ion-col>
+        <ion-col col-2 class="news-comments" style="font-size: 1.2em">
+          {{getTotalViews(news)}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card>
 
 </ion-content>
