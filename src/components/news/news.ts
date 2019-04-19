@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Nav} from 'ionic-angular';
 import {FirestoreLogProvider} from '../../providers/firestore-log/firestore-log'
+import {SocialSharing} from '@ionic-native/social-sharing/ngx';
 
 import {MongodbStitchProvider} from '../../providers/mongodb-stitch/mongodb-stitch';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
@@ -21,6 +22,7 @@ export class NewsComponent {
   negativeAmount: number;
 
   constructor(public nav: Nav, private mongodbStitchProvider: MongodbStitchProvider,
+              private socialSharing: SocialSharing,
               private  fireStore: FirestoreLogProvider,
               private sharedObjects: SharedObjects,
               private data: DataProvider) {
@@ -82,7 +84,6 @@ export class NewsComponent {
 
   changeVotes(voteType: number, newsId: string): void {
 
-    // console.log(this.shortNewsList);
     this.shortNewsList.forEach(news => {
       if (news._id == newsId) {
         this.setVote(news, voteType);
@@ -125,7 +126,6 @@ export class NewsComponent {
     }
   }
 
-
   /**
    * заносит в поле `views` id юзера при переходе на экран деталей новости
    * @param {Object} news - новость, на которой открыли детали
@@ -150,6 +150,17 @@ export class NewsComponent {
     }
     // обновляем док-т в БД
     this.mongodbStitchProvider.storeViews(news['_id'], news['views']).then()
+  }
+
+  shareClick(news: Object): void {
+    console.log(news);
+
+        // this.socialSharing.shareViaEmail('Body', 'Subject', ['recipient@example.org'])
+        this.socialSharing.share('Body', 'Subject', ['recipient@example.org'])
+          .then(() => {
+            console.log('share')
+          })
+
   }
 
   /**

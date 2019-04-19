@@ -21,19 +21,12 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {firebaseConfig} from './credentials';
 import {Push } from '@ionic-native/push';
-
-// import {StarRatingModule} from 'ionic3-star-rating';
-// import {Geolocation}from'@ionic-native/geolocation';
+import {SocialSharing} from '@ionic-native/social-sharing/ngx';
 
 import {MyApp} from './app.component';
 import {HomeComponent} from '../components/home/home';
 import {TeacherComponent} from '../components/teacher/teacher';
 import {StudentComponent} from '../components/student/student';
-// import {StudentTtComponent} from '../components/student-tt/student-tt';
-// import {TeacherTtComponent} from '../components/teacher-tt/teacher-tt';
-// import {AboutComponent} from '../components/about/about';
-// import {SetupComponent} from '../components/setup/setup';
-// import {HoursComponent} from '../components/hours/hours';
 
 import {NewsComponent} from '../components/news/news';
 // import {NewsDetailsComponent} from '../components/news-details/news-details';
@@ -53,13 +46,7 @@ import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch'
     HomeComponent,
     TeacherComponent,
     StudentComponent,
-    // StudentTtComponent,
-    // TeacherTtComponent,
-    // AboutComponent,
-    // SetupComponent,
-    // HoursComponent,
     NewsComponent,
-    // NewsDetailsComponent,
     RatingComponent,
     RatingStarsComponent,
     RatingChartComponent
@@ -70,7 +57,7 @@ import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch'
     HttpClientModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
-    ChartsModule
+    ChartsModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -78,13 +65,7 @@ import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch'
     HomeComponent,
     TeacherComponent,
     StudentComponent,
-    // StudentTtComponent,
-    // TeacherTtComponent,
-    // AboutComponent,
-    // SetupComponent,
-    // HoursComponent,
     NewsComponent,
-    // NewsDetailsComponent,
     RatingComponent,
     RatingStarsComponent,
     RatingChartComponent,
@@ -94,7 +75,6 @@ import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch'
     SplashScreen,
     AppRate,
     Device,
-    // Geolocation,
     NetworkInterface,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
@@ -102,6 +82,7 @@ import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch'
     FirestoreLogProvider,
     MongodbStitchProvider,
     Push,
+    SocialSharing,
   ]
 })
 export class AppModule {

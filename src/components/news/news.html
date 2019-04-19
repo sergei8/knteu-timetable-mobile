@@ -14,9 +14,17 @@
   </div>
 
   <ion-card *ngFor="let news of shortNewsList">
-    <ion-card-header class="dayHeader" style="color: #fafafa;">
-      {{news.date}}
-    </ion-card-header>
+    <ion-card-content class="dayHeader" style="color: #fafafa;">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4> {{news.date}}</ion-col>
+          <ion-col offset-7>
+            <ion-icon name="share" (click)="shareClick(news)"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-card-content>
     <ion-card-content style="text-align: justify; font-weight: bold">
       {{news.title}}
     </ion-card-content>
@@ -37,7 +45,7 @@
           {{getVotesBalance(news.votes)}}
         </ion-col>
         <ion-col col-1>
-          <ion-icon name="ios-arrow-down" class="news-comments"(click)="changeVotes(0, news._id)"></ion-icon>
+          <ion-icon name="ios-arrow-down" class="news-comments" (click)="changeVotes(0, news._id)"></ion-icon>
         </ion-col>
         <ion-col col-1 offset-5>
           <ion-icon name="eye" class="news-comments"></ion-icon>
