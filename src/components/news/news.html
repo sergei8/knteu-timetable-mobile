@@ -10,7 +10,7 @@
 <ion-content padding class="page-home main-fon">
 
   <div class="spinnerCenter" *ngIf="showSpinner">
-    <ion-spinner name="bubbles"></ion-spinner>
+    <ion-spinner name="bubbles" id="spinner"></ion-spinner>
   </div>
 
   <ion-card *ngFor="let news of shortNewsList">
@@ -21,7 +21,10 @@
       {{news.title}}
     </ion-card-content>
     <ion-card-content>
-      <img src="{{news.pict_url}}">
+      <div class="spinnerCenter" *ngIf="!news.pict_url">
+        <ion-spinner name="bubbles"></ion-spinner>
+      </div>
+      <img src="{{news.pict_url}}" *ngIf="news.pict_url">
     </ion-card-content>
     <ion-card-content>
       <p (click)="showNewsDetails(news)" style="color: #007aff">
@@ -37,7 +40,7 @@
           {{getVotesBalance(news.votes)}}
         </ion-col>
         <ion-col col-1>
-          <ion-icon name="ios-arrow-down" class="news-comments"(click)="changeVotes(0, news._id)"></ion-icon>
+          <ion-icon name="ios-arrow-down" class="news-comments" (click)="changeVotes(0, news._id)"></ion-icon>
         </ion-col>
         <ion-col col-1 offset-5>
           <ion-icon name="eye" class="news-comments"></ion-icon>
