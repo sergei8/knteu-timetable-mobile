@@ -7,5 +7,5 @@ import {TeacherTtComponent} from './teacher-tt';
   imports: [IonicPageModule.forChild(TeacherTtComponent)],
 })
 
-export class AboutModule {
+export class TeacherTtModule {
 }
