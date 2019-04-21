@@ -1,13 +1,15 @@
 import {Component} from '@angular/core';
 import {Nav} from 'ionic-angular';
 import {FirestoreLogProvider} from '../../providers/firestore-log/firestore-log'
+import {SocialSharing} from '@ionic-native/social-sharing';
 
 import {MongodbStitchProvider} from '../../providers/mongodb-stitch/mongodb-stitch';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
 import {DataProvider} from '../../providers/data/data';
 import {NewsDetailsComponent} from "../news-details/news-details";
+import {IonicPage} from 'ionic-angular';
 
-
+@IonicPage()
 @Component({
   selector: 'news',
   templateUrl: 'news.html'
@@ -21,6 +23,7 @@ export class NewsComponent {
   negativeAmount: number;
 
   constructor(public nav: Nav, private mongodbStitchProvider: MongodbStitchProvider,
+              private socialSharing: SocialSharing,
               private  fireStore: FirestoreLogProvider,
               private sharedObjects: SharedObjects,
               private data: DataProvider) {
@@ -82,7 +85,6 @@ export class NewsComponent {
 
   changeVotes(voteType: number, newsId: string): void {
 
-    // console.log(this.shortNewsList);
     this.shortNewsList.forEach(news => {
       if (news._id == newsId) {
         this.setVote(news, voteType);
@@ -125,7 +127,6 @@ export class NewsComponent {
     }
   }
 
-
   /**
    * заносит в поле `views` id юзера при переходе на экран деталей новости
    * @param {Object} news - новость, на которой открыли детали
@@ -150,6 +151,20 @@ export class NewsComponent {
     }
     // обновляем док-т в БД
     this.mongodbStitchProvider.storeViews(news['_id'], news['views']).then()
+  }
+
+  shareClick(news: Object): void {
+    // console.log(news);
+    const message: string = news['title'];
+    const subject: string = news['annotation'];
+    const link: string = news['blog_url'];
+    const image: string = news['pict_url'] || null;
+
+    this.socialSharing.share(message, subject, image, link)
+      .then(() => {
+        // console.log('share')
+      })
+
   }
 
   /**

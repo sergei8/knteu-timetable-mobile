@@ -87,7 +87,7 @@ export class MongodbStitchProvider {
   async getShortNewsList(): Promise<any> {
 
     const options = {
-      "projection": {"blog_url": 0, "details": 0},
+      "projection": {"details": 0},
       "sort": {"$natural": -1}
     };
 
