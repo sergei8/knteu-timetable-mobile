@@ -21,7 +21,7 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {firebaseConfig} from './credentials';
 import {Push } from '@ionic-native/push';
-import {SocialSharing} from '@ionic-native/social-sharing/ngx';
+import {SocialSharing} from '@ionic-native/social-sharing';
 
 import {MyApp} from './app.component';
 import {HomeComponent} from '../components/home/home';

@@ -1,12 +1,13 @@
 import {Component} from '@angular/core';
 import {Nav} from 'ionic-angular';
 import {FirestoreLogProvider} from '../../providers/firestore-log/firestore-log'
-import {SocialSharing} from '@ionic-native/social-sharing/ngx';
+import {SocialSharing} from '@ionic-native/social-sharing';
 
 import {MongodbStitchProvider} from '../../providers/mongodb-stitch/mongodb-stitch';
 import {SharedObjects} from '../../providers/shared-data/shared-data';
 import {DataProvider} from '../../providers/data/data';
 import {NewsDetailsComponent} from "../news-details/news-details";
+import {async} from "rxjs/internal/scheduler/async";
 
 
 @Component({
@@ -153,13 +154,16 @@ export class NewsComponent {
   }
 
   shareClick(news: Object): void {
-    console.log(news);
+    // console.log(news);
+    const message: string = news['title'];
+    const subject: string = news['annotation'];
+    const link: string = news['blog_url'];
+    const image: string = news['pict_url'] || null;
 
-        // this.socialSharing.shareViaEmail('Body', 'Subject', ['recipient@example.org'])
-        this.socialSharing.share('Body', 'Subject', ['recipient@example.org'])
-          .then(() => {
-            console.log('share')
-          })
+    this.socialSharing.share(message, subject, image, link)
+      .then(() => {
+        // console.log('share')
+      })
 
   }
 
