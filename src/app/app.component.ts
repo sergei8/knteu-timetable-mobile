@@ -49,7 +49,7 @@ export class MyApp implements OnInit {
               private device: Device,
               private push: Push) {
 
-    this.splashScreen.show();
+    // this.splashScreen.show();
     this.initializeApp();
     this.dataProvider.readLocalSetup().then();
     this.readConfig();
@@ -79,11 +79,6 @@ export class MyApp implements OnInit {
         forceShow: true
       },
       ios: {
-/*
-        alert: 'true',
-        badge: true,
-        sound: 'false'
-*/
       }
     };
 
@@ -97,8 +92,8 @@ export class MyApp implements OnInit {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       // this.statusBar.backgroundColorByHexString('#FFFFFF');
-      this.statusBar.hide();
-      this.splashScreen.hide();
+      // this.statusBar.hide();
+      // this.splashScreen.hide();
       /* включить push уведомления, если это разрешено в общем конфиге и в локальном */
       if (this.sharedObjects.runPush && this.sharedObjects.globalParams['getPush']) {
         this.pushSetup();

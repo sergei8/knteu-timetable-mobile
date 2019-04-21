@@ -38,7 +38,7 @@
     "cordova-android-play-services-gradle-release": "^2.0.0",
     "cordova-plugin-apprate": "1.4.0",
     "cordova-plugin-console": "1.1.0",
-    "cordova-plugin-crosswalk-webview": "^2.4.0",
+    "cordova-plugin-crosswalk-webview-v2": "2.4.3",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-dialogs": "2.0.1",
     "cordova-plugin-firebase-crashlytics": "0.0.8",
@@ -102,7 +102,7 @@
         "ANDROID_FIREBASE_CORE_VERSION": "16.0.0"
       },
       "cordova-plugin-whitelist": {},
-      "cordova-plugin-crosswalk-webview": {
+      "cordova-plugin-crosswalk-webview-v2": {
         "XWALK_VERSION": "23+",
         "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
         "XWALK_COMMANDLINE": "--disable-pull-to-refresh-effect",
