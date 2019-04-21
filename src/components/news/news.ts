@@ -7,9 +7,9 @@ import {MongodbStitchProvider} from '../../providers/mongodb-stitch/mongodb-stit
 import {SharedObjects} from '../../providers/shared-data/shared-data';
 import {DataProvider} from '../../providers/data/data';
 import {NewsDetailsComponent} from "../news-details/news-details";
-import {async} from "rxjs/internal/scheduler/async";
+import {IonicPage} from 'ionic-angular';
 
-
+@IonicPage()
 @Component({
   selector: 'news',
   templateUrl: 'news.html'
