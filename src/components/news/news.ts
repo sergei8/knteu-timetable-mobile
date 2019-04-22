@@ -100,7 +100,7 @@ export class NewsComponent {
    */
   setVote(news: Object, voteType: number): void {
     //отладка
-    this.sharedObjects.currentUserDeviceId = '222222';
+    // this.sharedObjects.currentUserDeviceId = '222222';
     //
     // id устройства пользователя
     const devId = this.sharedObjects.currentUserDeviceId;
@@ -111,7 +111,6 @@ export class NewsComponent {
       // если тип мнения есть в `votes`
       if (voteName in news['votes']) {
         // проверяем, был ли уже голос от этого юзера
-        //todo изменить на include...
         if (news['votes'][voteName].indexOf(devId) === -1) {
           // не было - дописываем id в массив голосов
           news['votes'][voteName].push(devId);
@@ -134,7 +133,7 @@ export class NewsComponent {
   setViews(news: Object): void {
 
     //отладка
-    this.sharedObjects.currentUserDeviceId = '333333';
+    // this.sharedObjects.currentUserDeviceId = '333333';
     //
     // id устройства пользователя
     const devId = this.sharedObjects.currentUserDeviceId;
@@ -160,10 +159,7 @@ export class NewsComponent {
     const link: string = news['blog_url'];
     const image: string = news['pict_url'] || null;
 
-    this.socialSharing.share(message, subject, image, link)
-      .then(() => {
-        // console.log('share')
-      })
+    this.socialSharing.share(message, subject, image, link).then()
 
   }
 

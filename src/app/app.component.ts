@@ -18,8 +18,6 @@ import {SharedObjects} from '../providers/shared-data/shared-data';
 import {FirestoreLogProvider} from '../providers/firestore-log/firestore-log'
 import {MongodbStitchProvider} from '../providers/mongodb-stitch/mongodb-stitch';
 
-// import {timer} from 'rxjs/observable/timer';
-
 @Component({
   templateUrl: 'app.html'
 })
@@ -31,8 +29,8 @@ export class MyApp implements OnInit {
   // appConfig = {};
   timeTableUrl: string;
   // configUrl = 'https://firebasestorage.googleapis.com/v0/b/knteu-timetable.appspot.com/o/app-config.json?alt=media&token=dcd8029a-18cd-4adc-bcd0-d39d4bb31e0d';
-  // configUrl = 'https://raw.githubusercontent.com/sergei8/knteu-timetable-mobile/master/app-config.json';
-  configUrl = 'http://localhost:8100/assets/db/app-config.json';
+  configUrl = 'https://raw.githubusercontent.com/sergei8/knteu-timetable-mobile/master/app-config.json';
+  // configUrl = 'http://localhost:8100/assets/db/app-config.json';
 
   askForSavedRozklad: boolean;
   showSplash = true; // <-- show animation
@@ -54,14 +52,6 @@ export class MyApp implements OnInit {
     this.dataProvider.readLocalSetup().then();
     this.readConfig();
 
-    /*
-        this.platform.ready().then(() => {
-          this.splashScreen.hide();
-          if (this.sharedObjects.runPush) {
-            this.pushSetup();
-          }
-        });
-    */
     // подключение к mongodb через mongo stitch
     if (this.mongodbStitchProvider.initClients()) {
       console.log("[mongoClient ] : done!")
@@ -78,8 +68,7 @@ export class MyApp implements OnInit {
         iconColor: '#343434',
         forceShow: true
       },
-      ios: {
-      }
+      ios: {}
     };
 
     const pushObject: PushObject = this.push.init(options);
@@ -90,16 +79,15 @@ export class MyApp implements OnInit {
 
   initializeApp(): void {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      // this.statusBar.backgroundColorByHexString('#FFFFFF');
-      // this.statusBar.hide();
-      // this.splashScreen.hide();
-      /* включить push уведомления, если это разрешено в общем конфиге и в локальном */
-      if (this.sharedObjects.runPush && this.sharedObjects.globalParams['getPush']) {
-        this.pushSetup();
+        this.statusBar.styleDefault();
+        this.splashScreen.hide();
+
+        /* включить push уведомления, если это разрешено в общем конфиге и в локальном */
+        if (this.sharedObjects.runPush && this.sharedObjects.globalParams['getPush']) {
+          this.pushSetup();
+        }
       }
-      // timer(3000).subscribe(() => this.showSplash = true)
-    });
+    );
   }
 
   ngOnInit(): void {
