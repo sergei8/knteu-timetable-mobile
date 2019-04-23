@@ -42,15 +42,17 @@
     <ion-grid>
       <ion-row>
         <ion-col col-1 offset-1>
-          <ion-icon name="ios-arrow-up" class="news-comments" (click)="changeVotes(1, news._id)"></ion-icon>
+          <ion-icon name="thumbs-up" class="news-comments" (click)="changeVotes(1, news._id)"></ion-icon>
         </ion-col>
         <ion-col col size="auto" class="news-comments" style="font-size: 1.2em">
           {{getVotesBalance(news.votes)}}
         </ion-col>
+<!--
         <ion-col col-1>
           <ion-icon name="ios-arrow-down" class="news-comments" (click)="changeVotes(0, news._id)"></ion-icon>
         </ion-col>
-        <ion-col col-1 offset-5>
+-->
+        <ion-col col-1 offset-6>
           <ion-icon name="eye" class="news-comments"></ion-icon>
         </ion-col>
         <ion-col col-2 class="news-comments" style="font-size: 1.2em">
