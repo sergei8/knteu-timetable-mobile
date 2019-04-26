@@ -9,3 +9,6 @@ Download it from [Google Play](https://play.google.com/store/apps/details?id=ek.
 - [Firebase](https://firebase.google.com)
 - [MongoDB Atlas](https://firebase.google.com)
 
+### Upper-level schema:
+![](diagram-upper-level.png)
+
