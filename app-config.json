@@ -6,5 +6,9 @@
   "run-push": true,
   "semestr-start-date": "",
   "week-start-number": 1,
-  "show-news": true
+  "show-news": true,
+    "actual-timetable":{
+    "show": false,
+    "message-if-no": "Зараз розклад відсутній"
+  }
 }
