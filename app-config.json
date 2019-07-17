@@ -8,7 +8,7 @@
   "week-start-number": 1,
   "show-news": true,
     "actual-timetable":{
-    "show": true,
+    "show": false,
     "message-if-no": "Зараз розклад відсутній"
   }
 }
