@@ -10,5 +10,9 @@
     "actual-timetable":{
     "show": false,
     "message-if-no": "Зараз розклад відсутній"
+  },
+    "comments-control": {
+    "show-comments": true,
+    "allow-add-comment": true
   }
 }
