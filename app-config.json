@@ -12,7 +12,7 @@
     "message-if-no": "Зараз розклад відсутній"
   },
     "comments-control": {
-    "show-comments": true,
-    "allow-add-comment": true
+    "show-comments": false,
+    "allow-add-comment": false
   }
 }
