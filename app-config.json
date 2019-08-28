@@ -11,8 +11,9 @@
     "show": false,
     "message-if-no": "Зараз розклад відсутній"
   },
-    "comments-control": {
+  "comments-control": {
     "show-comments": true,
-    "allow-add-comment": true
+    "allow-add-comment": true,
+    "moderate-comments"" true
   }
 }
