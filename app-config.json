@@ -14,6 +14,6 @@
   "comments-control": {
     "show-comments": true,
     "allow-add-comment": true,
-    "moderate-comments"" true
+    "moderate-comments" : true
   }
 }
