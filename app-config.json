@@ -9,7 +9,7 @@
   "show-news": true,
     "actual-timetable":{
     "show": false,
-    "message-if-no": "Зараз розклад відсутній"
+    "message-if-no": "Постійний розклад відсутній"
   },
   "comments-control": {
     "show-comments": true,
