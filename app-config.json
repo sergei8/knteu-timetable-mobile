@@ -9,7 +9,7 @@
   "show-news": true,
     "actual-timetable":{
     "show": false,
-    "message-if-no": "Постійний розклад відсутній"
+    "message-if-no": "Розклад буде доступний 15/09"
   },
   "comments-control": {
     "show-comments": true,
