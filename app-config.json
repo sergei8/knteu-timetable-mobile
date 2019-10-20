@@ -1,10 +1,10 @@
 {
   "time-table-url": "https://raw.githubusercontent.com/sergei8/knteu-timetable-mobile/master/time-table-new.json",
   "stop-logging": false,
-  "version": "1.5.1",
+  "version": "2.2.0",
   "show-rating": true,
   "run-push": true,
-  "semestr-start-date": "",
+  "semestr-start-date": "09-02-2019",
   "week-start-number": 1,
   "show-news": true,
     "actual-timetable":{
