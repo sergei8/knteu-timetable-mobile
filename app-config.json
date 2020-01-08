@@ -9,8 +9,8 @@
   "week-start-number": 1,
   "show-news": true,
     "actual-timetable":{
-    "show": true,
-    "message-if-no": "Розклад буде доступний 15/09"
+    "show": false,
+    "message-if-no": "Розклад на 2 семестр відсутній"
   },
   "comments-control": {
     "show-comments": true,
