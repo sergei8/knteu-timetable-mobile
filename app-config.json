@@ -10,7 +10,7 @@
   "show-news": true,
     "actual-timetable":{
     "show": false,
-    "message-if-no": "Розклад на 2 семестр відсутній"
+    "message-if-no": "Розклад буде в кінці тіжня"
   },
   "comments-control": {
     "show-comments": true,
