@@ -4,13 +4,13 @@
   "version": "2.2.0",
   "show-rating": true,
   "run-push": true,
-  "semestr-start-date": "02-09-2019",
-  "semestr-end-date": "01-01-2020",
+  "semestr-start-date": "03-02-2020",
+  "semestr-end-date": "01-07-2020",
   "week-start-number": 1,
   "show-news": true,
     "actual-timetable":{
-    "show": false,
-    "message-if-no": "Розклад буде в кінці тіжня"
+    "show": true,
+    "message-if-no": "***"
   },
   "comments-control": {
     "show-comments": true,
