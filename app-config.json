@@ -1,5 +1,5 @@
 {
-  "time-table-url": "https://raw.githubusercontent.com/sergei8/knteu-timetable-mobile/master/time-table-last.json",
+  "time-table-url": "https://raw.githubusercontent.com/sergei8/knteu-timetable-mobile/master/time-table.json",
   "stop-logging": false,
   "version": "2.2.0",
   "show-rating": true,
