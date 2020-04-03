@@ -8,6 +8,7 @@
   "semestr-end-date": "01-07-2020",
   "week-start-number": 2,
   "show-news": true,
+  "max-news": 30,
     "actual-timetable":{
     "show": true,
     "message-if-no": "***"
