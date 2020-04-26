@@ -10,8 +10,8 @@
   "show-news": true,
   "max-news": 30,
   "actual-timetable": {
-    "show": false,
-    "message-if-no": "профілактика..."
+    "show": true,
+    "message-if-no": "..."
   },
   "comments-control": {
     "show-comments": true,
