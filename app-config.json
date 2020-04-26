@@ -1,5 +1,5 @@
 {
-  "time-table-url": "https://raw.githubusercontent.com/sergei8/knteu-timetable-mobile/master/time-table-new.json",
+  "time-table-url": "https://raw.githubusercontent.com/sergei8/knteu-timetable-mobile/master/time-table-test.json",
   "stop-logging": false,
   "version": "2.2.0",
   "show-rating": true,
@@ -10,8 +10,8 @@
   "show-news": true,
   "max-news": 30,
     "actual-timetable":{
-    "show": true,
-    "message-if-no": "***"
+    "show": false,
+    "message-if-no": "профілактика..."
   },
   "comments-control": {
     "show-comments": true,
