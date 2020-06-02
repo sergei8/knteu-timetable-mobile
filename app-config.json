@@ -7,7 +7,7 @@
   "semestr-start-date": "03-02-2020",
   "semestr-end-date": "01-07-2020",
   "week-start-number": 2,
-  "show-news": true,
+  "show-news": false,
   "max-news": 30,
   "actual-timetable": {
     "show": true,
