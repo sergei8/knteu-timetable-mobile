@@ -1,7 +1,7 @@
 {
   "time-table-url": "https://raw.githubusercontent.com/sergei8/knteu-timetable-mobile/master/time-table-latest.json",
   "stop-logging": false,
-  "version": "2.4.0",
+  "version": "2.4.1",
   "show-rating": true,
   "run-push": true,
   "semestr-start-date": "03-02-2020",
@@ -10,8 +10,8 @@
   "show-news": false,
   "max-news": 30,
   "actual-timetable": {
-    "show": true,
-    "message-if-no": "..."
+    "show": false,
+    "message-if-no": "розклад відсутній"
   },
   "comments-control": {
     "show-comments": true,
