@@ -44,7 +44,7 @@
     "cordova-plugin-dialogs": "2.0.1",
     "cordova-plugin-firebase-crashlytics": "0.0.8",
     "cordova-plugin-globalization": "1.0.9",
-    "cordova-plugin-inappbrowser": "3.0.0",
+    "cordova-plugin-inappbrowser": "4.0.0",
     "cordova-plugin-nativestorage": "2.3.2",
     "cordova-plugin-networkinterface": "^2.0.0",
     "cordova-plugin-splashscreen": "5.0.2",
