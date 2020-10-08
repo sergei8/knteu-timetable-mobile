@@ -6,7 +6,7 @@
   "run-push": true,
   "semestr-start-date": "05-10-2020",
   "semestr-end-date": "01-01-2021",
-  "week-start-number": 2,
+  "week-start-number": 1,
   "show-news": false,
   "max-news": 30,
   "actual-timetable": {
