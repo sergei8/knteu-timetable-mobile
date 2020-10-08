@@ -1,7 +1,7 @@
 {
   "time-table-url": "https://raw.githubusercontent.com/sergei8/knteu-timetable-mobile/master/time-table-2020-1.json",
-  "stop-logging": false,
-  "version": "2.4.1",
+  "stop-logging": true,
+  "version": "2.4.4",
   "show-rating": true,
   "run-push": true,
   "semestr-start-date": "05-10-2020",
