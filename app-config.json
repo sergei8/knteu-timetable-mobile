@@ -4,14 +4,14 @@
   "version": "2.4.1",
   "show-rating": true,
   "run-push": true,
-  "semestr-start-date": "03-02-2020",
-  "semestr-end-date": "01-07-2020",
+  "semestr-start-date": "05-10-2020",
+  "semestr-end-date": "01-01-2021",
   "week-start-number": 2,
   "show-news": false,
   "max-news": 30,
   "actual-timetable": {
-    "show": false,
-    "message-if-no": "постійний розклад буде незабаром"
+    "show": true,
+    "message-if-no": "..."
   },
   "comments-control": {
     "show-comments": true,
