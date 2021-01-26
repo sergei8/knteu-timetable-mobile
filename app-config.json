@@ -10,8 +10,8 @@
   "show-news": false,
   "max-news": 30,
   "actual-timetable": {
-    "show": true,
-    "message-if-no": "..."
+    "show": false,
+    "message-if-no": "постійний розклад відсутній"
   },
   "comments-control": {
     "show-comments": true,
