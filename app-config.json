@@ -4,9 +4,9 @@
   "version": "2.4.8",
   "show-rating": true,
   "run-push": true,
-  "semestr-start-date": "08-02-2021",
-  "semestr-end-date": "01-07-2021",
-  "week-start-number": 2,
+  "semestr-start-date": "06-09-2021",
+  "semestr-end-date": "01-01-2022",
+  "week-start-number": 1,
   "show-news": false,
   "max-news": 30,
   "actual-timetable": {
