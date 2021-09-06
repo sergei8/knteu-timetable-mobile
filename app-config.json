@@ -11,7 +11,7 @@
   "max-news": 30,
   "actual-timetable": {
     "show": false,
-    "message-if-no": "розклад буде незабарлм"
+    "message-if-no": "розклад буде незабаром"
   },
   "comments-control": {
     "show-comments": true,
