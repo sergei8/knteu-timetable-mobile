@@ -10,7 +10,7 @@
   "show-news": false,
   "max-news": 30,
   "actual-timetable": {
-    "show": false,
+    "show": true,
     "message-if-no": "розклад буде незабаром"
   },
   "comments-control": {
