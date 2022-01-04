@@ -1,7 +1,7 @@
 {
   "time-table-url": "https://raw.githubusercontent.com/sergei8/knteu-timetable-mobile/master/time-table-2021-2.json",
   "stop-logging": false,
-  "version": "2.4.8",
+  "version": "2.4.9",
   "show-rating": true,
   "run-push": true,
   "semestr-start-date": "06-09-2021",
@@ -10,8 +10,8 @@
   "show-news": false,
   "max-news": 30,
   "actual-timetable": {
-    "show": true,
-    "message-if-no": "розклад буде незабаром"
+    "show": false,
+    "message-if-no": "постійного розкладу ще немає"
   },
   "comments-control": {
     "show-comments": true,
