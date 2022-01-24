@@ -11,7 +11,7 @@
   "max-news": 30,
   "actual-timetable": {
     "show": false,
-    "message-if-no": "постійного розкладу ще немає"
+    "message-if-no": "розклад буде доступний 30.01"
   },
   "comments-control": {
     "show-comments": true,
