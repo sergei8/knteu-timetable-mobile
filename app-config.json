@@ -4,13 +4,13 @@
   "version": "2.4.9",
   "show-rating": true,
   "run-push": true,
-  "semestr-start-date": "06-09-2021",
-  "semestr-end-date": "01-01-2022",
+  "semestr-start-date": "07-02-2022",
+  "semestr-end-date": "01-07-2022",
   "week-start-number": 1,
   "show-news": false,
   "max-news": 30,
   "actual-timetable": {
-    "show": false,
+    "show": true,
     "message-if-no": "розклад буде доступний 30.01"
   },
   "comments-control": {
