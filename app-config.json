@@ -10,8 +10,8 @@
   "show-news": false,
   "max-news": 30,
   "actual-timetable": {
-    "show": true,
-    "message-if-no": "розклад буде доступний 30.01"
+    "show": false,
+    "message-if-no": "розклад доступний через Портал навчальних ресурсів ДТЕУ"
   },
   "comments-control": {
     "show-comments": true,
